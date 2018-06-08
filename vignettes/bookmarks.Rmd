@@ -36,6 +36,8 @@
 - [利用 R 和 OpenCPU 搭建高可用的 HTTP 服务](http://www.bjt.name/2017/04/opencpu-application)
 - [Nearest Neighbor Gaussian Processes (NNGP) based models](https://github.com/LuZhangstat/NNGP_STAN) and [Case study: NNGP based models in Stan](http://mc-stan.org/users/documentation/case-studies/nngp.html)
 - [Spatial Models in Stan: Intrinsic Auto-Regressive Models for Areal Data](http://mc-stan.org/users/documentation/case-studies/icar_stan.html) 空间模型之 Stan 实现 [slides](https://github.com/stan-dev/stancon_talks/blob/master/2018/Invited-Talks/Morris.pdf)
+- [Conditional autoregressive models in Stan](https://github.com/mbjoseph/CARstan) [网页版](http://mc-stan.org/users/documentation/case-studies/mbjoseph-CARStan.html)
+
 - [Easily Make Multi-tabbed .xlsx Files with openxlsx](https://trinkerrstuff.wordpress.com/2018/02/14/easily-make-multi-tabbed-xlsx-files-with-openxlsx/) Map 函数
 - [Deep learning at rstudio::conf 2018](https://rviews.rstudio.com/2018/02/14/deep-learning-rstudio-conf-2018/) 深度学习与R语言,J.J.作为 RStudio 的 CEO 推动 tensorflow 在 R 中的使用，两个幻灯片值得好好看，J.J. 介绍 tensorflow Javier Luraschi介绍tf的部署
 - netlify travis-ci blog 搭建 blogdown <https://bookdown.org/yihui/blogdown>

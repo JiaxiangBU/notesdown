@@ -51,3 +51,25 @@ git commit -m "balabala"
 git push --set-upstream origin stan
 ```
 
+## 创建站点
+
+基于 GitHub Pages 创建站点用于存放图片和数据
+
+1. 在Github上创建一个空的仓库，命名为 uploads，没有 readme.md 和 LICENSE
+2. 在本地创建目录 uploads 
+3. 切换到 uploads 目录下
+
+git init 
+git checkout -b gh-pages
+git remote add origin https://github.com/XiangyunHuang/home.git
+
+添加图片或者数据，并且 git add 和 commit 后
+
+git push --set-upstream origin gh-pages
+
+这样仓库 home 只包含 gh-pages 分支
+
+数据地址即为
+
+https://xiangyunhuang.github.io/home/data/eqList2018_05_18.xls
+
