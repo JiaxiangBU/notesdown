@@ -1,4 +1,4 @@
-book_filename: "R-Box"
+book_filename: "notesdown"
 delete_merged_file: true
 language:
   label:
@@ -8,65 +8,69 @@ language:
     edit: "编辑"
     chapter_name: ["第 ", " 章"]
 
-new_session: yes
+#new_session: yes
 before_chapter_script: ["common.R"]
-clean: ["packages.bib", "R-Box.rds"]
+clean: ["packages.bib", "notesdown.rds"]
 rmd_files: [
   "index.Rmd",
-  "00-authors.Rmd",
-  "00-notations.Rmd",
+  "chapters/00-authors.Rmd",
+  "chapters/00-notations.Rmd",
   
   # 基础篇
-  "Foundations.Rmd",
+  "chapters/Foundations.Rmd",
   
-  "01-installations.Rmd",
-  "02-operators.Rmd",
-  "03-manipulations.Rmd",
+  "chapters/01-installations.Rmd",
+  "chapters/02-operators.Rmd",
+  "chapters/03-manipulations.Rmd",
   
   # 绘图篇
-  "Graphics.Rmd",
+  "chapters/Graphics.Rmd",
   
-  "04-plot.Rmd",
-  "05-grid.Rmd",
-  "06-interactions.Rmd",
+  "chapters/04-plot.Rmd",
+  "chapters/05-grid.Rmd",
+  "chapters/06-interactions.Rmd",
 
-  "08-ImageMagick.Rmd",
+  "chapters/08-ImageMagick.Rmd",
   
   # 中忍
-  "09-colors.Rmd",
-  "10-fonts.Rmd",
-  "11-animations.Rmd",
+  "chapters/09-colors.Rmd",
+  "chapters/10-fonts.Rmd",
+  "chapters/11-animations.Rmd",
   
   # 进阶篇
-  "Computations.Rmd",
+  "chapters/Computations.Rmd",
   
-  "12-optimations.Rmd",
-  "13-simulations.Rmd",
+  "chapters/12-optimations.Rmd",
+  "chapters/13-simulations.Rmd",
 
   # 上忍
-  "14-bayesians.Rmd",
-  "15-approximations.Rmd",
+  "chapters/14-bayesians.Rmd",
+  "chapters/15-approximations.Rmd",
   
   # 案例篇
-  "Cases.Rmd",
+  "chapters/Cases.Rmd",
   
-  "16-spatial.Rmd",
-  "17-network.Rmd",
+  "chapters/16-spatial.Rmd",
+  "chapters/17-network.Rmd",
   
   # 模型篇
-  "Models.Rmd",
+  "chapters/Models.Rmd",
   
-  "18-glm.Rmd",
-  "19-glmm.Rmd",
-  "20-gam.Rmd",
+  "chapters/18-glm.Rmd",
+  "chapters/19-glmm.Rmd",
+  "chapters/20-gam.Rmd",
 
   # 附录
-  "21-appendix.Rmd",
+  "chapters/21-appendix.Rmd",
 
-  "22-markdown.Rmd",
-  "23-matplotlib.Rmd",
-  "24-r2cpp.Rmd",
+  "chapters/22-markdown.Rmd",
+  "chapters/23-matplotlib.Rmd",
+  "chapters/24-r2cpp.Rmd",
 
+  "chapters/Git.Rmd",
+  "chapters/tools.Rmd",
+  "chapters/books.Rmd",
+  
   # 参考文献
-  "27-references.Rmd",
+  "chapters/27-references.Rmd",
 ]

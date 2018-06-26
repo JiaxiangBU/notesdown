@@ -1,0 +1,308 @@
+\mainmatter
+
+# 安装与配置 {#install-setup}
+
+```{r include = FALSE, eval = .Platform$OS.type != "windows"}
+Pkgs <- c(
+  "RDieHarder", "magrittr"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+```
+
+## 安装 R 软件
+
+Windows 下安装指导见《R语言忍者秘笈》的第二章^[<https://bookdown.org/yihui/r-ninja/setup.html>]
+
+推荐没事多翻翻官网 [FAQ 文档](https://mirrors.tuna.tsinghua.edu.cn/CRAN/doc/FAQ/R-FAQ.html) 以及6本自带的手册
+
+* **An Introduction to R** (R-intro) includes information on data types, programming elements, statistical modeling and graphics. This document is based on the **Notes on S-PLUS** by Bill Venables and David Smith.
+    + 介绍数据类型，编程基础，统计模型和图形
+* **Writing R Extensions** (R-exts) currently describes the process of creating R add-on packages, writing R documentation, R’s system and foreign language interfaces, and the R API.
+    + 描述创建扩展包、写R包文档的过程，介绍 R 系统，外部语言接口以及 R 的API
+* **R Data Import/Export** (R-data) is a guide to importing and exporting data to and from R.
+    + 从 R 导入和导出数据
+* **The R Language Definition** (R-lang), a first version of the *Kernighan & Ritchie of R*, explains evaluation, parsing, object oriented programming, computing on the language, and so forth.
+    + 介绍 R 语言程序设计，解释计算、解析、面向对象编程以及计算
+* **R Installation and Administration** (R-admin).
+    + R 安装和管理
+* **R Internals** (R-ints) is a guide to R’s internal structures. (Added in R 2.4.0.)
+    + R 内部结构指南
+
+Hadley Wickham 正在写文档介绍 [Documentation for R's internal C API](https://github.com/hadley/r-internals)
+
+- 从源码编译 R 的需求在哪呢？
+
+1. 爱折腾的极客：玩配置，学习 make 相关工具和 Linux 世界的依赖
+2. 追求性能：如 [LFS 支持](http://users.suse.com/~aj/linux_lfs.html) 和 [Intel MKL 加速](http://dirk.eddelbuettel.com/blog/2018/04/15/#018_mkl_for_debian_ubuntu)
+3. 环境限制：CentOS 6/7 或者红帽系统，自带的R版本比较落后
+4. 微软提供的一套 MSR （这里不需要编译）
+
+现在很多东西都讲究 docker 化，直接往 CentOS 系统上编译安装最新版 R 会越来越少，这里给个例子，在 docker 内安装 R 和扩展包，Dockerfile 的内容如下
+
+```{r docker-file}
+cat(readLines(con <- file("docs/Dockerfile", encoding = "UTF-8")) ,sep = "\n")
+```
+
+这种方式可以安装到最新版的 R，同时省去了自己配置安装过程中的麻烦，只是系统自带的 texlive 还是比较旧，如何安装 tlmgr 管理器，安装新的 TeX 包到之前的位置值得考虑，主要目的是为中文的 R Markdown 文档服务。
+
+Pandoc 提供的 LaTeX 文类，是希望用户在 YAML 指定 CJKmainfont 等，显式地安装系统中文字体供使用，楷体和宋体，文泉驿黑体都是系统自带的。要我说可以用思源黑体和宋体，或者自己拷贝一份中文字体到 `~/.fonts` 然后刷新，就是添加这样一段代码，这种做法使用最广
+
+```
+RUN mkdir ~/.fonts \
+  && curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf \
+  && curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf \
+  && fc-cache -fv ~/.fonts \
+```
+
+文泉驿字体
+
+```
+wqy-unibit-fonts wqy-microhei-fonts wqy-zenhei-fonts
+```
+
+安装 RStudio 或者 RStudio Server 请看官网介绍
+
+-  <https://www.rstudio.com/products/rstudio/download/>
+-  <http://docs.rstudio.com/ide/server-pro/>
+
+* 安装 Microsoft R Open <https://mran.microsoft.com/documents/rro/installation#revorinst-lin>
+* 安装 Machine Learning Server
+    + [在线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-install)
+    + [离线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-offline)
+
+
+## 安装 R 扩展包
+
+- 从指定的镜像站点安装（源头）
+
+```{r,eval=FALSE}
+install.packages("rbokeh", repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
+```
+
+- 再指定安装的位置（本地）
+
+```{r,eval=FALSE}
+install.packages("rbokeh",
+  repos = c(
+    deltarho = "http://packages.deltarho.org",
+    getOption("repos")
+  ),
+  lib = R.home("site-library")
+)
+```
+
+- 安装 Bioconductor 上的 R 包
+
+```{r,eval=FALSE}
+source("https://bioconductor.org/biocLite.R")
+BiocInstaller::biocLite("rbokeh")
+```
+
+- 安装Github上的R包
+
+```{r,eval=FALSE}
+devtools::install_github("bokeh/rbokeh")
+```
+
+- 依赖问题：主要针对离线安装和源码编译安装
+- 平台问题：有些 R 包只能装在 Linux 操作系统上
+- 软件问题：有些 R 包要求相应 R 软件版本
+- 特定库依赖：如 **RDieHarder** \index{RDieHarder} 包就依赖 `libgsl-dev` 和 `libdieharder-dev` 库
+
+所以我们需要查看以下信息
+
+```{r}
+sessionInfo()
+```
+
+有时候甚至是
+
+```{r}
+devtools::session_info("showtext")
+```
+
+```{block2, type='rmdnote'}
+推荐 `devtools::session_info("package")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
+```
+
+
+### SparkR
+
+### sparklyr
+
+```{r,eval=FALSE}
+library(sparklyr)
+# spark_available_versions()
+spark_install(version = "2.2.0", hadoop_version = "2.7")
+```
+
+### DBI
+
+这是一个存放在Github上的包，随着 ClikHouse 在大厂的流行，此包也受到越来越多的关注
+与数据仓库如何连接，如何查询数据，背后的接口 DBI 如何使用，实例化一个新的接口（如 clickhouse2r ）
+
+- <https://github.com/hannesmuehleisen/clickhouse-r>
+- 壮士！交给你个任务，基于 clickhouse 的 odbc 驱动 <https://github.com/yandex/clickhouse-odbc> 写了 R 包如何，顺带介绍 clickhouse ，再给统计之都投篇稿子，在明年的 R 会给个相关报告。名字 r4clickhouse 还是 clickhouse4r 呢
+
+[ClickHouse](https://clickhouse.yandex/) 独辟蹊径，基于 C++ 的实现，数据查询速度超级快，官网介绍碾压大量传统数据库。还有不少接口，其中还有 R 的 <https://github.com/hannesmuehleisen/clickhouse-r> 
+
+- 安装
+
+```r
+devtools::install_github("hannesmuehleisen/clickhouse-r")
+```
+
+下载 <https://clickhouse.yandex/docs/en/single/#installation>
+
+- 使用
+
+```{r,eval=FALSE}
+library(DBI)
+con <- dbConnect(clickhouse::clickhouse(),
+  host = "localhost",
+  port = 8123L,
+  user = "default",
+  password = ""
+)
+dbWriteTable(con, "mtcars", mtcars)
+dbListTables(con)
+dbGetQuery(con, "SELECT COUNT(*) FROM mtcars")
+d <- dbReadTable(con, "mtcars")
+dbDisconnect(con)
+```
+
+发现它和 knitr  里的 SQL 钩子，都用 DBI 这个R包  <https://github.com/rstats-db/DBI>
+
+```{r clickhouse,fig.cap="ClickHouse与R"}
+knitr::include_graphics(path = "images/clickhouse.png")
+```
+
+参考 <https://d.cosx.org/d/419974-r-markdown-sql>
+
+````markdown
+`r ''````{r setup}
+library(DBI)
+library(RMySQL)
+# 这里的数据库链接信息我改了
+db <- dbConnect(MySQL(),
+  dbname = "dbtest",
+  username = "user_test",
+  password = "password",
+  host = "10.10.101.10",
+  port = 3306
+)
+# 创建默认连接
+knitr::opts_chunk$set(connection = "db")
+# 设置字符，以免中文查询乱码
+dbSendQuery(db, "SET NAMES utf8")
+# 设置日期变量，以运用在SQL中
+idate <- "2018-05-03"
+# 请忽略我
+```
+````
+
+SQL中使用R的变量并将结果输出为数据框
+
+````markdown
+`r ''````{sql, output.var="data_output"}
+SELECT * FROM user_table where date_format(created_date,'%Y-%m-%d')>=?idate  
+# 请忽略我
+```
+````
+
+以上代码会将SQL的运行结果存在 `data_output` 这是数据库中。如果SQL比较长，为了代码美观，把带有变量的SQL保存为.sql脚本，那怎么在SQL的chunk中直接导入SQL文件
+
+````markdown
+`r ''````{sql, code=readLines("你的脚本.sql")}
+```
+````
+
+
+### reticulate
+
+Python 与 R 交互
+
+### INLA 
+
+具有非常多的依赖关系，除了 CRAN 还有来自 bioconductor 的包，介绍 <http://www.r-inla.org/events/newtutorialsonspatialmodelsininla>
+
+```{r,eval=FALSE}
+install.packages("INLA",
+  repos = "https://www.math.ntnu.no/inla/R/testing"
+)
+```
+
+### mxnet
+
+依赖也是很多，主要在于 GPU 版如何安装使用
+
+### tensorflow
+
+同样地，依赖也是很多，主要在于 GPU 版如何安装使用
+
+## 安装 IDE
+
+RStudio
+
+
+## 配置文件
+
+
+工作目录下的 .Rprofile，设置 site-library，设置环境变量 Renviron
+
+
+
+## 小技巧 {#tricks}
+
+1. 设置 Notepad++ 为 Git Bash 默认编辑器
+
+图 \@ref(fig:notepad-git) 所示^[<http://readorskip.com/2016/09/12/Using-Notepad-to-Write-Git-Commit-Messages/>]
+
+```{r notepad-git,fig.cap="Notepad++ 与 Git"}
+knitr::include_graphics(path = "images/git-vim-commit-message.png")
+```
+
+在 Git Bash 中输入下面一行
+
+```bash
+git config --global core.editor "'c:\Program Files\Notepad++\notepad++.exe' -multiInst -notabbar -nosession -noPlugin '$*'"
+```
+
+Windows下配置 Git 中 ssh-agent 自动启动 <https://lfkid.github.io/>
+这种让 Git 的 ssh-agent 常驻内存貌似不合理，占内存嘛
+
+设置 ssh 和 store 保存应该比较好
+
+
+2. 打开 bookdown 项目出来警告
+
+如图 \@ref(fig:yaml-load) 所示，目前只出现在 Windows 平台下
+
+```{r yaml-load,echo=FALSE,fig.cap="YAML 扫描错误"}
+knitr::include_graphics(path = "diagrams/ymal-load-error.png")
+```
+
+直观来看，是字符串 string 本身需要转化为 UTF8（其实是需要YAML区域都变成UTF8），有关详细介绍见 <http://biostat.mc.vanderbilt.edu/wiki/Main/YamlR#yaml.load> 和 <https://github.com/viking/r-yaml>
+
+```{r,echo=TRUE}
+yaml::yaml.load
+```
+
+先看个简单的
+
+```{r}
+yaml::yaml.load('你好')
+```
+
+开发者用如下方式避免一个警告 [issues #47](https://github.com/viking/r-yaml/issues/47)
+
+```{r}
+yaml::yaml.load("!expr paste('orange')", handlers = list(expr = function(x) eval(parse(text = x))))
+```
+
+要么等着 YAML 更新，要么等着 bookdown 或 rmarkdown 更新，目前还是在 rocker 下编辑吧，看着红红的警告信息，心里有点烦。
+
+- <https://github.com/viking/r-yaml/issues/6>
+- <https://github.com/rstudio/rmarkdown/issues/420>
+- <https://github.com/rstudio/config/issues/12>

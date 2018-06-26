@@ -5,7 +5,7 @@ bookdown::gitbook:
     toc:
       collapse: none
       before: |
-        <li><a href="./">The Notes of R</a></li>
+        <li><a href="./">学习笔记</a></li>
       after: |
         <li><a href="https://xiangyun.netlify.com/">Xiangyun Huang</a></li>
     download: ["pdf", "epub"]
@@ -28,5 +28,5 @@ bookdown::pdf_book:
   toc_appendix: yes
   highlight_bw: no
   template: latex/default.latex
-bookdown::epub_book: 
-  dev: svglite
+#bookdown::epub_book: 
+#  dev: svglite
