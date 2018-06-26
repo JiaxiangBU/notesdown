@@ -1,0 +1,51 @@
+# 性能提升 {#performance}
+
+- [C++ 编程风格指南](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) 
+- <https://github.com/isocpp/CppCoreGuidelines>
+
+- 如何充分利用 Rcpp 包
+- 设个目标，锻炼一下编码能力，关于统计计算和可视化尽可能提供两个方案，至少包含基础 R 包的实现
+
+```{r base-packages}
+Pkgs <- sapply(list.files(R.home("library")), function(x)
+  packageDescription(pkg = x, fields = "Priority"))
+names(Pkgs[Pkgs == "base" & !is.na(Pkgs)])
+```
+
+计算程序运行时间
+
+```{r}
+.proctime00 <- proc.time()
+s <- 0
+for (i in seq(1000)) {
+  s <- s + i
+}
+proc.time() - .proctime00
+```
+
+## Rcpp
+
+
+
+### RcppOctave
+
+混合编程
+
+
+### RcppGSL
+
+
+### RcppArmadillo
+
+### RcppParallel
+
+### RcppNumerical
+
+
+### RcppAlgos
+
+
+```{r, eval = .Platform$OS.type != "windows"}
+devtools::session_info(pkgs = c("Rcpp","RcppOctave"))
+```
+

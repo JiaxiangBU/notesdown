@@ -1,6 +1,6 @@
 # 近似推断 {#r-inla}
 
-```{r setup, include=FALSE, eval=FALSE}
+```{r include=FALSE, eval=FALSE}
 Pkgs <- c(
   "Rgraphviz", "graph"
 )

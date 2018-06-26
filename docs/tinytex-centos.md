@@ -62,7 +62,7 @@ sudo chmod -R +777 /usr/lib64/R/library
 yum install -y libcurl-devel openssl-devel libssh2-devel libxml2-devel \
    ImageMagick-c++-devel librsvg2-devel \
    readline-devel v8-314-devel libXmu libXmu-devel\
-   tclx tclx-devel mesa-libGLU mesa-libGLU-devel   
+   tclx tclx-devel mesa-libGLU mesa-libGLU-devel libicu-devel
 ```  
 
 - 安装 R 包
