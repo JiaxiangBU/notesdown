@@ -142,7 +142,7 @@ Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
 
 
 
-## 其它
+## 重复 {#reproduce}
 
 重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
 
