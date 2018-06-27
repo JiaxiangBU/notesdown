@@ -1,6 +1,6 @@
 ---
-title: "The Notes of R"
-author: "Xiangyun Huang"
+title: "学习笔记"
+author: "黄湘云"
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
 geometry: margin=1.18in

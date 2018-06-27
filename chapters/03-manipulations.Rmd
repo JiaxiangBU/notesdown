@@ -133,6 +133,26 @@ saveWorkbook(wb, file = "example.xlsx", overwrite = TRUE)
 
 ### cut
 
+```
+Z <- stats::rnorm(10000)
+table(cut(Z, breaks = -6:6))
+# 条形图
+plot(cut(Z, breaks = -6:6))
+# 落在区间 [-6，6] 内的点
+sum(table(cut(Z, breaks = -6:6, labels = FALSE)))
+# 直方图
+hist(Z, breaks = -6:6)
+
+aaa <- c(1,2,3,4,5,2,3,4,5,6,7)
+cut(aaa, 3)
+cut(aaa, 3, dig.lab = 4, ordered = TRUE)
+## one way to extract the breakpoints
+labs <- levels(cut(aaa, 3))
+cbind(lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
+      upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) ))
+
+```
+
 - findInterval
 - embed
 

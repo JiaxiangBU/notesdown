@@ -70,6 +70,7 @@ rmd_files: [
   "chapters/Git.Rmd",
   "chapters/tools.Rmd",
   "chapters/books.Rmd",
+  "chapters/bookmarks.Rmd",
   
   # 参考文献
   "chapters/27-references.Rmd",
