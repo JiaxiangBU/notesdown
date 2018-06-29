@@ -121,6 +121,8 @@ cat(".\n")
 
 `r if(knitr::is_html_output()) "如果编译和部署成功，你会看到一个绿色的指示器，否则指示器显示红色。[![Build Status](https://travis-ci.org/XiangyunHuang/notesdown.svg?branch=master)](https://travis-ci.org/XiangyunHuang/notesdown)"`
 
+## 说明 {#conventions .unnumbered}
+
 [sourceserifpro](https://ctan.org/pkg/sourceserifpro) 设为默认英文字体，[inconsolata](http://levien.com/type/myfonts/inconsolata.html) 用于代码显示，R 包名称在文中以粗体显示，代码块输出用 `#>` 表示，以区分普通的代码注释 `#`
 
 我用了两个 R 包编译这本书，分别是 **knitr**\index{knitr} [@Dynamic2015CRC] 和 **bookdown**\index{bookdown} [@bookdown2016CRC]。绘图使用的中文字体是思源宋体和思源黑体， **showtext**\index{showtext} 包安装和调用，**tikzDevice**\index{tikzDevice} 和 **fontcm**\index{fontcm} 处理其中的数学公式，**xkcd**\index{xkcd} 设置漫画手写体风格，以下是我的 R 进程信息：
@@ -129,6 +131,7 @@ cat(".\n")
 sessionInfo()
 ```
 
+## 授权 {licenses .unnumbered}
 
 ```{block2, type = 'rmdwarning'}
 本书采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/) 许可，请君自重，别没事儿拿去传个什么新浪爱问、百度文库以及 XX 经济论坛，项目中代码使用 [MIT 协议](https://github.com/XiangyunHuang/notesdown/blob/master/LICENSE) 开源
