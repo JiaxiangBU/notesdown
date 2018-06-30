@@ -1,6 +1,6 @@
 ---
 title: "notes"
-author: "Xiangyun Huang"
+author: ["Xiangyun Huang", "The Others"]
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
 geometry: margin=1.18in
