@@ -67,6 +67,17 @@ my_socials <- collate_socials(user = c("jonocarroll", "carroll_jono", 4168169),
 
 ### `[[`
 
+
+```r
+# which [] 索引性能比较
+
+n = 100000
+x = runif(n)
+i = logical(n)
+i[sample(n, n/4)] = TRUE
+microbenchmark::microbenchmark(x[i], x[which(i)], times = 1000)
+```
+
 ## 分组
 
 by
@@ -162,3 +173,36 @@ RMariaDB: Implements a 'DBI'-compliant interface to 'MariaDB' (<https://mariadb.
 
 - rio <https://github.com/leeper/rio>
 
+
+```r
+# 读取一系列同一格式的数据文件
+read_list <- function(list_of_datasets, read_func){
+
+        read_and_assign <- function(dataset, read_func){
+                dataset_name <- as.name(dataset)
+                dataset_name <- read_func(dataset)
+        }
+
+        # invisible is used to suppress the unneeded output
+        output <- invisible(
+                sapply(list_of_datasets,
+                           read_and_assign, read_func = read_func, simplify = FALSE, USE.NAMES = TRUE))
+
+        # Remove the extension at the end of the data set names
+        names_of_datasets <- c(unlist(strsplit(list_of_datasets, "[.]"))[c(T, F)])
+        names(output) <- names_of_datasets
+        return(output)
+}
+
+data_files <- list.files(pattern = ".csv")  # 提取文件名.csv格式文件
+
+print(data_files)
+
+library("readr")
+library("tibble")
+
+list_of_data_sets <- read_list(data_files, read_csv)
+
+
+glimpse(list_of_data_sets)
+```
