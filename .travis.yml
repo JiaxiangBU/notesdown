@@ -27,8 +27,7 @@ git:
 r_github_packages: 
   - tidyverse/ggplot2
   - leonawicz/mapmate
-  - dgrtwo/gganimate
-#  - thomasp85/gganimate
+  - thomasp85/gganimate
   - cosname/recharts
   - JohnCoene/echarts4r
   - rstudio/r2d3
