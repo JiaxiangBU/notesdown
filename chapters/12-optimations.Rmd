@@ -19,3 +19,26 @@ D(peaks_fun, "y")
 
 - [An R package for optimization using genetic algorithms](https://github.com/luca-scr/GA)
 
+复合函数求极值
+
+```r
+f <- function(y){
+	g <- function(x){
+	  integrate(function(t){ -sqrt(t)*exp(-t^2) },lower = 0,upper = x)$value
+	}
+  integrate(function(s){ g(s)*exp(-s) },lower = 0,upper = y)$value
+}
+
+# optimize(f,c(0,10),maximum = FALSE)
+
+# optimize(f,c(0,10),maximum = FALSE)
+
+x <- seq(from=0,to=100,length.out = 100)
+fval <- rep(0,100)
+
+for(i in seq(100)){
+  fval[i] <- f(x[i])
+}
+plot(fval~x)
+integrate(function(t){-sqrt(t)*exp(-t^2)},lower = 0,upper = 20)$value
+```
