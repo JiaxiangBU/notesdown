@@ -18,7 +18,7 @@ branches:
     - release
     - stable
 
-pandoc_version: 2.2.1
+pandoc_version: 2.2.2
 
 git:
   depth: 5
