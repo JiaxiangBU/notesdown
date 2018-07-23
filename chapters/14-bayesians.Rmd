@@ -17,6 +17,27 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 
 ## Stan 框架
 
+- 安装
+
+```bash
+git clone --depth=1 --branch=develop --recursive git@github.com:stan-dev/rstan.git
+# 若中间断了，则执行下一行
+git submodule update --init --recursive
+```
+
+```r
+# 安装新版 StanHeaders
+path_rstan <- "/home/xyhuang/softwares/rstan/"
+devtools::install(file.path(path_rstan, "StanHeaders"), args = "--preclean")
+```
+
+```bash
+cd rstan # rstan 包目录
+make build # build R包
+make check # 检查R包
+make install # 安装R包
+```
+
 ```{r, out.width="20%", fig.cap="Stan 家族", echo=FALSE, eval=FALSE}
 knitr::include_graphics(path = paste0(
   "images/",

@@ -221,7 +221,11 @@ knitr::include_graphics(path = paste0("figures/binormal", if(knitr::is_latex_out
 
 如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
 
-```{r latex-tikz, engine='tikz', out.width='90%', fig.ext=if (knitr:::is_latex_output()) 'pdf' else 'png', fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex"), eval = knitr::is_latex_output() & identical(Sys.getenv("TRAVIS"), "true")}
+```{r}
+names(knitr::knit_engines$get())
+```
+
+```{tikz latex-tikz, fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex")}
 \begin{tikzpicture}[scale=.7]
 \draw [fill=gray!30,very thick] (0,-1) rectangle (5,1);
 \draw [very thick] (5, 0) -- (13,0);
