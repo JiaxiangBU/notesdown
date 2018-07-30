@@ -213,6 +213,20 @@ norm(A)
 qr(A)$rank # or qr.default(A)$rank
 ```
 
+### 稀疏矩阵
+
+```{r}
+dn <- list(LETTERS[1:3], letters[1:5])
+## pointer vectors can be used, and the (i,x) slots are sorted if necessary:
+## 使用指针构造
+m <- sparseMatrix(i = c(3,1, 3:2, 2:1), p= c(0:2, 4,4,6), x = 1:6, dimnames = dn)
+m
+## 典型构造方式
+i <- c(1,3:8); j <- c(2,9,6:10); x <- 7 * (1:7)
+(AA <- sparseMatrix(i, j, x = x))                    ##  8 x 10 "dgCMatrix"
+```
+
+
 ## 矩阵分解
 
 ### Cholesky 分解

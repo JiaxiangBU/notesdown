@@ -40,7 +40,7 @@ system("octave --version")
 
 Python 版本和位置
 
-```{r}
+```{r, eval = .Platform$OS.type != "windows"}
 Sys.which("python")
 system2("python", args = "--version", stderr = TRUE)
 ```
@@ -55,7 +55,7 @@ sudo apt-get update
 
 可用的 python 模块
 
-```{python}
+```{python, eval = .Platform$OS.type != "windows"}
 help('modules')
 ```
 
@@ -89,8 +89,7 @@ rmarkdown::pandoc_available()
 pandoc 版本
 
 ```{r}
-Sys.which("pandoc")
-system("pandoc -v")
+rmarkdown::pandoc_version()
 ```
 
 ## Rtools

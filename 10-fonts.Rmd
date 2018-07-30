@@ -219,13 +219,13 @@ knitr::include_graphics(path = paste0("figures/binormal", if(knitr::is_latex_out
 
 ## TikZ 和 PGF
 
-如图 \@ref(fig:latex-tikz) 所示，模板存放在 `tikz/tikz2pdf.tex`
+如图所示，模板存放在 `tikz/tikz2pdf.tex`
 
 ```{r}
 names(knitr::knit_engines$get())
 ```
 
-```{tikz latex-tikz, fig.cap='tikz 图形', engine.opts = list(template = "tikz/tikz2pdf.tex")}
+```{tikz latex-tikz, fig.cap='tikz 图形',eval = FALSE}
 \begin{tikzpicture}[scale=.7]
 \draw [fill=gray!30,very thick] (0,-1) rectangle (5,1);
 \draw [very thick] (5, 0) -- (13,0);
@@ -244,7 +244,7 @@ cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
 knitr::include_graphics(path = "tikz/mini-demo.png")
 ```
 
-```{r, dev='tikz', fig.width=4.4, fig.height=3.3, out.width="90%",eval = knitr::is_latex_output() & identical(Sys.getenv("TRAVIS"), "true"),fig.ext='tex', tikz2png='-density 300',fig.cap='tikz 图形'}
+```{r, dev='tikz', out.width="90%",fig.cap='tikz 图形',eval=FALSE}
 par(mar = c(4.5, 4, .1, .1))
 hist(rnorm(1000), main='', xlab='$x$ (how the fonts look like here?)',
   ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')

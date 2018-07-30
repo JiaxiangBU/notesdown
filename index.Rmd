@@ -1,5 +1,5 @@
 ---
-title: "notes"
+title: "Notes Down"
 author: ["Xiangyun Huang", "The Others"]
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
@@ -38,7 +38,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # 前言 {#preface .unnumbered}
 
 ```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
@@ -57,7 +56,6 @@ knitr::include_graphics('images/peaks3D.png', dpi = NA)
 --- Chuang Tzu
 ```
 
-
 1. 把平时遇到的问题分类汇总形成一本笔记，用以时常查看和更新。
 2. 网罗精美的案例，学习之，应用之
 3. 挑选感兴趣的新技能，钻研之
@@ -73,12 +71,9 @@ knitr::include_graphics('images/peaks3D.png', dpi = NA)
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
 <!-- The R-Box 的创意来自 VirtualBox OSE，R-Box 容纳的是R基础、统计图形、统计计算、优化算法、统计模型等 -->
-
 <!-- ```{r vbox-ose, echo=FALSE, out.width="55%", fig.cap="The R-Box", fig.link='https://www.virtualbox.org/wiki/Downloads'} -->
 <!-- knitr::include_graphics(path = "images/VBoxOSE.png") -->
 <!-- ``` -->
-
-
 
 ## 致谢 {#thanks .unnumbered}
 
