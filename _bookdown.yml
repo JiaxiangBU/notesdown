@@ -8,70 +8,70 @@ language:
     edit: "编辑"
     chapter_name: ["第 ", " 章"]
 
-#new_session: yes
-before_chapter_script: ["common.R"]
+new_session: yes
+before_chapter_script: ["_common.R"]
 clean: ["packages.bib", "notesdown.rds"]
 rmd_files: [
   "index.Rmd",
-  "chapters/00-authors.Rmd",
-  "chapters/00-notations.Rmd",
+  "00-authors.Rmd",
+  "00-notations.Rmd",
   
   # 基础篇
-  "chapters/Foundations.Rmd",
+  "Foundations.Rmd",
   
-  "chapters/01-installations.Rmd",
-  "chapters/02-operators.Rmd",
-  "chapters/03-manipulations.Rmd",
+  "01-installations.Rmd",
+  "02-operators.Rmd",
+  "03-manipulations.Rmd",
   
   # 绘图篇
-  "chapters/Graphics.Rmd",
+  "Graphics.Rmd",
   
-  "chapters/04-plot.Rmd",
-  "chapters/05-grid.Rmd",
-  "chapters/06-interactions.Rmd",
+  "04-plot.Rmd",
+  "05-grid.Rmd",
+  "06-interactions.Rmd",
 
-  "chapters/08-ImageMagick.Rmd",
+  "08-ImageMagick.Rmd",
   
   # 中忍
-  "chapters/09-colors.Rmd",
-  "chapters/10-fonts.Rmd",
-  "chapters/11-animations.Rmd",
+  "09-colors.Rmd",
+  "10-fonts.Rmd",
+  "11-animations.Rmd",
   
   # 进阶篇
-  "chapters/Computations.Rmd",
+  "Computations.Rmd",
   
-  "chapters/12-optimations.Rmd",
-  "chapters/13-simulations.Rmd",
+  "12-optimations.Rmd",
+  "13-simulations.Rmd",
 
   # 上忍
-  "chapters/14-bayesians.Rmd",
-  "chapters/15-approximations.Rmd",
+  "14-bayesians.Rmd",
+  "15-approximations.Rmd",
   
   # 案例篇
-  "chapters/Cases.Rmd",
+  "Cases.Rmd",
   
-  "chapters/16-spatial.Rmd",
-  "chapters/17-network.Rmd",
+  "16-spatial.Rmd",
+  "17-network.Rmd",
   
   # 模型篇
-  "chapters/Models.Rmd",
+  "Models.Rmd",
   
-  "chapters/18-glm.Rmd",
-  "chapters/19-glmm.Rmd",
-  "chapters/20-gam.Rmd",
+  "18-glm.Rmd",
+  "19-glmm.Rmd",
+  "20-gam.Rmd",
 
   # 附录
-  "chapters/21-appendix.Rmd",
+  "21-appendix.Rmd",
 
-  "chapters/22-markdown.Rmd",
-  "chapters/23-matplotlib.Rmd",
-  "chapters/24-r2cpp.Rmd",
+  "22-markdown.Rmd",
+  "23-matplotlib.Rmd",
+  "24-r2cpp.Rmd",
 
-  "chapters/Git.Rmd",
-  "chapters/tools.Rmd",
-  "chapters/books.Rmd",
-  "chapters/bookmarks.Rmd",
+  "Git.Rmd",
+  "tools.Rmd",
+  "books.Rmd",
+  "bookmarks.Rmd",
   
   # 参考文献
-  "chapters/27-references.Rmd",
+  "27-references.Rmd",
 ]

@@ -38,6 +38,11 @@
 - [Spatial Models in Stan: Intrinsic Auto-Regressive Models for Areal Data](http://mc-stan.org/users/documentation/case-studies/icar_stan.html) 空间模型之 Stan 实现 [slides](https://github.com/stan-dev/stancon_talks/blob/master/2018/Invited-Talks/Morris.pdf)
 - [Conditional autoregressive models in Stan](https://github.com/mbjoseph/CARstan) [网页版](http://mc-stan.org/users/documentation/case-studies/mbjoseph-CARStan.html)
 
+- [Bagging, the perfect solution for model instability](https://insightr.wordpress.com/2017/05/22/bagging-the-perfect-solution-for-model-instability/)
+- [How Random Forests improve simple Regression Trees?](https://insightr.wordpress.com/2017/09/23/how-random-forests-improve-simple-regression-trees/)
+- [Tuning xgboost in R: Part I](https://insightr.wordpress.com/2018/05/17/tuning-xgboost-in-r-part-i/)
+- [Tuning xgboost in R: Part II](https://insightr.wordpress.com/2018/07/28/tuning-xgboost-in-r-part-ii/)
+
 - [Easily Make Multi-tabbed .xlsx Files with openxlsx](https://trinkerrstuff.wordpress.com/2018/02/14/easily-make-multi-tabbed-xlsx-files-with-openxlsx/) Map 函数
 - [Deep learning at rstudio::conf 2018](https://rviews.rstudio.com/2018/02/14/deep-learning-rstudio-conf-2018/) 深度学习与R语言,J.J.作为 RStudio 的 CEO 推动 tensorflow 在 R 中的使用，两个幻灯片值得好好看，J.J. 介绍 tensorflow Javier Luraschi介绍tf的部署
 - netlify travis-ci blog 搭建 blogdown <https://bookdown.org/yihui/blogdown>
