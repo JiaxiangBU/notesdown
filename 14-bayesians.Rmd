@@ -140,8 +140,6 @@ fit <- stan(file = 'data/8schools.stan', iter = 1000, chains = 4)
 1. Bayesian Data Analysis <https://github.com/avehtari/BDA_R_demos>
 Bayesian Data Analysis, 3rd ed by Gelman, Carlin, Stern, Dunson, Vehtari, and Rubin (BDA3).
 
-2. RStan Book <https://github.com/MatsuuraKentaro/RStanBook> 这是日文版
-
 3. An Introduction to State Space Time Series Analysis <https://github.com/sinhrks/stan-statespace>
 Stan models for state space time series
 
