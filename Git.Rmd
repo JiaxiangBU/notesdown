@@ -59,19 +59,22 @@ git push --set-upstream origin stan
 2. 在本地创建目录 uploads 
 3. 切换到 uploads 目录下
 
+```bash
 git init 
 git checkout -b gh-pages
 git remote add origin https://github.com/XiangyunHuang/home.git
-
+```
 添加图片或者数据，并且 git add 和 commit 后
 
+```bash
 git push --set-upstream origin gh-pages
+```
 
 这样仓库 home 只包含 gh-pages 分支
 
 数据地址即为
 
-https://xiangyunhuang.github.io/home/data/eqList2018_05_18.xls
+<https://xiangyunhuang.github.io/home/data/eqList2018_05_18.xls>
 
 ## 回车换行
 
