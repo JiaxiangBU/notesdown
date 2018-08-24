@@ -10,6 +10,11 @@ db <- tools::CRAN_package_db()
 
 Linux 命令行工具是非常强大的^[<https://www.datascienceatthecommandline.com/>]。
 
+```bash
+# 对当前目录下的文件/夹 按大小排序
+du -sh * | sort -nr
+```
+
 ## 软件包管理器 {#apt}
 
 ### 添加和删除 PPA {#ppa}
@@ -30,7 +35,7 @@ apt show octave
 sudo apt install octave
 ```
 
-```
+```bash
 sudo apt-get install lsb-core
 ```
 
@@ -201,6 +206,17 @@ git merge upstream/master master
 git push origin master
 ```
 
+### 大文件支持
+
+```bash
+sudo apt install git-lfs
+git lfs install
+git lfs track "*.psd"
+git add .gitattributes
+git commit -m "track *.psd files using Git LFS"
+git push origin master
+```
+
 ### 新建分支
 
 
@@ -293,13 +309,6 @@ git commit -m "init cos-art"
 git push origin master:cos-art
 ```
 
-使用 zsh
-
-```bash
-sudo apt update && sudo apt install zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-```
-
 位于 [Github](https://github.com/liuhui998/gitbook) [Git Community Book 中译本](http://gitbook.liuhui998.com/)
 
 
@@ -328,13 +337,6 @@ system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
 system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
 ```
 
-## Bash
-
-```bash
-du -sh * | sort -nr
-```
-
-对当前目录下的文件/夹 按大小排序
 
 ## Octave
 
@@ -382,16 +384,6 @@ help('modules')
 ```bash
 wget https://github.com/gohugoio/hugo/releases/download/v0.40.2/hugo_0.40.2_Linux-64bit.deb
 sudo dpkg -i hugo_0.40.2_Linux-64bit.deb
-```
-
-## LaTeX 
-
-可以考虑打包自定义 TinyTeX 发行版，自定义在于最小的中文支持和最喜爱的英文字体设置 fandol 和 sourceserifpro(XeLaTeX)，mathptmx 和 inconsolata(PDFLaTeX), fibeamer, Pandoc's LaTeX 模板 
-
-在 Windows or MacOS 下需要这行操作
-
-```
-tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
 ```
 
 ## Rtools
@@ -741,15 +733,18 @@ tlmgr install ctex ms ulem xecjk environ trimspaces \
 
 `.Rprofile` 设置如下
 
-```
+```r
 Sys.setenv(PATH = "/home/cloud2016/.TinyTeX/bin/x86_64-linux:
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin" )
 options( bitmapType = 'cairo' )
 ```
+
 查看 R 进程信息
+
 ```r
 sessionInfo()
 ```
+
 ```
 R version 3.4.3 (2017-11-30)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -904,6 +899,7 @@ sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 sudo apt-get update
 sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev 
 ```
+
 ```{r}
 tools::dependsOnPkgs("sf", installed = db)
 ```
@@ -1380,11 +1376,9 @@ R 包 <https://github.com/dmlc/xgboost/tree/master/R-package>
 
 XLearning is running on the Hadoop Yarn and has integrated deep learning frameworks such as TensorFlow, MXNet, Caffe, Theano, PyTorch, Keras, XGBoost. 
 
-
 ### GPflow
 
 Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
-
 文档 <http://gpflow.readthedocs.io/en/latest/> 提到了 Fully Bayesian inference for generalized GP models with HMC 可以考虑与 Stan 比较性能
 
 相关的框架 [GPflowOpt](https://github.com/GPflow/GPflowOpt) 主要在于贝叶斯框架下的优化计算，相关使用文档见 <https://gpflowopt.readthedocs.io/en/latest>
@@ -1410,15 +1404,12 @@ Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
 - [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) Yihui Xie, Amber Thomas, Alison Presmanes Hill 著
 - [R: A Language and Environment for Statistical Computing](https://xiangyun.netlify.com/pdf/refman.pdf) The R Core Team 著
 - [LaTeX2e unofficial reference manual](http://tug.ctan.org/tex-archive/info/latex2e-help-texinfo/latex2e.html) [pdf 版](https://xiangyun.netlify.com/pdf/latex2e.pdf)
-
 - [Statistical Rethinking](http://xcelab.net/rm/statistical-rethinking/)  Richard McElreath 著
 - [Regression Modeling Strategies](http://biostat.mc.vanderbilt.edu/wiki/Main/RmS) Frank E Harrell Jr 著
 - [Applied Predictive Modeling](http://appliedpredictivemodeling.com/) Max Kuhn and Kjell Johnson 著
 - [Forecasting: Principles and Practice](https://www.otexts.org/fpp2/) Rob J Hyndman and George Athanasopoulos 著
 - [Applied Regression Analysis and Generalized Linear Models](https://socialsciences.mcmaster.ca/jfox/) 及书评 [JASA-review](https://socialsciences.mcmaster.ca/jfox/Books/Applied-Regression-2E/JASA-review.pdf) 附录、样章和书评位于目录 docs/John-Fox
-
 - [Introduction to Data Science](https://rafalab.github.io/dsbook/) Rafael A. Irizarry 著
-
 - [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering) Max Kuhn and Kjell Johnson
 
 ## 主页 {#homepage}
@@ -1434,7 +1425,6 @@ Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
 - [Jean-Paul Fox](http://www.jean-paulfox.com/) Bayesian response modeling
 - [Julian faraway](https://farawaystatistics.wordpress.com) INLA [When Small Data beats Big Data](http://people.bath.ac.uk/jjf23/papers/smallvbig.pdf)
 - [Shirin Glander](https://shirinsplayground.netlify.com/)
-
 - [Yihui Xie](https://yihui.name/)
 - [Beilei Bian](http://statsjoke.me)
 - [Miao Yu](https://yufree.cn/)
@@ -1460,12 +1450,10 @@ Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
 - [Nearest Neighbor Gaussian Processes (NNGP) based models](https://github.com/LuZhangstat/NNGP_STAN) and [Case study: NNGP based models in Stan](http://mc-stan.org/users/documentation/case-studies/nngp.html)
 - [Spatial Models in Stan: Intrinsic Auto-Regressive Models for Areal Data](http://mc-stan.org/users/documentation/case-studies/icar_stan.html) 空间模型之 Stan 实现 [slides](https://github.com/stan-dev/stancon_talks/blob/master/2018/Invited-Talks/Morris.pdf)
 - [Conditional autoregressive models in Stan](https://github.com/mbjoseph/CARstan) [网页版](http://mc-stan.org/users/documentation/case-studies/mbjoseph-CARStan.html)
-
 - [Bagging, the perfect solution for model instability](https://insightr.wordpress.com/2017/05/22/bagging-the-perfect-solution-for-model-instability/)
 - [How Random Forests improve simple Regression Trees?](https://insightr.wordpress.com/2017/09/23/how-random-forests-improve-simple-regression-trees/)
 - [Tuning xgboost in R: Part I](https://insightr.wordpress.com/2018/05/17/tuning-xgboost-in-r-part-i/)
 - [Tuning xgboost in R: Part II](https://insightr.wordpress.com/2018/07/28/tuning-xgboost-in-r-part-ii/)
-
 - [Easily Make Multi-tabbed .xlsx Files with openxlsx](https://trinkerrstuff.wordpress.com/2018/02/14/easily-make-multi-tabbed-xlsx-files-with-openxlsx/) Map 函数
 - [Deep learning at rstudio::conf 2018](https://rviews.rstudio.com/2018/02/14/deep-learning-rstudio-conf-2018/) 深度学习与R语言,J.J.作为 RStudio 的 CEO 推动 tensorflow 在 R 中的使用，两个幻灯片值得好好看，J.J. 介绍 tensorflow Javier Luraschi介绍tf的部署
 - netlify travis-ci blog 搭建 blogdown <https://bookdown.org/yihui/blogdown>
@@ -1482,8 +1470,6 @@ Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
 - [Using Git and GitHub with R, Rstudio, and R Markdown](https://github.com/jennybc/happy-git-with-r)
 - [如何用Markdown写论文](http://blog.sciencenet.cn/blog-377709-1088215.html)
 - [blogdown和Github搭建网站](https://aurora-mareviv.github.io/talesofr/2018/02/r-blogdown-setup-in-github-2/)
-
-
 - [The R-INLA project and Bayesian computing with INLA](http://www.r-inla.org/)
 - [Geographic Data Science in Python](https://data.cdrc.ac.uk/dataset/geographic-data-science-in-python)
 - [Spatial](https://data.cdrc.ac.uk/)
@@ -1522,7 +1508,7 @@ python py-chrome-bookmarks-markdown.py bookmarks.md
 - [Error, trend, seasonality - ets and its forecast model friends](http://ellisp.github.io/blog/2016/11/27/ets-friends)
 - [Dual axes time series plots with various more awkward data](http://ellisp.github.io/blog/2016/08/28/dualaxes2)
 
-R 语言
+**R 语言**
 
 - [Togaware – Resources for the Data Scientist](https://togaware.com/)
 - [ParallelR高性能并行计算与R语言](http://www.parallelr.com/)
@@ -1639,7 +1625,6 @@ R 语言
 - [Pandoc - About pandoc](https://pandoc.org/)
 - [TikZ and PGF | TeXample.net](http://www.texample.net/tikz/)
 - [Rants from the Lab](http://liantze.penguinattack.org/)
-
 - [国家企业信用信息公示系统](http://www.gsxt.gov.cn/index.html)
 - [Linux命令大全(手册)_Linux常用命令行实例详解_Linux命令学习手册](http://man.linuxde.net/)
 - [生命不息 | 张宏伦的个人博客](http://zhanghonglun.cn/blog/)
@@ -1655,7 +1640,6 @@ R 语言
 - [Wolfram|Alpha: Computational Knowledge Engine](http://www.wolframalpha.com/?source=nav)
 - [中国科技论文在线](http://www.paper.edu.cn/)
 - [我是菜鸟 | IMCN开源资讯网](https://imcn.me/)
-
 - [USGS.gov](https://www.usgs.gov/)
 - [Index of /download/ensembles/data/Grid_0.44deg_rot](http://www.ecad.eu/download/ensembles/data/Grid_0.44deg_rot/)
 - [The Stan Forums](http://discourse.mc-stan.org/)
