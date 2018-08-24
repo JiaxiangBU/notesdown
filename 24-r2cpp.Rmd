@@ -45,7 +45,7 @@ proc.time() - .proctime00
 ### RcppAlgos
 
 
-```{r, eval = .Platform$OS.type != "windows"}
+```{r, eval = !Sys.which('octave') == ""}
 devtools::session_info(pkgs = c("Rcpp","RcppOctave"))
 ```
 

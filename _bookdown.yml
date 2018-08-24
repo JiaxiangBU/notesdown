@@ -17,48 +17,48 @@ rmd_files: [
   "00-notations.Rmd",
   
   # 基础篇
-  "Foundations.Rmd",
+  "01-Foundations.Rmd",
   
-  "01-installations.Rmd",
-  "02-operators.Rmd",
-  "03-manipulations.Rmd",
+  "01A-installations.Rmd",
+  "01B-operators.Rmd",
+  "01C-manipulations.Rmd",
   
   # 绘图篇
-  "Graphics.Rmd",
+  "02-Graphics.Rmd",
   
-  "04-plot.Rmd",
-  "05-grid.Rmd",
-  "06-interactions.Rmd",
+  "02A-plot.Rmd",
+  "02B-grid.Rmd",
+  "02C-interactions.Rmd",
 
-  "08-ImageMagick.Rmd",
+  "02D-ImageMagick.Rmd",
   
   # 中忍
-  "09-colors.Rmd",
-  "10-fonts.Rmd",
-  "11-animations.Rmd",
+  "02E-colors.Rmd",
+  "02F-fonts.Rmd",
+  "02G-animations.Rmd",
   
   # 进阶篇
-  "Computations.Rmd",
+  "03-Computations.Rmd",
   
-  "12-optimations.Rmd",
-  "13-simulations.Rmd",
+  "03A-optimations.Rmd",
+  "03B-simulations.Rmd",
 
   # 上忍
-  "14-bayesians.Rmd",
-  "15-approximations.Rmd",
+  "03C-bayesians.Rmd",
+  "03D-approximations.Rmd",
   
   # 案例篇
-  "Cases.Rmd",
+  "04-Cases.Rmd",
   
-  "16-spatial.Rmd",
-  "17-network.Rmd",
+  "04A-spatial.Rmd",
+  "04B-network.Rmd",
   
   # 模型篇
-  "Models.Rmd",
+  "05-Models.Rmd",
   
-  "18-glm.Rmd",
-  "19-glmm.Rmd",
-  "20-gam.Rmd",
+  "05A-glm.Rmd",
+  "05B-glmm.Rmd",
+  "05C-gam.Rmd",
 
   # 附录
   "21-appendix.Rmd",
@@ -67,11 +67,6 @@ rmd_files: [
   "23-matplotlib.Rmd",
   "24-r2cpp.Rmd",
 
-  "Git.Rmd",
-  "tools.Rmd",
-  "books.Rmd",
-  "bookmarks.Rmd",
-  
   # 参考文献
   "27-references.Rmd",
 ]
