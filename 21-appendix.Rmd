@@ -6,7 +6,14 @@
 
 ```{r,include=FALSE}
 db <- tools::CRAN_package_db()
+Pkgs <- c(
+  "inline"
+)
+if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
+  install.packages(setdiff(Pkgs, .packages(TRUE)))
+}
 ```
+
 
 Linux 命令行工具是非常强大的^[<https://www.datascienceatthecommandline.com/>]。
 
@@ -326,85 +333,10 @@ git pull --rebase git@github.com:yihui/xaringan.git master
 
 > I don't recommend you to use your master branch for pull requests, because all commits will be squashed before merging, e.g. c2c2055 Then you will have some trouble with syncing your master branch with the master branch here (your choices are (1) delete your repo and fork again; or (2) force push; either option is not good). For pull requests, I recommend that you always use different branches for different pull requests.
 
-# 软件工具 {#other-tools}
-
-```{r include=FALSE}
-Pkgs <- c(
-  "inline"
-)
-if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
-  install.packages(setdiff(Pkgs, .packages(TRUE)))
-}
-
-system <- function(...) cat(base::system(..., intern = TRUE), sep = '\n')
-system2 <- function(...) cat(base::system2(..., stdout = TRUE), sep = "\n")
-```
 
 
-## Octave
-
-安装新版 Octave，详情请见 <https://wiki.octave.org/Octave_for_Debian_systems>
-
-```bash
-sudo apt-add-repository -y ppa:octave/stable
-sudo apt-get update
-sudo apt-get install -y octave
-```
-
-```{r, eval = !Sys.which('octave') == ""}
-Sys.which("octave")
-system("octave --version")
-```
 
 
-## Python
-
-Python 版本和位置
-
-```{r, eval = !Sys.which('python') == ""}
-Sys.which("python")
-system2("python", args = "--version", stderr = TRUE)
-```
-
-
-升级 Python
-
-```bash
-sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7  
-sudo apt-get update  
-```
-
-可用的 python 模块
-
-```{python, eval = !Sys.which('python') == ""}
-help('modules')
-```
-
-## Hugo
-
-下载 <https://github.com/gohugoio/hugo/releases>
-
-```bash
-wget https://github.com/gohugoio/hugo/releases/download/v0.40.2/hugo_0.40.2_Linux-64bit.deb
-sudo dpkg -i hugo_0.40.2_Linux-64bit.deb
-```
-
-## Rtools
-
-rtools 是否可用
-
-```{r}
-devtools::find_rtools()
-```
-
-算个小栗子
-
-```{r rtools}
-fx <- inline::cxxfunction( signature(x = "integer", y = "numeric" ) , '
-	return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;
-' )
-fx( 2L, 5 ) 
-```
 
 
 ## 容器 {#container}
@@ -424,30 +356,7 @@ fx( 2L, 5 )
 Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
 参见高策的博客 <http://gaocegege.com>
 
-## 重复 {#reproduce}
-
-- R
-
-```{r}
-sessionInfo("bookdown")
-```
-
-```{r pkgs, eval = FALSE}
-pkg <- .packages(all.available = TRUE)
-pkgInfo <- lapply(pkg, packageDescription,
-  fields = c("Package", "Version", "Maintainer", "Title")
-)
-knitr::kable(data.frame(
-  Package = sapply(pkgInfo, `[[`, 1),
-  Version = sapply(pkgInfo, `[[`, 2),
-  # Maintainer = sapply(pkgInfo, "[[", 3),
-  Title = sapply(pkgInfo, "[[", 4)
-),
-caption = "R包信息列表",
-booktabs = TRUE,
-longtable = TRUE
-)
-```
+## 重现 {#reproduce}
 
 - LaTeX 
 
@@ -535,8 +444,32 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt-get update
 sudo apt-get install r-base r-base-dev
 # 添加二进制编译好的R包仓库，有些R包依赖复杂，编译时间长
+# R 3.5.0 系列 二进制 R 包
 sudo add-apt-repository ppa:marutter/c2d4u3.5
 sudo apt-get update
+```
+
+### Python
+
+Python 版本和位置
+
+```{r, eval = !Sys.which('python') == ""}
+Sys.which("python")
+system2("python", args = "--version", stderr = TRUE)
+```
+
+
+升级 Python
+
+```bash
+sudo add-apt-repository ppa:fkrull/deadsnakes-python2.7  
+sudo apt-get update  
+```
+
+可用的 python 模块
+
+```{python, eval = !Sys.which('python') == ""}
+help('modules')
 ```
 
 
@@ -554,6 +487,15 @@ sudo apt-get install -y octave
 
 - MacOS <https://wiki.octave.org/Octave_for_macOS>
 - Windows <http://wiki.octave.org/Octave_for_Microsoft_Windows>
+- Debian <https://wiki.octave.org/Octave_for_Debian_systems>
+
+查看安装的版本
+
+```{r, eval = !Sys.which('octave') == ""}
+Sys.which("octave")
+system("octave --version")
+```
+
 
 ### Pandoc {#pandoc}
 
@@ -594,6 +536,22 @@ sudo rstudio-server start
 
 从本地浏览器登陆 RStudio Server 网址 <http://192.168.106.3:8080/>
 
+### Rtools
+
+rtools 是否可用
+
+```{r}
+devtools::find_rtools()
+```
+
+算个小栗子
+
+```{r rtools}
+fx <- inline::cxxfunction( signature(x = "integer", y = "numeric" ) , '
+	return ScalarReal( INTEGER(x)[0] * REAL(y)[0] ) ;
+' )
+fx( 2L, 5 ) 
+```
 
 
 ### Calibre {#calibre}
