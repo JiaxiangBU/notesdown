@@ -165,11 +165,14 @@ du -h -d 1 ./
 
 ## Git 命令 {#Git}
 
-### 合并上流的 commit 
+### 合并 commit 
 
 ```bash
 git clone --depth=5 https://github.com/XiangyunHuang/cosx.org.git
 git submodule update --init --recursive
+```
+
+```bash
 # 查看远程分支
 cd cosx.org
 git remote -v
@@ -984,6 +987,13 @@ sudo add-apt-repository -y "ppa:marutter/rrutter"
 sudo add-apt-repository -y "ppa:marutter/c2d4u"
 sudo apt-get update
 sudo apt-get install r-cran-rstan
+```
+
+Ubuntu 18.04 bionic
+
+```bash
+sudo add-apt-repository ppa:marutter/c2d4u3.5
+sudo apt-get update
 ```
 
 ### openssl {#openssl}
