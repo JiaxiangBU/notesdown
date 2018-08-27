@@ -1,5 +1,5 @@
 ---
-title: "Notes Down"
+title: "notesdown"
 author: ["Xiangyun Huang", "The Others"]
 date: "`r format(Sys.time(), tz = 'Asia/Taipei', usetz = TRUE)`"
 site: bookdown::bookdown_site
