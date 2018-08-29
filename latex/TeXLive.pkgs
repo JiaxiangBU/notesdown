@@ -1,3 +1,4 @@
+alegreya
 colortbl
 ctex
 dvipng
@@ -22,7 +23,10 @@ psnfss
 rsfs
 setspace
 sourcecodepro
+subfig
 tex4ht
+tocloft
+tocbibind
 trimspaces
 type1cm
 tufte-latex

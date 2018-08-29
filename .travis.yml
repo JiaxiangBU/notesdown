@@ -41,8 +41,8 @@ r_github_packages:
 #  - Rgraphviz
 #  - graph
 
-#r_packages: 
-#  - rstan
+r_packages: 
+  - rstan
 #  - sf
 #  - mxnet
 
