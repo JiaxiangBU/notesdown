@@ -46,7 +46,7 @@ sudo apt install octave
 sudo apt-get install lsb-core
 ```
 
-```{bash}
+```bash
 lsb_release -a
 ```
 
@@ -89,8 +89,9 @@ tlmgr search *what*
 
 - 参数 \*what\* 是正则表达式
 
-```{bash}
-tlmgr search --file tikz.sty
+```{r}
+# tlmgr search --file tikz.sty
+tinytex::tlmgr_search('tikz.sty')
 ```
 
 这样，我们就可以知道要使用 `\usepackage{tikz}` 就得先安装 **pgf** 包，此外，管道命令也是支持的
@@ -100,7 +101,7 @@ tlmgr search --file font | grep math
 ```
 查询 CTAN 仓库列表
 
-```{bash}
+```bash
 tlmgr repository list
 ```
 
@@ -167,11 +168,9 @@ mv R-3.5.1.tar.gz.1  R-3.5.1.tar.gz
 
 ### 查看文件大小
 
-当前目录下各文件夹的大小， `-h` 表示人类可读的方式显示，如 Kb、Mb、Gb，`-d` 表示目录深度
+当前目录下各文件夹的大小， `-h` 表示人类可读的方式显示，如 Kb、Mb、Gb，`-d` 表示目录深度 `du --human-readable --max-depth=1 ./`
 
 ```{bash}
-# du --human-readable --max-depth=1 ./
-# 简写
 du -h -d 1 ./
 ```
 
@@ -663,7 +662,7 @@ tinytex::install_tinytex(TRUE, repository = 'http://mirrors.tuna.tsinghua.edu.cn
 
 修改 .bashrc
 
-```
+```bash
 PATH=/home/cloud2016/.TinyTeX/bin/x86_64-linux:$PATH; export PATH
 MANPATH=/home/cloud2016/.TinyTeX/texmf-dist/doc/man:$MANPATH; export MANPATH
 INFOPATH=/home/cloud2016/.TinyTeX/texmf-dist/doc/man:$INFOPATH; export INFOPATH

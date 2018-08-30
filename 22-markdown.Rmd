@@ -263,15 +263,6 @@ kable(df,
 ```
 
 
-## 重现 {#Reproducibility}
-
-安装的 R 包
-
-```{r}
-devtools::session_info(.packages(TRUE))
-```
-
-
 ## 版本控制 {#Version-Control}
 
 Git/SVN GitHub
@@ -282,8 +273,8 @@ TinyTeX
 
 已安装的字体
 
-```{r}
-font_db <- system("fc-list :lang=en-us | sort", intern = TRUE)
+```{r,eval=is_on_travis}
+font_db <- base::system("fc-list :lang=en-us | sort", intern = TRUE)
 font_name <- unique(do.call(rbind,strsplit(font_db,split = ":"))[,2])
 substr(font_name, 2, nchar(font_name))
 ```
