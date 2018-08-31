@@ -1,6 +1,7 @@
 library(methods)
 set.seed(2018)
 options(digits = 3)
+library(magrittr)
 
 Pkgs <- c(
   "reticulate",

@@ -14,14 +14,6 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 }
 ```
 
-
-Linux 命令行工具是非常强大的^[<https://www.datascienceatthecommandline.com/>]。
-
-```bash
-# 对当前目录下的文件/夹 按大小排序
-du -sh * | sort -nr
-```
-
 ## 软件包管理器 {#apt}
 
 ### 添加和删除 PPA {#ppa}
@@ -53,6 +45,16 @@ lsb_release -a
 ## LaTeX 包管理器 {#tlmgr}
 
 LaTeX 包管理器说的其实是 tlmgr (TeXLive Manager)
+
+```{r}
+base::system('xelatex --version', intern = TRUE)
+```
+
+```{r}
+base::system('tlmgr info --list --only-installed --data name,size', intern = TRUE)
+# or tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
+```
+
 
 ### 安装和更新 {#install-update}
 
@@ -107,6 +109,47 @@ tlmgr repository list
 
 
 ## 文件操作 {#File-Manipulation}
+
+Linux 命令行工具是非常强大的^[<https://www.datascienceatthecommandline.com/>]。
+
+### 查看文件
+
+```bash
+ls -a
+```
+
+列出目录下所有文件
+
+```bash
+ls -1 
+```
+一行显示一个文件或文件夹
+
+```bash
+ls -l 
+```
+
+按从 aA-zZ 的顺序列出所有文件以及所属权限
+
+```bash
+ls -rl 
+```
+
+相比于 `ls -l` 文件是逆序排列
+
+```bash
+ls -lh
+```
+
+列出文件或文件夹（不包含子文件夹）的大小 
+
+```bash
+ls -ld 
+```
+
+列出当前目录本身，而不是其所包含的内容
+
+
 
 ### 新建和删除 {#create-delete}
 
@@ -170,8 +213,13 @@ mv R-3.5.1.tar.gz.1  R-3.5.1.tar.gz
 
 当前目录下各文件夹的大小， `-h` 表示人类可读的方式显示，如 Kb、Mb、Gb，`-d` 表示目录深度 `du --human-readable --max-depth=1 ./`
 
-```{bash}
+```bash
 du -h -d 1 ./
+```
+
+```bash
+# 对当前目录下的文件/夹 按大小排序
+du -sh * | sort -nr
 ```
 
 ## Git 命令 {#Git}
@@ -333,92 +381,6 @@ git pull --rebase git@github.com:yihui/xaringan.git master
 > I don't recommend you to use your master branch for pull requests, because all commits will be squashed before merging, e.g. c2c2055 Then you will have some trouble with syncing your master branch with the master branch here (your choices are (1) delete your repo and fork again; or (2) force push; either option is not good). For pull requests, I recommend that you always use different branches for different pull requests.
 
 
-
-
-
-
-
-## 容器 {#container}
-
-### rocker
-
-- Dockerfile <https://docs.docker.com/develop/develop-images/dockerfile_best-practices/>
-- build <https://docs.docker.com/engine/reference/builder/#usage>
-
-### Singularity
-
-- <https://github.com/bwlewis/r-and-singularity>
-- <http://singularity.lbl.gov/>
-
-### Kubernetes
-
-Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
-参见高策的博客 <http://gaocegege.com>
-
-## 重现 {#reproduce}
-
-- LaTeX 
-
-```{r}
-base::system('xelatex --version', intern = TRUE)
-```
-
-```{r}
-base::system('tlmgr info --list --only-installed --data name,size', intern = TRUE)
-# or tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
-```
-
-
-重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
-
-```bash
-docker run --rm -it --name book -e \
- DISPLAY=192.168.99.100:0 -d -p 8282:8787 -e ROOT=TRUE \
- -e USER=rstudio -e PASSWORD=cloud rocker/geospatial
-```
-
-`DISPLAY=192.168.99.100:0` 用于启用 X11 设备，否则 rgl 等软件包会报显示警告，`--rm -it` 使得 主机和虚拟机时间一致，否则会有警告^[<https://github.com/rocker-org/rocker/wiki/Allowing-GUI-windows>]
-
-```
-# 两个与时间有关的警告
-Warning message:
-running command 'timedatectl' had status 1 
-Failed to create bus connection: No such file or directory
-```
-
-<https://stackoverflow.com/questions/43907925/ubuntu-timedatectl-fails-in-docker-container>
-
-```r
-capabilities()
- jpeg         png        tiff       tcltk         X11        aqua    http/ftp     sockets      libxml 
- TRUE        TRUE        TRUE        TRUE       FALSE       FALSE        TRUE        TRUE        TRUE 
- fifo      cledit       iconv         NLS     profmem       cairo         ICU long.double     libcurl 
- TRUE        TRUE        TRUE       FALSE        TRUE        TRUE        TRUE        TRUE        TRUE 
-```
-主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，这是方便以后启动 docker 时方便，只需
-
-```bash
-# 启动
-docker start book
-# 进入
-docker exec -it book bash
-```
-
-由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
-
-R包库存放位置
-
-```{r}
-.libPaths()
-```
-
-查看系统路径，环境变量
-
-```{r}
-strsplit(Sys.getenv("PATH"),split = .Platform$path.sep)
-```
-
-
 ## 安装软件 {#software-installation}
 
 ### R 
@@ -446,6 +408,12 @@ sudo apt-get install r-base r-base-dev
 # R 3.5.0 系列 二进制 R 包
 sudo add-apt-repository ppa:marutter/c2d4u3.5
 sudo apt-get update
+```
+
+查询 PATH 环境变量包含的软件路径
+
+```{r}
+strsplit(Sys.getenv("PATH"),split = .Platform$path.sep) %>% unlist
 ```
 
 ### Python
@@ -582,6 +550,74 @@ Zshell 是一个比 bash 更好用的终端
 ```bash
 sudo yum update && sudo yum -y install zsh git
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+### TinyTeX {#tinytex}
+
+- Travis 安装
+
+益辉通过 Travis 每天更新 TinyTeX，我们下载这个版本
+
+```bash
+curl -fLo /tmp/texlive.tar.gz https://travis-bin.yihui.name/tinytex.tar.gz
+```
+
+解压到当前用户的根目录
+
+```bash
+tar xzf /tmp/tinytex.tar.gz -C ~ .TinyTeX
+```
+
+修改 .bashrc 文件将 TinyTeX 的位置添加到系统路径里
+
+```bash
+export PATH=/$HOME/.TinyTeX/bin/x86_64-linux:$PATH
+```
+
+更新 .bashrc 使得修改生效
+
+```bash
+source .bashrc
+```
+
+更新 TeX 包和 tlmgr 管理器
+
+```bash
+tlmgr update --all --self
+```
+
+安装一些TeX包支持中文文档编译
+
+```bash
+tlmgr install ctex fandol
+```
+
+- Windows 下安装
+
+```r
+tinytex::install_tinytex(dir = "D:/TinyTeX", force = T,
+repository = "https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet")
+```
+
+[TinyTeX 安装日志](https://github.com/XiangyunHuang/ISCGwR/files/2226468/TinyTeX.log)
+
+- Ubuntu 下安装
+
+安装指导来自 docker 镜像 rocker/verse 的 [dockerfile](https://hub.docker.com/r/rocker/verse/~/dockerfile/)
+
+```bash
+wget "https://travis-bin.yihui.name/texlive-local.deb"
+dpkg -i texlive-local.deb
+rm texlive-local.deb
+apt-get update
+apt-get install -y default-jdk ghostscript \
+        libbz2-dev libicu-dev liblzma-dev \
+        libhunspell-dev libmagick++-dev librdf0-dev \
+        libv8-dev libjq-dev qpdf texinfo \
+        ssh xz-utils libssh2-dev
+
+wget -qO- \
+    "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | sh -s - --admin --no-path
 ```
 
 ## 安装 Fedora 27 {#fedora}
@@ -1034,9 +1070,59 @@ Docker 相比虚拟机占用资源少，拉起来就可以用，虚拟机还需�
 
 基于 The Rocker Project^[<https://www.rocker-project.org/>] 快速构建数据分析环境，[Rocker项目](https://github.com/rocker-org/rocker) 站在 [Debian](https://www.debian.org/) 和 [R](https://www.r-project.org/) 的肩膀上，在 [Docker](https://www.docker.com/)内配置众多数据分析和开发的工具，免去用户手动配置的复杂性。此事非有心者不能为之 ，因为需费时费力找寻依赖库，编译 R 包，还要尽可能地给 Docker 镜像减负，以便部署。如果想抢先试水的赶快去 Rocker 项目主页。
 
-- 由Dirk Eddelbuettel等人担纲的 Rocker 项目， [项目主页](https://github.com/rocker-org/rocker) 和 [Docker镜像](https://hub.docker.com/u/rocker/) 
+- 由 Dirk Eddelbuettel 等人担纲的 Rocker 项目， [项目主页](https://github.com/rocker-org/rocker) 和 [Docker镜像](https://hub.docker.com/u/rocker/) 
 - Wei-Chen Chen 等人的大数据编程项目 Programming with Big Data in R， [项目主页](https://rbigdata.github.io/) 和 [Docker 镜像](https://hub.docker.com/u/rbigdata/) 
 - [非常详细的docker笔记](http://m.blog.csdn.net/sdgihshdv/article/details/75142367) 
+- Dockerfile <https://docs.docker.com/develop/develop-images/dockerfile_best-practices/>
+- build <https://docs.docker.com/engine/reference/builder/#usage>
+
+其它容器相关项目有
+
+* Singularity
+    + <https://github.com/bwlewis/r-and-singularity>
+    + <http://singularity.lbl.gov/>
+* Kubernetes
+    + Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
+    + 参见高策的博客 <http://gaocegege.com>
+
+### 重现 {#reproduce}
+
+重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
+
+```bash
+docker run --rm -it --name book -e \
+ DISPLAY=192.168.99.100:0 -d -p 8282:8787 -e ROOT=TRUE \
+ -e USER=rstudio -e PASSWORD=cloud rocker/geospatial
+```
+
+`DISPLAY=192.168.99.100:0` 用于启用 X11 设备，否则 rgl 等软件包会报显示警告，`--rm -it` 使得 主机和虚拟机时间一致，否则会有警告^[<https://github.com/rocker-org/rocker/wiki/Allowing-GUI-windows>]
+
+```
+# 两个与时间有关的警告
+Warning message:
+running command 'timedatectl' had status 1 
+Failed to create bus connection: No such file or directory
+```
+
+<https://stackoverflow.com/questions/43907925/ubuntu-timedatectl-fails-in-docker-container>
+
+```r
+capabilities()
+ jpeg         png        tiff       tcltk         X11        aqua    http/ftp     sockets      libxml 
+ TRUE        TRUE        TRUE        TRUE       FALSE       FALSE        TRUE        TRUE        TRUE 
+ fifo      cledit       iconv         NLS     profmem       cairo         ICU long.double     libcurl 
+ TRUE        TRUE        TRUE       FALSE        TRUE        TRUE        TRUE        TRUE        TRUE 
+```
+主机端口号 8282，这里可以改成你自己喜欢的，虚拟机端口号 8787 对应 RStudio Server 默认端口，如果你想自己指定，就去修改 RStudio Server的配置文件。拉取的 Docker 镜像取名 book，这是方便以后启动 docker 时方便，只需
+
+```bash
+# 启动
+docker start book
+# 进入
+docker exec -it book bash
+```
+
+由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
 
 
 ### Windows 8.1 {#windows8}
@@ -1224,73 +1310,6 @@ knitr::include_graphics(path = "figures/04f-docker-centos.png")
 - 运行 docker run
 - 移除 docker rm(i)
 
-## 安装 TinyTeX {#tinytex}
-
-- Travis 安装
-
-益辉通过 Travis 每天更新 TinyTeX，我们下载这个版本
-
-```bash
-curl -fLo /tmp/texlive.tar.gz https://travis-bin.yihui.name/tinytex.tar.gz
-```
-
-解压到当前用户的根目录
-
-```bash
-tar xzf /tmp/tinytex.tar.gz -C ~ .TinyTeX
-```
-
-修改 .bashrc 文件将 TinyTeX 的位置添加到系统路径里
-
-```bash
-export PATH=/$HOME/.TinyTeX/bin/x86_64-linux:$PATH
-```
-
-更新 .bashrc 使得修改生效
-
-```bash
-source .bashrc
-```
-
-更新 TeX 包和 tlmgr 管理器
-
-```bash
-tlmgr update --all --self
-```
-
-安装一些TeX包支持中文文档编译
-
-```bash
-tlmgr install ctex fandol
-```
-
-- Windows 下安装
-
-```r
-tinytex::install_tinytex(dir = "D:/TinyTeX", force = T,
-repository = "https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet")
-```
-
-[TinyTeX 安装日志](https://github.com/XiangyunHuang/ISCGwR/files/2226468/TinyTeX.log)
-
-- Ubuntu 下安装
-
-安装指导来自 docker 镜像 rocker/verse 的 [dockerfile](https://hub.docker.com/r/rocker/verse/~/dockerfile/)
-
-```bash
-wget "https://travis-bin.yihui.name/texlive-local.deb"
-dpkg -i texlive-local.deb
-rm texlive-local.deb
-apt-get update
-apt-get install -y default-jdk ghostscript \
-        libbz2-dev libicu-dev liblzma-dev \
-        libhunspell-dev libmagick++-dev librdf0-dev \
-        libv8-dev libjq-dev qpdf texinfo \
-        ssh xz-utils libssh2-dev
-
-wget -qO- \
-    "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | sh -s - --admin --no-path
-```
 
 
 ## 机器学习 or 深度学习 {#deep-learning-library}
