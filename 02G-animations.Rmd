@@ -13,7 +13,5 @@ svgViewR <https://aaronolsen.github.io/tutorials/visualization3d.html>
 devtools::install_github("leonawicz/mapmate")
 ```
 
-## rgl
-
-真三维
+rgl 真三维
 

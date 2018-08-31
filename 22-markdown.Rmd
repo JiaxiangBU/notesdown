@@ -1,4 +1,4 @@
-# R Markdown {#pandoc-markdown}
+# R Markdown {#chap:R-Markdown}
 
 ```{r include=FALSE}
 Pkgs <- c(

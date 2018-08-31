@@ -13,17 +13,15 @@ if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
 
 Here is a review of existing methods.
 
-
-## sf
+- sf
 
 ```{r, eval=FALSE}
 library(sf)
 ```
 
+Intro to Geospatial Data with R <http://www.datacarpentry.org/r-raster-vector-geospatial/>
 
-- Intro to Geospatial Data with R <http://www.datacarpentry.org/r-raster-vector-geospatial/>
-
-## PrevMap
+- PrevMap
 
 ```{r, eval=FALSE}
 library(PrevMap)

@@ -219,7 +219,7 @@ knitr::include_graphics(path = paste0("figures/binormal", if(knitr::is_latex_out
 
 ## TikZ 和 PGF
 
-如图所示，模板存放在 `tikz/tikz2pdf.tex`
+如图所示，模板存放在 `code/tikz/tikz2pdf.tex`
 
 ```{r}
 names(knitr::knit_engines$get())
@@ -237,11 +237,11 @@ names(knitr::knit_engines$get())
 一幅纯 tikz 代码绘制的图形，代码如下
 
 ```{r import-tikze-code}
-cat(readLines("tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
+cat(readLines("code/tikz/mini-demo.tex", encoding = "UTF-8"), sep = "\n")
 ```
 
 ```{r mini-tikz-demo,echo=FALSE,fig.cap="一幅迷你 tikz 图形"}
-knitr::include_graphics(path = "tikz/mini-demo.png")
+knitr::include_graphics(path = "code/tikz/mini-demo.png")
 ```
 
 ```{r, dev='tikz', out.width="90%",fig.cap='tikz 图形',eval=FALSE}
