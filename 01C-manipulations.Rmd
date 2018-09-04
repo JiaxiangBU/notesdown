@@ -95,7 +95,12 @@ with 和 within
 ### parallel
 
 
- 
+https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family
+
+```{r}
+apropos("apply")
+```
+
 ## 合并 
 
 ### aggregate

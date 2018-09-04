@@ -620,6 +620,30 @@ wget -qO- \
     "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | sh -s - --admin --no-path
 ```
 
+## CentOS 7
+
+```bash
+## Use tinytex for LaTeX installation
+  wget -qO- \
+    "https://yihui.name/gh/tinytex/tools/install-unx.sh" | \
+    sh -s - --admin --no-path 
+  sudo mv ~/.TinyTeX /opt/TinyTeX 
+  sudo /opt/TinyTeX/bin/*/tlmgr path add 
+  tlmgr install inconsolata tex ae parskip listings 
+  sudo /opt/TinyTeX/bin/*/tlmgr path add 
+```
+
+```r
+Rscript -e "tinytex::r_texmf()" 
+options(bitmapType = 'cairo')
+```
+
+```bash
+tlmgr install ctex ms ulem xecjk environ trimspaces \
+  zhnumber fandol xltxtra realscripts \
+  times helvetic courier
+```  
+
 ## 安装 Fedora 27 {#fedora}
 
 先从 [清华开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/) 下载 Fedora 镜像 `Fedora-Server-netinst-x86_64-27-1.6.iso` 启动 VBox 分配硬件资源后
