@@ -224,6 +224,10 @@ du -sh * | sort -nr
 
 ## Git 命令 {#Git}
 
+### 删除子模块
+
+<https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/>
+
 ### 合并 commit 
 
 ```bash
@@ -909,6 +913,57 @@ sudo apt-get install libjpeg-dev libpng-dev
 ```{r, eval=packageVersion('colorspace') < "1.4.0"}
 install.packages("colorspace", repos = "http://R-Forge.R-project.org")
 ```
+
+### sf (CentOS7) {#sf-centos}
+
+```r
+wget http://download.osgeo.org/gdal/2.3.1/gdal-2.3.1.tar.gz
+tar -xzf gdal-2.3.1.tar.gz
+cd gdal-2.3.1
+./configure
+make
+make install
+```
+
+checkout you replaced the default gdal:
+
+```bash
+echo "/usr/local/lib" > /etc/ld.so.conf.d/libgdal-x86_64.conf
+sudo ldconfig # relink to new gdal # need to relogin R
+```
+
+install geos-devel for lwgeom
+
+```bash
+sudo yum install -y geos-devel
+wget http://download.osgeo.org/geos/geos-3.6.3.tar.bz2
+tar -xjf geos-3.6.3.tar.bz2
+```
+
+```bash
+sudo yum install udunits2-devel
+```
+
+```r
+install.packages("udunits2",configure.args='--with-udunits2-include=/usr/include/udunits2/')
+```
+
+```bash
+sudo yum install postgresql-devel
+```
+
+```r
+install.packages("RPostgreSQL",dependencies=TRUE)
+```
+
+```bash
+sudo yum install -y liblwgeom
+```
+
+```r
+install.packages("lwgeom")
+```
+
 
 ### sf {#sf}
 
