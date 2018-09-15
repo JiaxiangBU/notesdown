@@ -590,7 +590,7 @@ source .bashrc
 tlmgr update --all --self
 ```
 
-安装一些TeX包支持中文文档编译
+安装一些 TeX 包支持中文文档编译
 
 ```bash
 tlmgr install ctex fandol
@@ -679,12 +679,12 @@ yum list installed
 > 安装了最新版 Fedora 后，系统仓库自带的软件都是比较新的版本，可以直接安装
 
 ```bash
-yum install openssh-server epel-release
-yum install R wget
-yum install -y pandoc pandoc-citeproc \
+sudo yum install openssh-server epel-release
+sudo yum install R wget
+sudo yum install -y pandoc pandoc-citeproc \
 	libcurl-devel openssl-devel libssh2-devel \
 	libxml2-devel ImageMagick-c++-devel
-yum install -y R gcc gcc-c++ gcc-gfortran \
+sudo yum install -y R gcc gcc-c++ gcc-gfortran \
   libcurl-devel openssl-devel \
   libssh2-devel libxml2-devel pkg-config \
   ImageMagick-c++-devel librsvg2-devel gdal-devel \
@@ -693,7 +693,8 @@ yum install -y R gcc gcc-c++ gcc-gfortran \
 ```
 
 ```bash
-yum install gdal-devel proj-devel proj-epsg proj-nad geos-devel udunits2-devel
+sudo yum install gdal-devel proj-devel \
+  proj-epsg proj-nad geos-devel udunits2-devel
 ```
 
 ```r
@@ -922,7 +923,7 @@ tar -xzf gdal-2.3.1.tar.gz
 cd gdal-2.3.1
 ./configure
 make
-make install
+sudo make install
 ```
 
 checkout you replaced the default gdal:
@@ -938,6 +939,11 @@ install geos-devel for lwgeom
 sudo yum install -y geos-devel
 wget http://download.osgeo.org/geos/geos-3.6.3.tar.bz2
 tar -xjf geos-3.6.3.tar.bz2
+cd geos-3.6.3
+./configure
+make
+sudo make install
+sudo ldconfig # relink to new gdal # need to relogin R
 ```
 
 ```bash
@@ -1143,7 +1149,29 @@ biocLite(c("Rgraphviz", "graph"), ask = FALSE)
 install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
 ```
 
-## 安装 Docker {#docker}
+### 环境 {#environment}
+
+```{r}
+libcurlVersion()
+.Library
+.Library.site
+
+La_version()
+La_library()
+
+extSoftVersion()
+.Machine
+.Platform
+.Device
+
+Sys.localeconv()
+Sys.info()
+Sys.getenv()
+
+Sys.getlocale()
+```
+
+## Docker {#docker}
 
 Docker 相比虚拟机占用资源少，拉起来就可以用，虚拟机还需要各种环境配置，很多与R有关的项目现在都提供Docker镜像，大大方便了开发人员和数据分析师。当然 docker 的环境隔离性，对主机系统侵入小，即使挂了，再拉起来也就是了，安全性和可靠性高。
 
@@ -1164,7 +1192,7 @@ Docker 相比虚拟机占用资源少，拉起来就可以用，虚拟机还需�
     + Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
     + 参见高策的博客 <http://gaocegege.com>
 
-### 重现 {#reproduce}
+### Pull Images
 
 重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
 
@@ -1204,7 +1232,7 @@ docker exec -it book bash
 由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
 
 
-### Windows 8.1 {#windows8}
+### Docker (Windows 8.1) {#windows8}
 
 对于 Windows 8.1 来说，需要下载 [Docker ToolBox for Windows](https://docs.docker.com/toolbox/toolbox_install_windows/) 和 [Boot2Docker](https://github.com/boot2docker/boot2docker)^[目前官方已进入维护模式]，由于 Docker for Windows 需要 Windows 10 Pro，如图 \@ref(fig:docker-installation-error)所示
 
@@ -1231,7 +1259,7 @@ knitr::include_graphics(path = "figures/04c-docker-drivers.png")
 knitr::include_graphics(path = "figures/04d-docker-dir.png")
 ```
 
-### 拉取镜像 {#pull-image}
+ **拉取镜像**
 
 在启动桌面快捷方式（如图\@ref(fig:docker-shortcut)所示）之前，非常重要的一步是设置镜像在磁盘上的存放位置（因为默认位置是C盘），在用户主目录下新建 `.bash_profile` 文件，并且添加如下一行
 
@@ -1322,7 +1350,7 @@ knitr::include_graphics(path = c("figures/04m-docker-pull-image-via-putty.png",
 ```
 
 
-### CentOS
+### Docker (CentOS)
 
 安装必要的依赖
 
