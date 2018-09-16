@@ -23,7 +23,7 @@ R Markdown 站在巨人的肩膀上，这些巨人有 [Markdown](https://daringf
    - revealjs: R Markdown Format for reveal.js Presentations <https://github.com/rstudio/revealjs>
    - xaringan: Presentation Ninja 幻灯忍者写轮眼 <https://slides.yihui.name/xaringan/>
 
-## Markdown {#sect:markdown}
+## bookdown
 
 ```{asis}
 > A Markdown-formatted document should be publishable as-is, as plain text, without looking like it’s been marked up with tags or formatting instructions. --- John Gruber
@@ -131,23 +131,6 @@ L(\beta,\boldsymbol{\theta})
 注意，`\mathbf` 只对字母 $a,b,c,A,B,C$ 加粗，mathjax 不支持公式中使用 `\bm` 对 $\theta,\alpha,\beta,\ldots,\gamma$ 加粗，应该使用 `\boldsymbol`
 
 
-
-## bookdown
-
-```{r,eval=is_on_travis}
-tinytex::tl_pkgs()
-```
-
-```{r,eval=is_on_travis}
-.packages(T)
-capabilities()
-extSoftVersion()
-names(pdfFonts())
-devtools::find_rtools()
-rmarkdown::pandoc_available()
-rmarkdown::pandoc_version()
-```
-
 - 图片引用
 
 `r if(knitr::is_latex_output()) "如图 \\@ref(fig:id1) 所示"`
@@ -163,13 +146,6 @@ knitr::include_graphics(path = paste0("diagrams/00-workflow", ext))
 
 如图 \@ref(fig:00-workflow) 展示了两种编译方式
 
-
-- 表格交叉引用
-
-- 参考文献交叉引用
-
-
-## bookdown
 
 在指定目录创建 Book 项目，
 
@@ -261,25 +237,3 @@ kable(df,
       format = 'latex') %>%
   kable_styling(latex_options = c("striped", "hold_position"))
 ```
-
-
-## 版本控制 {#Version-Control}
-
-Git/SVN GitHub
-
-## 排版 {#TinyTeX}
-
-TinyTeX
-
-已安装的字体
-
-```{r,eval=is_on_travis}
-font_db <- base::system("fc-list :lang=en-us | sort", intern = TRUE)
-font_name <- unique(do.call(rbind,strsplit(font_db,split = ":"))[,2])
-substr(font_name, 2, nchar(font_name))
-```
-
-
-## 部署 {#Deploy}
-
-Docker/kubernetes
