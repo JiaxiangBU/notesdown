@@ -443,6 +443,27 @@ sudo apt-get update
 help('modules')
 ```
 
+### Lapack
+
+编译 lapack 以及 lapacke，这一步比较麻烦，首先当然是进入 lapack-3.7.1 文件夹，然后根据平台的特点，将 INSTALL 目录下对应的 make.inc.XXX 复制一份到 lapack-3.7.1目录下，并命名为 make.inc, 这里我复制的是 INSTALL/make.inc.gfortran，因为我这里用的是 gfortran 编译器。 
+因为 lapack 以来于 blas 库，所以需要对 lapack-3.7.1/Makefile 做如下修改
+
+```bash
+#lib: lapacklib tmglib
+lib: blaslib variants lapacklig tmglib
+```
+
+再执行
+
+```bash
+make       # 编译所有的 lapack 文件    
+cd lapacke # 进入 lapacke 文件夹，这个文件夹包含 lapack 的 C 语言接口文件    
+make       # 编译 lapacke    
+cp include/*.h /usr/local/include # 将 lapacke 的头文件复制到系统头文件目录    
+cd ..                 # 返回到 lapack-3.7.1 目录    
+cp *.a /usr/local/lib # 将生成的所有库文件复制到系统库目录 
+```
+
 
 ### Octave {#octave}
 
