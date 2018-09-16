@@ -1070,6 +1070,16 @@ sudo add-apt-repository ppa:marutter/c2d4u3.5
 sudo apt-get update
 ```
 
+### Rmpfr
+
+```bash
+sudo apt-get install libmpfr-dev
+```
+
+```r
+install.packages("Rmpfr")
+```
+
 ### openssl {#openssl}
 
 开发仓库 <https://github.com/jeroen/openssl>
@@ -1078,6 +1088,26 @@ sudo apt-get update
 sudo apt-get install -y libssl-dev
 ```
 
+### webshot
+
+```bash
+sudo apt install phantomjs
+```
+```r
+install.packages("webshot")
+```
+
+### gifski
+
+```bash
+sudo apt-get install cargo
+```
+
+```r
+install.packages('gifski')
+```
+
+开发版 knitr 支持 <https://yihui.name/en/2018/08/gifski-knitr/>
 
 ### RDieHarder {#RDieHarder}
 
@@ -1147,6 +1177,28 @@ chooseBioCmirror()
 chooseCRANmirror()
 biocLite(c("Rgraphviz", "graph"), ask = FALSE)
 install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
+```
+
+### mxnet
+
+
+```bash
+sudo apt-get install -y libatlas-base-dev liblapack-dev libopencv-dev libjemalloc-dev
+
+git clone --depth=1 --branch=master https://github.com/apache/incubator-mxnet
+
+cd incubator-mxnet
+git submodule update --init --recursive 
+
+make -j2 USE_OPENCV=1 USE_BLAS=atlas
+```
+
+```r
+devtools::install_deps('path/to/R-package')
+```
+
+```bash
+make rpkg
 ```
 
 ### 环境 {#environment}
@@ -1457,6 +1509,21 @@ XGBoost is an optimized distributed gradient boosting library designed to be hig
 使用文档 <http://xgboost.readthedocs.io/en/latest/>
 R 包 <https://github.com/dmlc/xgboost/tree/master/R-package>
 中文文档 <http://xgboost.apachecn.org/cn/latest/>
+
+### CatBoost
+
+CatBoost is an open-source gradient boosting on decision trees library with categorical features support out of the box for Python, R https://catboost.ai
+
+<https://github.com/catboost/catboost>
+
+catboost
+
+```r
+# windows 
+devtools::install_url('https://github.com/catboost/catboost/releases/download/v0.6.1.1/catboost-R-Windows-0.6.1.1.tgz', args = c("--no-multiarch"))
+# Ubuntu install libc6-dev first
+devtools::install_github('catboost/catboost', subdir = 'catboost/R-package')
+```
 
 ### xLearn
 
