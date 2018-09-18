@@ -21,9 +21,9 @@ sudo -H pip install numpy matplotlib
 - preview
 ```
 
-默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体，如图 \@ref(fig:math-matplotlib) 所示
+默认使用 [STIX 数学字体](http://www.stixfonts.org/) 和 DejaVu Sans 英文字体
 
-```{python math-matplotlib, fig.cap = "数学公式"}
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 plt.switch_backend('agg') # Very Important in R Markdown
@@ -58,9 +58,7 @@ Sys.setenv(R_GSCMD = "C:/Program Files/gs/gs9.23/bin/gswin64c.exe")
 embedFonts(file = "math-in-plot.pdf", outfile = "math-in-plot-embed.pdf")
 ```
 
-如图 \@ref(fig:native-math)
-
-```{python native-math, fig.cap = "本真的公式样式"}
+```python
 from __future__ import unicode_literals
 import numpy as np
 import matplotlib
@@ -99,7 +97,7 @@ text.usetex        : true
 ```
 
 
-```{python, fig.cap = "Python数学字体设置"}
+```python
 #from matplotlib import rc
 #rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 ## for Palatino and other serif fonts use:
@@ -156,7 +154,7 @@ Seaborn is a Python visualization library based on matplotlib. It provides a hig
 
 > R Markdown 暂不支持动态 Python 图形的展示
 
-```{python, eval = FALSE}
+```python
 # https://bokeh.pydata.org/en/latest/docs/gallery/joyplot.html
 from numpy import linspace
 from scipy.stats.kde import gaussian_kde
