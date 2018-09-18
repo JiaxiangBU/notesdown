@@ -1,6 +1,5 @@
 bookdown::gitbook:
   css: css/style.css
-  dev: svg
   config:
     toc:
       collapse: none

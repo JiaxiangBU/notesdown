@@ -123,6 +123,53 @@ ggplot(aes(mpg, wt), data = mtcars) + geom_point() +
     theme_xkcd()
 ```
 
+安装手写体字体
+
+```bash
+sudo apt install fonts-humor-sans gsfonts
+```
+
+```{r xkcd-style,fig.cap="XKCD 漫画风", dev=if(knitr::is_latex_output()) 'cairo_pdf' else 'png'}
+library(ggplot2)
+library(extrafont)
+# font_import(pattern="[H/h]umor")
+### Already have read in fonts (see previous answer on how to do this)
+# loadfonts()
+
+### Set up the trial dataset
+data <- NULL
+data$x <- seq(1, 10, 0.1)
+data$y1 <- sin(data$x)
+data$y2 <- cos(data$x)
+data$xaxis <- -1.5
+
+data <- as.data.frame(data)
+
+### XKCD theme
+theme_xkcd <- theme(
+  panel.background = element_rect(fill = "white"),
+  axis.ticks = element_line(colour = NA),
+  panel.grid = element_line(colour = "white"),
+  axis.text.y = element_text(colour = NA),
+  axis.text.x = element_text(colour = "black"),
+  text = element_text(size = 16, family = "Humor Sans")
+)
+
+### Plot the chart
+ggplot(data = data, aes(x = x, y = y1)) +
+  geom_line(aes(y = y2), position = "jitter") +
+  geom_line(colour = "white", size = 3, position = "jitter") +
+  geom_line(colour = "red", size = 1, position = "jitter") +
+  geom_text(family = "Humor Sans", x = 6, y = -1.2, label = "A SIN AND COS CURVE") +
+  geom_line(aes(y = xaxis), position = position_jitter(h = 0.005), colour = "black") +
+  scale_x_continuous(
+    breaks = c(2, 5, 6, 9),
+    labels = c("YARD", "STEPS", "DOOR", "INSIDE")
+  ) + labs(x = "", y = "") +
+  theme_xkcd
+```
+
+
 ## fontcm
 
 安装 fontcm 包[@R-fontcm]处理数学公式，下载 fontcm 包^[<https://github.com/wch/fontcm>] 和相关字体，使用 fontcm 包，一个小 demo 如下，这里已经使用 `cairo_pdf` 设备保存图片了，如果用 `pdf` 设备保存会更加难看
@@ -250,10 +297,6 @@ hist(rnorm(1000), main='', xlab='$x$ (how the fonts look like here?)',
   ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
 ```
 
-# PGF
-
-## TikZ
-
 PGF 包含 TikZ 其它图形，获取 tex 文件， dvisvgm  将 DVI 格式图片转化为 SVG 格式
 
 ```{r tikz-math-formula,dev='tikz',eval=FALSE,fig.cap="线性回归 DVI 转 SVG",external=knitr::is_latex_output(),fig.process= if(knitr::is_latex_output()) NULL else to_svg}
@@ -280,10 +323,7 @@ ImageMagick 的 convert 工具将 PDF 格式图片转化为 PNG 格式
 安装 dvisvgm 的命令 `tlmgr install dvisvgm`，安装 ImageMagick 的命令 `sudo apt install imagemagick`
 ```
 
-
-# matplotlib
-
-## 带数学公式的绘图 {#math-in-matplotlib}
+## matplotlib {#math-in-matplotlib}
 
 先安装 matplotlib 模块
 
@@ -291,7 +331,7 @@ ImageMagick 的 convert 工具将 PDF 格式图片转化为 PNG 格式
 sudo apt install python3-matplotlib
 ```
 
-```{python matplotlib-math-formula,fig.cap="数学公式"}
+```python
 from __future__ import unicode_literals
 import numpy as np
 import matplotlib
@@ -321,53 +361,3 @@ tlmgr install psnfss type1cm ucs tex4ht ncntrsbk pgf xcolor
               helvetic preview dvisvgm dvipng dvips standalone
               subfig tocloft tocbibind sourcecodepro alegreya ctex fandol
 ```
-
-# XKCD
-
-
-安装手写体字体
-
-```bash
-sudo apt install fonts-humor-sans gsfonts
-```
-
-```{r xkcd-style,fig.cap="XKCD 漫画风", dev=if(knitr::is_latex_output()) 'cairo_pdf' else 'png'}
-library(ggplot2)
-library(extrafont)
-# font_import(pattern="[H/h]umor")
-### Already have read in fonts (see previous answer on how to do this)
-# loadfonts()
-
-### Set up the trial dataset
-data <- NULL
-data$x <- seq(1, 10, 0.1)
-data$y1 <- sin(data$x)
-data$y2 <- cos(data$x)
-data$xaxis <- -1.5
-
-data <- as.data.frame(data)
-
-### XKCD theme
-theme_xkcd <- theme(
-  panel.background = element_rect(fill = "white"),
-  axis.ticks = element_line(colour = NA),
-  panel.grid = element_line(colour = "white"),
-  axis.text.y = element_text(colour = NA),
-  axis.text.x = element_text(colour = "black"),
-  text = element_text(size = 16, family = "Humor Sans")
-)
-
-### Plot the chart
-ggplot(data = data, aes(x = x, y = y1)) +
-  geom_line(aes(y = y2), position = "jitter") +
-  geom_line(colour = "white", size = 3, position = "jitter") +
-  geom_line(colour = "red", size = 1, position = "jitter") +
-  geom_text(family = "Humor Sans", x = 6, y = -1.2, label = "A SIN AND COS CURVE") +
-  geom_line(aes(y = xaxis), position = position_jitter(h = 0.005), colour = "black") +
-  scale_x_continuous(
-    breaks = c(2, 5, 6, 9),
-    labels = c("YARD", "STEPS", "DOOR", "INSIDE")
-  ) + labs(x = "", y = "") +
-  theme_xkcd
-```
-

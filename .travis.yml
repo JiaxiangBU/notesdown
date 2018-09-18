@@ -94,8 +94,6 @@ addons:
       - pstoedit
 
 before_install:
-#  - sudo -H apt-get install r-cran-rstan
-#  - sudo -H pip install numpy matplotlib # scipy bokeh colorcet
   - npm install netlify-cli -g
   - curl -fLo /tmp/tinytex.tar.gz https://travis-bin.yihui.name/tinytex.tar.gz
   - tar xzf /tmp/tinytex.tar.gz -C /$HOME
