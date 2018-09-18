@@ -72,9 +72,15 @@ data %>%
 ```
 
 
-本节软件信息
+为什么是 Grid Lattice 而不是 Trellis
 
-```{r}
-devtools::session_info("ggplot2")
+```{r,echo=FALSE,comment=NA}
+fortunes::fortune(5)
 ```
 
+
+令人非常沮丧的是，很难用
+
+```{r,echo=FALSE,comment=NA}
+fortunes::fortune(235)
+```

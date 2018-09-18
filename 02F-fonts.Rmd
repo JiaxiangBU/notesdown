@@ -250,3 +250,124 @@ hist(rnorm(1000), main='', xlab='$x$ (how the fonts look like here?)',
   ylab='$\\hat{f}(x) = \\frac{1}{nh}\\sum_{i=1}^n \\cdots$')
 ```
 
+# PGF
+
+## TikZ
+
+PGF 包含 TikZ 其它图形，获取 tex 文件， dvisvgm  将 DVI 格式图片转化为 SVG 格式
+
+```{r tikz-math-formula,dev='tikz',eval=FALSE,fig.cap="线性回归 DVI 转 SVG",external=knitr::is_latex_output(),fig.process= if(knitr::is_latex_output()) NULL else to_svg}
+x <- rnorm(10)
+y <- x + rnorm(5, sd = 0.25)
+model <- lm(y ~ x)
+rsq <- summary(model)$r.squared
+rsq <- signif(rsq, 4)
+plot(x, y, main = "Hello \\LaTeX!", xlab = "$x$", ylab = "$y$")
+abline(model, col = "red")
+mtext(paste("Linear model: $R^{2}=", rsq, "$"), line = 0.5)
+legend("bottomright", legend = paste("$y = ", round(coef(model)[2], 3),
+  "x +", round(coef(model)[1], 3), "$",
+  sep = ""
+), bty = "n")
+```
+
+ImageMagick 的 convert 工具将 PDF 格式图片转化为 PNG 格式
+
+```{r math-formula,dev='tikz',fig.cap="线性回归 PDF 转 PNG",tikz2png='-density 300',fig.process= if(knitr::is_latex_output()) NULL else to_png, ref.label = "tikz-math-formula",echo=FALSE}
+```
+
+```{block2, type='rmdnote'}
+安装 dvisvgm 的命令 `tlmgr install dvisvgm`，安装 ImageMagick 的命令 `sudo apt install imagemagick`
+```
+
+
+# matplotlib
+
+## 带数学公式的绘图 {#math-in-matplotlib}
+
+先安装 matplotlib 模块
+
+```bash
+sudo apt install python3-matplotlib
+```
+
+```{python matplotlib-math-formula,fig.cap="数学公式"}
+from __future__ import unicode_literals
+import numpy as np
+import matplotlib
+matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams['text.latex.unicode'] = True
+import matplotlib.pyplot as plt
+plt.switch_backend('agg') # Very Important in R Markdown
+
+t = np.linspace(0.0, 1.0, 100)
+s = np.cos(4 * np.pi * t) + 2
+
+fig, ax = plt.subplots(figsize=(6, 4), tight_layout=True)
+ax.plot(t, s)
+
+ax.set_xlabel(r'\textbf{time (s)}')
+# ax.set_ylabel(r'\textit{Velocity}(\N{DEGREE SIGN}/sec)', fontsize=16)
+ax.set_ylabel(r'\textit{Velocity}($^{\circ}$/sec)', fontsize=16)
+ax.set_title(r'\TeX\ is Number $\displaystyle\sum_{n=1}^\infty'
+             r'\frac{-e^{i\pi}}{2^n}$!', fontsize=16, color='r')
+plt.show()
+```
+
+安装基本的包
+
+```bash
+tlmgr install psnfss type1cm ucs tex4ht ncntrsbk pgf xcolor
+              helvetic preview dvisvgm dvipng dvips standalone
+              subfig tocloft tocbibind sourcecodepro alegreya ctex fandol
+```
+
+# XKCD
+
+
+安装手写体字体
+
+```bash
+sudo apt install fonts-humor-sans gsfonts
+```
+
+```{r xkcd-style,fig.cap="XKCD 漫画风", dev=if(knitr::is_latex_output()) 'cairo_pdf' else 'png'}
+library(ggplot2)
+library(extrafont)
+# font_import(pattern="[H/h]umor")
+### Already have read in fonts (see previous answer on how to do this)
+# loadfonts()
+
+### Set up the trial dataset
+data <- NULL
+data$x <- seq(1, 10, 0.1)
+data$y1 <- sin(data$x)
+data$y2 <- cos(data$x)
+data$xaxis <- -1.5
+
+data <- as.data.frame(data)
+
+### XKCD theme
+theme_xkcd <- theme(
+  panel.background = element_rect(fill = "white"),
+  axis.ticks = element_line(colour = NA),
+  panel.grid = element_line(colour = "white"),
+  axis.text.y = element_text(colour = NA),
+  axis.text.x = element_text(colour = "black"),
+  text = element_text(size = 16, family = "Humor Sans")
+)
+
+### Plot the chart
+ggplot(data = data, aes(x = x, y = y1)) +
+  geom_line(aes(y = y2), position = "jitter") +
+  geom_line(colour = "white", size = 3, position = "jitter") +
+  geom_line(colour = "red", size = 1, position = "jitter") +
+  geom_text(family = "Humor Sans", x = 6, y = -1.2, label = "A SIN AND COS CURVE") +
+  geom_line(aes(y = xaxis), position = position_jitter(h = 0.005), colour = "black") +
+  scale_x_continuous(
+    breaks = c(2, 5, 6, 9),
+    labels = c("YARD", "STEPS", "DOOR", "INSIDE")
+  ) + labs(x = "", y = "") +
+  theme_xkcd
+```
+

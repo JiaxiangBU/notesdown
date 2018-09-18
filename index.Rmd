@@ -125,6 +125,11 @@ cat(".\n")
 
 ```{r}
 xfun::session_info(packages = c('rmarkdown','bookdown'))
+# rstan::stan_version()
+# blogdown::hugo_version()
+cat(system("xelatex -v", intern = TRUE), sep = "\n")
+cat(system2("gcc", args = "-v", stderr = TRUE, stdout = TRUE), sep = "\n")
+cat(system2("g++", args = "-v", stderr = TRUE, stdout = TRUE), sep = "\n")
 ```
 
 ## 授权 {#licenses .unnumbered}

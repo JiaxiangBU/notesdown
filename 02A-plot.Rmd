@@ -142,3 +142,109 @@ plot( seq(4) , vec_mean,
 arrows(seq(4), vec_mean-vec_sd, seq(4),  vec_mean + vec_sd, length=0.05, angle=90, code=3)
 # seq( nlevels(iris$Species) )
 ```
+
+
+所谓高级就是一个 `plot` 就可以画出一幅图，它包括标题，坐标轴标签等等 [@R-intro]
+
+我们先来看看 **graphics** 包提供的绘图函数， 绘图功能使用手册， 如添加参考线、 标题、 标签和旋转轴标签等等
+
+```{r}
+library(graphics)
+ls("package:graphics")
+```
+
+## 添加矩形网格线 {#rectangular-grid}
+
+矩形网格线是用做背景参考线的，常常是淡灰色的细密虚线，`plot` 函数的 `panel.first` 参数^[确切的说是 `plot.default` 函数] 和 `grid` 函数
+
+```{r panel-first,fig.cap="添加背景参考线"}
+# 抄自 https://yihui.name/cn/2018/02/cohen-s-d/
+n = 30  # 样本量（只是一个例子）
+x = seq(0, 12, 0.01)
+par(mar = c(4, 4, 0.2, 0.1))
+plot(x/sqrt(n), 2 * (1 - pt(x, n - 1)), xlab = "d = t / sqrt(n)", 
+  type = "l", panel.first = grid())
+abline(v = c(0.01, 0.2, 0.5, 0.8, 1.2, 2), lty = 2)
+```
+
+## 旋转坐标抽标签 {#rotated-axis-labels}
+
+旋转坐标抽标签的例子来自手册《R FAQ》的第7章第27个问题 [@R-FAQ]，在基础图形中，旋转坐标轴标签需要 `text()` 而不是 `mtext()`，因为后者不支持`par("srt")` 
+
+```{r rotate-axis-labels,fig.cap="旋转坐标轴标签"}
+## Increase bottom margin to make room for rotated labels
+par(mar = c(5, 4, .5, 2) + 0.1)
+## Create plot with no x axis and no x axis label
+plot(1 : 8, xaxt = "n",  xlab = "")
+## Set up x axis with tick marks alone
+axis(1, labels = FALSE)
+## Create some text labels
+labels <- paste("Label", 1:8, sep = " ")
+## Plot x axis labels at default tick marks
+text(1:8, par("usr")[3] - 0.5, srt = 45, adj = 1,
+     labels = labels, xpd = TRUE)
+## Plot x axis label at line 6 (of 7)
+mtext(side = 1, text = "X Axis Label", line = 4)
+```
+
+`srt = 45` 表示文本旋转角度， `xpd = TRUE` 允许文本越出绘图区域，`adj = 1` to place the right end of text at the tick marks；You can adjust the value of the 0.5 offset as required to move the axis labels up or down relative to the x axis.
+
+
+## 添加数学注释 {#math-annotation}
+
+数学符号注释，图\@ref(fig:math-annotation) 自定义坐标轴 [@Paul2000]。
+
+```{r math-annotation, fig.cap="在自定义的坐标轴上添加合适的数学注释"}
+# 抄自 https://www.tandfonline.com/doi/pdf/10.1080/10618600.2000.10474900
+par(mar = c(4, 4, 0.2, 0.1))
+plot(c(1, 1e6), c(-pi, pi), type = "n", 
+     axes = FALSE, ann = FALSE, log = "x")
+axis(1, at = c(1, 1e2, 1e4, 1e6), 
+     labels = expression(1, 10^2, 10^4, 10^6))
+axis(2, at = c(-pi, -pi / 2, 0, pi / 2, pi), 
+     labels = expression(-pi, -pi / 2, 0, pi / 2, pi))
+text(1e3, 0, expression(italic("Customized Axes")))
+box()
+```
+
+
+## 标记特定的数据 {#label-points}
+
+散点图上，我们常常需要标记一些点
+
+```{r label-data,fig.cap="用红色实心三角标记数据"}
+par(mar = c(4, 4, 0.2, 0.1))
+# 抄自 StackOverflow  https://stackoverflow.com/questions/51804892
+data("iris")
+stripchart(Petal.Length ~ Species, data = iris, subset = Petal.Length > 1.4,
+   vertical = TRUE, method = "jitter", ylim = c(1,7), 
+   pch = 16)
+stripchart(Petal.Length ~ Species, data = iris, subset = Petal.Length < 1.4,
+   vertical = TRUE, method = "jitter", add = TRUE, col = "red",
+   pch = 17)
+```
+
+`stripchart` 函数本质上还是 `plot` 函数^[获取源代码 `getAnywhere(stripchart.default)` ]
+
+
+## 文本越出绘图区域
+
+<!-- https://lcolladotor.github.io/2014/11/21/add-logo-in-R -->
+
+
+## 抖动图
+
+抖动散点图
+
+```{r jitter-scatter,fig.cap="抖动散点图"}
+mat <- matrix(1:length(colors()), ncol = 9, byrow= TRUE)
+df <- data.frame(col = colors(), 
+	x = as.integer(cut(1:length(colors()), 9)),
+	y = rep(1:73, 9), stringsAsFactors=FALSE)
+par(mar = c(4, 4, 1, 0.1))
+plot(y ~ jitter(x), data = df, col = df$col,
+ 	pch=16, main = "Visualizing colors() split in 9 groups",
+ 	xlab = "Group", 
+	ylab = "Element of the group (min = 1, max = 73)",
+	sub = "x = 3, y = 1 means that it's the 2 * 73 + 1 = 147th color")
+```
