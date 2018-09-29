@@ -108,6 +108,8 @@ exp(A)
 det(A)
 ```
 
+expm 包计算矩阵 $e^{\mathbf{A}}$
+
 ### 逆
 
 ```{r}

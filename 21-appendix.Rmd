@@ -77,6 +77,34 @@ tlmgr list collections
 tlmgr list --only-installed
 ```
 
+## 查看文件
+
+```bash
+head -n 100 clientip.csv # 查看文件前100行
+tail -n 20 clientip.csv  # 查看文件后20行
+```
+
+## 挂载共享文件夹
+
+```bash
+sudo mount -t vboxsf -o uid=1000,gid=1000 Downloads /home/share
+sudo chmod -R 777 ./share  给目录添加权限
+```
+## tar 压缩文件
+
+```bash
+tar -cjf clientip.tar.bz2 clientip.csv
+```
+## cp 到共享文件夹
+
+```bash
+sudo cp /home/cloud/clientip.tar.bz2 ./
+sudo cp /home/cloud/clientipSQL.tar.bz2 ./
+
+sudo cp /home/cloud/clientip.csv ./  #  复制到当前文件夹下
+sudo cp /home/cloud/clientip.SQL ./
+```
+
 安装 GPG 公钥（只限Win/Mac）
 
 ```bash
@@ -1323,6 +1351,10 @@ capabilities()
 docker start book
 # 进入
 docker exec -it book bash
+
+docker start rocker
+docker ps # 获取容器 ID CONTAINER ID
+docker exec -it 6f932357e6ce /bin/bash
 ```
 
 由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
