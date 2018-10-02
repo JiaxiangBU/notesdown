@@ -922,6 +922,19 @@ sudo yum install v8-314-devel
 tools::dependsOnPkgs("V8", installed = db)
 ```
 
+### curl 
+
+```bash
+# curl RCurl 包
+sudo yum install libcurl-devel
+```
+
+### openssl
+
+```bash
+# PKI openssl 包
+sudo yum install openssl-devel
+```
 
 ### rJava {#rJava}
 
