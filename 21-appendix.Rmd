@@ -1000,6 +1000,24 @@ sudo apt-get install libjpeg-dev libpng-dev
 install.packages("colorspace", repos = "http://R-Forge.R-project.org")
 ```
 
+### imager
+
+```bash
+sudo apt-get install libfftw3-dev libX11-dev libtiff-dev
+```
+
+CentOS
+
+```bash
+sudo yum install fftw-devel
+```
+
+```r
+install.packages('imager')
+```
+
+https://github.com/dahtah/imager
+
 ### sf (CentOS7) {#sf-centos}
 
 ```r
