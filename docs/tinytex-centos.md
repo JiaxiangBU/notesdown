@@ -69,28 +69,31 @@ sudo yum install -y libcurl-devel openssl-devel libssh2-devel \
 - 安装 R 包
 
 ```r
-install.packages(c('curl', 'openssl', 'git2r', 'xml2', 
-   'devtools', 'ggplot2', 'magick', 'rsvg', 'bookdown'))
+install.packages(c(
+   'curl', 'openssl', 'git2r', 'xml2', 
+   'devtools', 'ggplot2', 'magick', 'rsvg', 'bookdown'
+))
 ```
 
 - 安装 zsh
 
 ```bash
-sudo yum update && sudo yum -y install zsh git curl wget deltarpm
+sudo yum update && sudo yum -y install zsh curl wget deltarpm
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+
+查看文件夹大小
+
+```bash
+du -h -d 1
 ```
 
 - 安装 RStudio Server
 
 ```bash
-wget https://download2.rstudio.org/rstudio-server-rhel-1.1.419-x86_64.rpm
-sudo yum install rstudio-server-rhel-1.1.419-x86_64.rpm
-```
-
-查看文件
-
-```bash
-du -h --max-depth=2
+wget https://download2.rstudio.org/rstudio-server-rhel-1.1.456-x86_64.rpm
+sudo yum install rstudio-server-rhel-1.1.456-x86_64.rpm
 ```
 
 - 配置 rstudio
@@ -98,7 +101,8 @@ du -h --max-depth=2
 如果是自己编译安装 R，就需要手动这一步
 
 ```bash
-/etc/rstudio/rserver.conf  
+sudo vi /etc/rstudio/rserver.conf 
+# 添加一行 
 rsession-which-r=/usr/local/bin/R
 ```
 
@@ -139,8 +143,8 @@ wqy-zenhei-fonts
 - 下载 R 源码包
 
 ```bash
-wget https://mirrors.tuna.tsinghua.edu.cn/CRAN/src/base/R-3/R-3.4.3.tar.gz
-tar -xzvf R-3.4.3.tar.gz
+wget https://mirrors.tuna.tsinghua.edu.cn/CRAN/src/base/R-3/R-3.5.1.tar.gz
+tar -xzvf R-3.5.1.tar.gz
 ```
 
 ```bash
@@ -151,11 +155,8 @@ tlmgr install inconsolata ctex l3kernel l3packages \
 配置 R 的命令
 
 ```bash
-./configure --enable-long-double --enable-nls --enable-long-double \
-  --enable-largefile --enable-R-shlib --enable-byte-compiled-packages \
-  --enable-openmp --enable-BLAS-shlib --enable-memory-profiling --with-x=yes \
-  --with-blas --with-lapack --with-tcltk --with-cairo \
-  --with-libpng --with-jpeglib --with-libtiff
+./configure --enable-R-shlib --enable-byte-compiled-packages \
+  --enable-BLAS-shlib --enable-memory-profiling 
 
 make 
 sudo make install
@@ -166,7 +167,7 @@ sudo make install
 sudo yum install netcdf-devel hdf5-devel armadillo-devel \
     freexl-devel unixODBC-devel geos-devel \
     gdal-devel proj-devel proj-epsg proj-nad \
-    geos-devel udunits2-devel
+    geos-devel udunits2-devel fftw fftw-devel gcc-objc gcc-objc++
 ```
 
 - 配置 rgdal
@@ -175,4 +176,29 @@ sudo yum install netcdf-devel hdf5-devel armadillo-devel \
 ./configure --with-armadillo=yes
 make 
 sudo make install
+```
+
+安装 Git
+
+```bash
+wget https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum localinstall ius-release
+sudo yum update && sudo yum install git2u
+```
+
+安装 JAGS
+
+```bash
+wget http://download.opensuse.org/repositories/home:/cornell_vrdc/CentOS_7/home:cornell_vrdc.repo
+sudo yum install jags4 jags4-devel
+```
+
+```r
+install.packages('rjags')
+```
+
+安装 texlive/tinytex
+
+```
+sudo yum install perl-Digest-MD5
 ```
