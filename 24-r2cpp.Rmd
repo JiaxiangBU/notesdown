@@ -45,16 +45,6 @@ proc.time() - .proctime00
 ### RcppAlgos
 
 
-```bash
-sudo yum install centos-release-scl-rh
-sudo yum install devtoolset-4-gcc devtoolset-4-gcc-c++
-source /opt/rh/devtoolset-4/enable
-
-options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
-options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-```
-
-
 ```{r, eval = !Sys.which('octave') == ""}
 devtools::session_info(pkgs = c("Rcpp","RcppOctave"))
 ```

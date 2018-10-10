@@ -461,6 +461,26 @@ sudo apt-get update
 strsplit(Sys.getenv("PATH"),split = .Platform$path.sep) %>% unlist
 ```
 
+### GCC 
+
+CentOS 7 默认版本是 gcc-4.8.5
+
+```bash
+sudo yum install centos-release-scl-rh
+sudo yum install devtoolset-4-gcc devtoolset-4-gcc-c++
+source /opt/rh/devtoolset-4/enable
+
+options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
+options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
+
+# gcc 4.8.2
+rpm --import http://linuxsoft.cern.ch/cern/slc6X/x86_64/RPM-GPG-KEY-cern
+wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo
+sudo yum install devtoolset-2-toolchain
+sudo yum install devtoolset-2-gcc  devtoolset-2-gcc-c++
+source /opt/rh/devtoolset-2/enable
+```
+
 ### Python
 
 Python 版本和位置
