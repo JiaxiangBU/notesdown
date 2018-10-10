@@ -199,6 +199,26 @@ install.packages('rjags')
 
 安装 texlive/tinytex
 
+从这里安装
+https://github.com/FluidityProject/yum-centos7-texlive
+
+
 ```
 sudo yum install perl-Digest-MD5
+```
+
+卸载 texlive
+
+```
+sudo yum erase texlive texlive-\*
+```
+
+
+安装字体
+
+```
+levien-inconsolata-fonts texlive-inconsolata texlive-fandol texlive-ctex
+
+tlmgr install ctex ms ulem xecjk environ trimspaces \
+  zhnumber fandol xltxtra realscripts
 ```

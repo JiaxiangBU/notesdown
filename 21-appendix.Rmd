@@ -34,7 +34,7 @@ sudo apt clean
 sudo apt autoremove
 sudo apt-get autoclean # 删除已卸的软件的备份
 sudo apt-get clean # 删除已装或已卸的软件的备份
-``
+```
 
 ### 搜索查询安装 {#search-show-install}
 
@@ -734,17 +734,15 @@ sudo /etc/init.d/ssh start
 ps -aux | grep ssh
 ```
 
-## CentOS 7
+## CentOS 7/ TinyTeX
 
 ```bash
 ## Use tinytex for LaTeX installation
-  wget -qO- \
-    "https://yihui.name/gh/tinytex/tools/install-unx.sh" | \
-    sh -s - --admin --no-path 
-  sudo mv ~/.TinyTeX /opt/TinyTeX 
-  sudo /opt/TinyTeX/bin/*/tlmgr path add 
-  tlmgr install inconsolata tex ae parskip listings 
-  sudo /opt/TinyTeX/bin/*/tlmgr path add 
+wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh -s - --admin --no-path 
+sudo mv ~/.TinyTeX /opt/TinyTeX 
+sudo /opt/TinyTeX/bin/*/tlmgr path add 
+tlmgr install inconsolata tex ae parskip listings 
+sudo /opt/TinyTeX/bin/*/tlmgr path add 
 ```
 
 ```r
