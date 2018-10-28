@@ -1,7 +1,7 @@
 language: r
 r:
   - 3.4.4
-#  - release
+  - release
 dist: trusty
 sudo: false
 cache:
@@ -22,47 +22,20 @@ git:
   depth: 5
   submodules: false
   
-r_github_packages: 
-  - tidyverse/ggplot2
-  - leonawicz/mapmate
-  - thomasp85/gganimate
-  - cosname/recharts
-  - JohnCoene/echarts4r
-  - rstudio/r2d3
-#  - rmcelreath/rethinking
-#  - rmcelreath/glmer2stan
-  - renozao/RcppOctave
-#  - ropensci/plotly
-#  - dkahle/ggmap
-#  - clauswilke/ggridges
-  - JohnCoene/echarts4r
-
-#bioc_packages:
-#  - Rgraphviz
-#  - graph
-
-r_packages: 
-  - rstan
-#  - sf
-#  - mxnet
-
 repos:
   CRAN: https://cloud.r-project.org
 #  ropensci: http://packages.ropensci.org
 #  INLA: https://inla.r-inla-download.org/R/stable
 #  deltarho: http://packages.deltarho.org
-#  dmlc: https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/R/CRAN/
-# Add marutter's c2d4u repository, (and rrutter for CRAN builds too)
 
 addons:
   apt:
     sources:
+      - ubuntu-toolchain-r-test
       - sourceline: ppa:opencpu/jq
       - sourceline: ppa:opencpu/imagemagick
       - sourceline: ppa:ubuntugis/ubuntugis-unstable
       - sourceline: ppa:octave/stable
-      - sourceline: ppa:marutter/rrutter
-      - sourceline: ppa:marutter/c2d4u
     packages:
       - ghostscript
       - imagemagick
@@ -92,8 +65,13 @@ addons:
       - libatlas3-base
       - libopenblas-base 
       - pstoedit
+      - cargo
+      - gcc-7
+      - g++-7
 
 before_install:
+  - mkdir ~/.R
+  - cp Makevars ~/.R
   - npm install netlify-cli -g
   - curl -fLo /tmp/tinytex.tar.gz https://travis-bin.yihui.name/tinytex.tar.gz
   - tar xzf /tmp/tinytex.tar.gz -C /$HOME
@@ -106,17 +84,17 @@ before_script:
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd", output_format = "all")'
 
-#deploy:
-#  - provider: pages
-#    skip_cleanup: true
-#    github_token: $GITHUB_TOKEN
-#    on:
-#      branch: master
-#    local_dir: _book
-#  - provider: script
-#    script: netlify deploy -t $NETLIFY_PAT
-#    skip_cleanup: true
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      branch: master
+    local_dir: _book
+  - provider: script
+    script: netlify deploy --prod --dir _book
+    skip_cleanup: true
 
 # deploy 
-after_success:
-  - netlify deploy -t $NETLIFY_PAT
+#after_success:
+#  - netlify deploy --prod --dir _book

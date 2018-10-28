@@ -12,14 +12,21 @@ URL: https://github.com/XiangyunHuang/notesdown
 Depends: 
     R (>= 3.1.0)
 Imports: 
-    bookdown,
-    knitr,
-    rticles,
-    svglite,
-    gridExtra
-Remotes: tidyverse/ggplot2,
-    leonawicz/mapmate,
-    dgrtwo/gganimate
+  bookdown,
+  knitr,
+  rticles,
+  rstan,
+  svglite,
+  ggplot2,
+  gridExtra
+Remotes: 
+  leonawicz/mapmate,
+  dgrtwo/gganimate,
+  JohnCoene/echarts4r,
+  rstudio/r2d3,
+  renozao/RcppOctave,
+  cosname/recharts,
+  ropensci/plotly
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
