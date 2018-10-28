@@ -18,7 +18,8 @@ Imports:
   rstan,
   svglite,
   ggplot2,
-  gridExtra
+  gridExtra,
+  INLA,
 Remotes: 
   leonawicz/mapmate,
   dgrtwo/gganimate,
