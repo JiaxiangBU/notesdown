@@ -3,9 +3,6 @@ set.seed(2018)
 options(digits = 3)
 library(magrittr)
 
-if (system.file(package = "colorspace") == "") 
-  install.packages("colorspace", repos = "https://r-forge.r-project.org/")
-
 lapply(c(
   "bookdown", "styler", "tikzDevice", "extrafont",
   "formatR", "ggplot2", "fortunes", "reticulate",

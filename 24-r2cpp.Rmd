@@ -31,6 +31,10 @@ proc.time() - .proctime00
 
 混合编程
 
+```{r eval=is_on_travis}
+devtools::install_github('renozao/RcppOctave')
+```
+
 
 ### RcppGSL
 
@@ -45,7 +49,7 @@ proc.time() - .proctime00
 ### RcppAlgos
 
 
-```{r, eval = !Sys.which('octave') == ""}
-devtools::session_info(pkgs = c("Rcpp","RcppOctave"))
+```{r eval=is_on_travis}
+devtools::session_info(pkgs = c("Rcpp", "RcppOctave"))
 ```
 
