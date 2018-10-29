@@ -1,0 +1,222 @@
+
+# 数据操作
+
+## 集合运算
+
+
+## 正则匹配
+
+字符串处理 [Handling Strings with R](http://www.gastonsanchez.com/r4strings/) Gaston Sanchez 著
+
+正则表达式 is ervrywhere，is 高级/hacker's skill 技能
+
+- [正则表达式速查表 -- Python3](https://www.dataquest.io/blog/large_files/python-regular-expressions-cheat-sheet.pdf)
+- [Online regex tester and debugger](https://regex101.com/)
+- [Regular expression operations](https://docs.python.org/3/library/re.html)
+
+以 CRAN 日志数据为例
+
+- R 包开发者
+
+
+```r
+library(magrittr)
+gsub(
+  " <([^<>]*)>", "",
+  lapply(.packages(TRUE), maintainer)
+  %>%
+    unlist()
+) %>% 
+  unique() %>% 
+  sort() %>% 
+  tail(10)
+#>  [1] "Thomas Lumley"   "Thomas Petzoldt" "Tim Keitt"      
+#>  [4] "Torsten Hothorn" "Trevor Hastie"   "Vitalie Spinu"  
+#>  [7] "Winston Chang"   "Yihui Xie"       "Yixuan Qiu"     
+#> [10] "Zuguang Gu"
+```
+
+```r
+# 网上有多少 R 包
+pkg_repos <- c("https://mirrors.tuna.tsinghua.edu.cn/CRAN/","https://inla.r-inla-download.org/R/stable","http://r-forge.r-project.org/")
+
+pkg <- utils::available.packages(repos = pkg_repos)
+
+pkg <- as.data.frame(pkg, stringsAsFactors = FALSE)
+
+pkg$Package
+download.packages("Rbooks", destdir = "~/",repos = "http://r-forge.r-project.org/")
+```
+
+
+Github 活动记录 <https://github.com/jonocarroll/butteRfly>
+
+```r
+# install.packages("devtools")
+devtools::install_github("jonocarroll/butteRfly")
+my_socials <- collate_socials(user = c("jonocarroll", "carroll_jono", 4168169), 
+                              socials = c("GitHub", "Twitter", "StackOverflow"))
+```
+
+## 排序
+
+### order 
+
+### sort
+
+
+## 索引
+
+### which
+
+向量和矩阵中的操作
+
+### `[[`
+
+
+```r
+# which [] 索引性能比较
+
+n = 100000
+x = runif(n)
+i = logical(n)
+i[sample(n, n/4)] = TRUE
+microbenchmark::microbenchmark(x[i], x[which(i)], times = 1000)
+```
+
+## 分组
+
+by
+
+
+with 和 within
+
+
+## apply 
+
+### lapply
+
+### sapply
+ 
+### parallel
+
+
+https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family
+
+
+```r
+apropos("apply")
+#>  [1] "apply"      "dendrapply" "eapply"     "kernapply"  "lapply"    
+#>  [6] "mapply"     "rapply"     "sapply"     "tapply"     "vapply"
+```
+
+## 合并 
+
+### aggregate
+
+## 映射 
+
+### Map  
+
+### Reduce
+
+openxlsx 
+拆分、映射计算，合并
+
+```r
+## Load dependencies
+if (!require('openxlsx')) install.packages('openxlsx')
+library('openxlsx')
+ 
+## Split data apart by a grouping variable;
+##   makes a named list of tables
+dat <- split(mtcars, mtcars$cyl)
+dat
+ 
+ 
+## Create a blank workbook
+wb <- createWorkbook()
+ 
+## Loop through the list of split tables as well as their names
+##   and add each one as a sheet to the workbook
+Map(function(data, name){
+ 
+    addWorksheet(wb, name)
+    writeData(wb, name, data)
+ 
+}, dat, names(dat))
+ 
+ 
+## Save workbook to working directory
+saveWorkbook(wb, file = "example.xlsx", overwrite = TRUE)
+```
+
+
+## 拆分
+
+### split 
+
+### cut
+
+```
+Z <- stats::rnorm(10000)
+table(cut(Z, breaks = -6:6))
+# 条形图
+plot(cut(Z, breaks = -6:6))
+# 落在区间 [-6，6] 内的点
+sum(table(cut(Z, breaks = -6:6, labels = FALSE)))
+# 直方图
+hist(Z, breaks = -6:6)
+
+aaa <- c(1,2,3,4,5,2,3,4,5,6,7)
+cut(aaa, 3)
+cut(aaa, 3, dig.lab = 4, ordered = TRUE)
+## one way to extract the breakpoints
+labs <- levels(cut(aaa, 3))
+cbind(lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
+      upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) ))
+
+```
+
+- findInterval
+- embed
+
+## 数据库
+
+RMariaDB: Implements a 'DBI'-compliant interface to 'MariaDB' (<https://mariadb.org/>) and 'MySQL' (<https://www.mysql.com/>) databases. <https://github.com/r-dbi/RMariaDB>
+
+- rio <https://github.com/leeper/rio>
+
+
+```r
+# 读取一系列同一格式的数据文件
+read_list <- function(list_of_datasets, read_func){
+
+        read_and_assign <- function(dataset, read_func){
+                dataset_name <- as.name(dataset)
+                dataset_name <- read_func(dataset)
+        }
+
+        # invisible is used to suppress the unneeded output
+        output <- invisible(
+                sapply(list_of_datasets,
+                           read_and_assign, read_func = read_func, simplify = FALSE, USE.NAMES = TRUE))
+
+        # Remove the extension at the end of the data set names
+        names_of_datasets <- c(unlist(strsplit(list_of_datasets, "[.]"))[c(T, F)])
+        names(output) <- names_of_datasets
+        return(output)
+}
+
+data_files <- list.files(pattern = ".csv")  # 提取文件名.csv格式文件
+
+print(data_files)
+
+library("readr")
+library("tibble")
+
+list_of_data_sets <- read_list(data_files, read_csv)
+
+
+glimpse(list_of_data_sets)
+```

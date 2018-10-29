@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>notesdown</title>
+  <meta name="description" content="Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="notesdown" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://notesdown.netlify.com/" />
+  <meta property="og:image" content="https://notesdown.netlify.com/images/dragon.png" />
+  <meta property="og:description" content="Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python." />
+  <meta name="github-repo" content="xiangyunhuang/notesdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="notesdown" />
+  
+  <meta name="twitter:description" content="Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python." />
+  <meta name="twitter:image" content="https://notesdown.netlify.com/images/dragon.png" />
+
+<meta name="author" content="Xiangyun Huang">
+<meta name="author" content="The Others">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/dragon.png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<link rel="prev" href="python-plot.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">学习笔记</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#thanks"><i class="fa fa-check"></i>致谢</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#structure"><i class="fa fa-check"></i>结构</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#colophon"><i class="fa fa-check"></i>后记</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#conventions"><i class="fa fa-check"></i>说明</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#licenses"><i class="fa fa-check"></i>授权</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="authors.html"><a href="authors.html"><i class="fa fa-check"></i><b>1</b> 作者简介</a></li>
+<li class="chapter" data-level="2" data-path="notations.html"><a href="notations.html"><i class="fa fa-check"></i><b>2</b> 符号说明</a></li>
+<li class="part"><span><b>I 基础知识</b></span></li>
+<li class="chapter" data-level="3" data-path="install-setup.html"><a href="install-setup.html"><i class="fa fa-check"></i><b>3</b> 安装与配置</a><ul>
+<li class="chapter" data-level="3.1" data-path="install-setup.html"><a href="install-setup.html#dbi"><i class="fa fa-check"></i><b>3.1</b> DBI</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="install-setup.html"><a href="install-setup.html#reticulate"><i class="fa fa-check"></i><b>3.1.1</b> reticulate</a></li>
+<li class="chapter" data-level="3.1.2" data-path="install-setup.html"><a href="install-setup.html#inla"><i class="fa fa-check"></i><b>3.1.2</b> INLA</a></li>
+<li class="chapter" data-level="3.1.3" data-path="install-setup.html"><a href="install-setup.html#mxnet"><i class="fa fa-check"></i><b>3.1.3</b> mxnet</a></li>
+<li class="chapter" data-level="3.1.4" data-path="install-setup.html"><a href="install-setup.html#tensorflow"><i class="fa fa-check"></i><b>3.1.4</b> tensorflow</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="install-setup.html"><a href="install-setup.html#-ide"><i class="fa fa-check"></i><b>3.2</b> 安装 IDE</a></li>
+<li class="chapter" data-level="3.3" data-path="install-setup.html"><a href="install-setup.html#section-3.3"><i class="fa fa-check"></i><b>3.3</b> 配置文件</a></li>
+<li class="chapter" data-level="3.4" data-path="install-setup.html"><a href="install-setup.html#tricks"><i class="fa fa-check"></i><b>3.4</b> 小技巧</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="math-operator.html"><a href="math-operator.html"><i class="fa fa-check"></i><b>4</b> 数学运算</a><ul>
+<li class="chapter" data-level="4.1" data-path="math-operator.html"><a href="math-operator.html#section-4.1"><i class="fa fa-check"></i><b>4.1</b> 矩阵运算</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="math-operator.html"><a href="math-operator.html#section-4.1.1"><i class="fa fa-check"></i><b>4.1.1</b> 乘法</a></li>
+<li class="chapter" data-level="4.1.2" data-path="math-operator.html"><a href="math-operator.html#Hadamard"><i class="fa fa-check"></i><b>4.1.2</b> Hadamard 积</a></li>
+<li class="chapter" data-level="4.1.3" data-path="math-operator.html"><a href="math-operator.html#section-4.1.3"><i class="fa fa-check"></i><b>4.1.3</b> 交叉积</a></li>
+<li class="chapter" data-level="4.1.4" data-path="math-operator.html"><a href="math-operator.html#section-4.1.4"><i class="fa fa-check"></i><b>4.1.4</b> 外积</a></li>
+<li class="chapter" data-level="4.1.5" data-path="math-operator.html"><a href="math-operator.html#section-4.1.5"><i class="fa fa-check"></i><b>4.1.5</b> 直积</a></li>
+<li class="chapter" data-level="4.1.6" data-path="math-operator.html"><a href="math-operator.html#section-4.1.6"><i class="fa fa-check"></i><b>4.1.6</b> 乘方</a></li>
+<li class="chapter" data-level="4.1.7" data-path="math-operator.html"><a href="math-operator.html#section-4.1.7"><i class="fa fa-check"></i><b>4.1.7</b> 幂</a></li>
+<li class="chapter" data-level="4.1.8" data-path="math-operator.html"><a href="math-operator.html#section-4.1.8"><i class="fa fa-check"></i><b>4.1.8</b> 行列式</a></li>
+<li class="chapter" data-level="4.1.9" data-path="math-operator.html"><a href="math-operator.html#section-4.1.9"><i class="fa fa-check"></i><b>4.1.9</b> 逆</a></li>
+<li class="chapter" data-level="4.1.10" data-path="math-operator.html"><a href="math-operator.html#section-4.1.10"><i class="fa fa-check"></i><b>4.1.10</b> 伴随矩阵</a></li>
+<li class="chapter" data-level="4.1.11" data-path="math-operator.html"><a href="math-operator.html#section-4.1.11"><i class="fa fa-check"></i><b>4.1.11</b> 单位矩阵</a></li>
+<li class="chapter" data-level="4.1.12" data-path="math-operator.html"><a href="math-operator.html#section-4.1.12"><i class="fa fa-check"></i><b>4.1.12</b> 对角矩阵</a></li>
+<li class="chapter" data-level="4.1.13" data-path="math-operator.html"><a href="math-operator.html#section-4.1.13"><i class="fa fa-check"></i><b>4.1.13</b> 条件数</a></li>
+<li class="chapter" data-level="4.1.14" data-path="math-operator.html"><a href="math-operator.html#section-4.1.14"><i class="fa fa-check"></i><b>4.1.14</b> 范数</a></li>
+<li class="chapter" data-level="4.1.15" data-path="math-operator.html"><a href="math-operator.html#section-4.1.15"><i class="fa fa-check"></i><b>4.1.15</b> 秩</a></li>
+<li class="chapter" data-level="4.1.16" data-path="math-operator.html"><a href="math-operator.html#section-4.1.16"><i class="fa fa-check"></i><b>4.1.16</b> 稀疏矩阵</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="math-operator.html"><a href="math-operator.html#section-4.2"><i class="fa fa-check"></i><b>4.2</b> 矩阵分解</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="math-operator.html"><a href="math-operator.html#cholesky-"><i class="fa fa-check"></i><b>4.2.1</b> Cholesky 分解</a></li>
+<li class="chapter" data-level="4.2.2" data-path="math-operator.html"><a href="math-operator.html#section-4.2.2"><i class="fa fa-check"></i><b>4.2.2</b> 奇异值及分解</a></li>
+<li class="chapter" data-level="4.2.3" data-path="math-operator.html"><a href="math-operator.html#qr"><i class="fa fa-check"></i><b>4.2.3</b> QR分解</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="math-operator.html"><a href="math-operator.html#section-4.3"><i class="fa fa-check"></i><b>4.3</b> 特殊函数</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="math-operator.html"><a href="math-operator.html#section-4.3.1"><i class="fa fa-check"></i><b>4.3.1</b> 阶乘</a></li>
+<li class="chapter" data-level="4.3.2" data-path="math-operator.html"><a href="math-operator.html#section-4.3.2"><i class="fa fa-check"></i><b>4.3.2</b> 伽马函数</a></li>
+<li class="chapter" data-level="4.3.3" data-path="math-operator.html"><a href="math-operator.html#section-4.3.3"><i class="fa fa-check"></i><b>4.3.3</b> 贝塔函数</a></li>
+<li class="chapter" data-level="4.3.4" data-path="math-operator.html"><a href="math-operator.html#section-4.3.4"><i class="fa fa-check"></i><b>4.3.4</b> 贝塞尔函数</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="math-operator.html"><a href="math-operator.html#distribution"><i class="fa fa-check"></i><b>4.4</b> 统计分布</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="math-operator.html"><a href="math-operator.html#section-4.4.1"><i class="fa fa-check"></i><b>4.4.1</b> 一元分布</a></li>
+<li class="chapter" data-level="4.4.2" data-path="math-operator.html"><a href="math-operator.html#section-4.4.2"><i class="fa fa-check"></i><b>4.4.2</b> 多元分布</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="section-5.html"><a href="section-5.html"><i class="fa fa-check"></i><b>5</b> 文件操作</a></li>
+<li class="chapter" data-level="6" data-path="section-6.html"><a href="section-6.html"><i class="fa fa-check"></i><b>6</b> 数据操作</a><ul>
+<li class="chapter" data-level="6.1" data-path="section-6.html"><a href="section-6.html#section-6.1"><i class="fa fa-check"></i><b>6.1</b> 集合运算</a></li>
+<li class="chapter" data-level="6.2" data-path="section-6.html"><a href="section-6.html#section-6.2"><i class="fa fa-check"></i><b>6.2</b> 正则匹配</a></li>
+<li class="chapter" data-level="6.3" data-path="section-6.html"><a href="section-6.html#section-6.3"><i class="fa fa-check"></i><b>6.3</b> 排序</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="section-6.html"><a href="section-6.html#order"><i class="fa fa-check"></i><b>6.3.1</b> order</a></li>
+<li class="chapter" data-level="6.3.2" data-path="section-6.html"><a href="section-6.html#sort"><i class="fa fa-check"></i><b>6.3.2</b> sort</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="section-6.html"><a href="section-6.html#section-6.4"><i class="fa fa-check"></i><b>6.4</b> 索引</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="section-6.html"><a href="section-6.html#which"><i class="fa fa-check"></i><b>6.4.1</b> which</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-6.html"><a href="section-6.html#section"><i class="fa fa-check"></i><b>6.4.2</b> <code>[[</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-6.html"><a href="section-6.html#section-6.5"><i class="fa fa-check"></i><b>6.5</b> 分组</a></li>
+<li class="chapter" data-level="6.6" data-path="section-6.html"><a href="section-6.html#apply"><i class="fa fa-check"></i><b>6.6</b> apply</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="section-6.html"><a href="section-6.html#lapply"><i class="fa fa-check"></i><b>6.6.1</b> lapply</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-6.html"><a href="section-6.html#sapply"><i class="fa fa-check"></i><b>6.6.2</b> sapply</a></li>
+<li class="chapter" data-level="6.6.3" data-path="section-6.html"><a href="section-6.html#parallel"><i class="fa fa-check"></i><b>6.6.3</b> parallel</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="section-6.html"><a href="section-6.html#section-6.7"><i class="fa fa-check"></i><b>6.7</b> 合并</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="section-6.html"><a href="section-6.html#aggregate"><i class="fa fa-check"></i><b>6.7.1</b> aggregate</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="section-6.html"><a href="section-6.html#section-6.8"><i class="fa fa-check"></i><b>6.8</b> 映射</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="section-6.html"><a href="section-6.html#map"><i class="fa fa-check"></i><b>6.8.1</b> Map</a></li>
+<li class="chapter" data-level="6.8.2" data-path="section-6.html"><a href="section-6.html#reduce"><i class="fa fa-check"></i><b>6.8.2</b> Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="section-6.html"><a href="section-6.html#section-6.9"><i class="fa fa-check"></i><b>6.9</b> 拆分</a><ul>
+<li class="chapter" data-level="6.9.1" data-path="section-6.html"><a href="section-6.html#split"><i class="fa fa-check"></i><b>6.9.1</b> split</a></li>
+<li class="chapter" data-level="6.9.2" data-path="section-6.html"><a href="section-6.html#cut"><i class="fa fa-check"></i><b>6.9.2</b> cut</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="section-6.html"><a href="section-6.html#section-6.10"><i class="fa fa-check"></i><b>6.10</b> 数据库</a></li>
+</ul></li>
+<li class="part"><span><b>II 统计图形</b></span></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> 基础图形</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base"><i class="fa fa-check"></i><b>7.1</b> plot</a></li>
+<li class="chapter" data-level="7.2" data-path="graphics.html"><a href="graphics.html#rectangular-grid"><i class="fa fa-check"></i><b>7.2</b> 添加矩形网格线</a></li>
+<li class="chapter" data-level="7.3" data-path="graphics.html"><a href="graphics.html#rotated-axis-labels"><i class="fa fa-check"></i><b>7.3</b> 旋转坐标抽标签</a></li>
+<li class="chapter" data-level="7.4" data-path="graphics.html"><a href="graphics.html#math-annotation"><i class="fa fa-check"></i><b>7.4</b> 添加数学注释</a></li>
+<li class="chapter" data-level="7.5" data-path="graphics.html"><a href="graphics.html#label-points"><i class="fa fa-check"></i><b>7.5</b> 标记特定的数据</a></li>
+<li class="chapter" data-level="7.6" data-path="graphics.html"><a href="graphics.html#section-7.6"><i class="fa fa-check"></i><b>7.6</b> 文本越出绘图区域</a></li>
+<li class="chapter" data-level="7.7" data-path="graphics.html"><a href="graphics.html#section-7.7"><i class="fa fa-check"></i><b>7.7</b> 抖动图</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot.html"><a href="ggplot.html"><i class="fa fa-check"></i><b>8</b> 高级图形</a></li>
+<li class="chapter" data-level="9" data-path="js.html"><a href="js.html"><i class="fa fa-check"></i><b>9</b> 动态图形</a><ul>
+<li class="chapter" data-level="9.1" data-path="js.html"><a href="js.html#echarts"><i class="fa fa-check"></i><b>9.1</b> ECharts</a></li>
+<li class="chapter" data-level="9.2" data-path="js.html"><a href="js.html#d3"><i class="fa fa-check"></i><b>9.2</b> D3</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="section-10.html"><a href="section-10.html"><i class="fa fa-check"></i><b>10</b> 绘图工具</a><ul>
+<li class="chapter" data-level="10.1" data-path="section-10.html"><a href="section-10.html#section-10.1"><i class="fa fa-check"></i><b>10.1</b> 截图</a></li>
+<li class="chapter" data-level="10.2" data-path="section-10.html"><a href="section-10.html#inkscape"><i class="fa fa-check"></i><b>10.2</b> Inkscape</a></li>
+<li class="chapter" data-level="10.3" data-path="section-10.html"><a href="section-10.html#section-10.3"><i class="fa fa-check"></i><b>10.3</b> 转化</a></li>
+<li class="chapter" data-level="10.4" data-path="section-10.html"><a href="section-10.html#section-10.4"><i class="fa fa-check"></i><b>10.4</b> 优化</a></li>
+<li class="chapter" data-level="10.5" data-path="section-10.html"><a href="section-10.html#section-10.5"><i class="fa fa-check"></i><b>10.5</b> 裁剪</a></li>
+<li class="chapter" data-level="10.6" data-path="section-10.html"><a href="section-10.html#section-10.6"><i class="fa fa-check"></i><b>10.6</b> 接口</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="color.html"><a href="color.html"><i class="fa fa-check"></i><b>11</b> 配色</a><ul>
+<li class="chapter" data-level="11.1" data-path="color.html"><a href="color.html#section-11.1"><i class="fa fa-check"></i><b>11.1</b> 调色板</a></li>
+<li class="chapter" data-level="11.2" data-path="color.html"><a href="color.html#section-11.2"><i class="fa fa-check"></i><b>11.2</b> 颜色空间</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="color.html"><a href="color.html#rgb"><i class="fa fa-check"></i><b>11.2.1</b> RGB</a></li>
+<li class="chapter" data-level="11.2.2" data-path="color.html"><a href="color.html#hsl"><i class="fa fa-check"></i><b>11.2.2</b> HSL</a></li>
+<li class="chapter" data-level="11.2.3" data-path="color.html"><a href="color.html#hsv"><i class="fa fa-check"></i><b>11.2.3</b> HSV</a></li>
+<li class="chapter" data-level="11.2.4" data-path="color.html"><a href="color.html#hcl"><i class="fa fa-check"></i><b>11.2.4</b> HCL</a></li>
+<li class="chapter" data-level="11.2.5" data-path="color.html"><a href="color.html#cmyk"><i class="fa fa-check"></i><b>11.2.5</b> CMYK</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="fonts.html"><a href="fonts.html"><i class="fa fa-check"></i><b>12</b> 字体</a><ul>
+<li class="chapter" data-level="12.1" data-path="fonts.html"><a href="fonts.html#cjk-"><i class="fa fa-check"></i><b>12.1</b> CJK 字体</a></li>
+<li class="chapter" data-level="12.2" data-path="fonts.html"><a href="fonts.html#showtext"><i class="fa fa-check"></i><b>12.2</b> showtext</a></li>
+<li class="chapter" data-level="12.3" data-path="fonts.html"><a href="fonts.html#xkcd"><i class="fa fa-check"></i><b>12.3</b> xkcd</a></li>
+<li class="chapter" data-level="12.4" data-path="fonts.html"><a href="fonts.html#fontcm"><i class="fa fa-check"></i><b>12.4</b> fontcm</a></li>
+<li class="chapter" data-level="12.5" data-path="fonts.html"><a href="fonts.html#tikzdevice"><i class="fa fa-check"></i><b>12.5</b> tikzDevice</a></li>
+<li class="chapter" data-level="12.6" data-path="fonts.html"><a href="fonts.html#tikz--pgf"><i class="fa fa-check"></i><b>12.6</b> TikZ 和 PGF</a></li>
+<li class="chapter" data-level="12.7" data-path="fonts.html"><a href="fonts.html#math-in-matplotlib"><i class="fa fa-check"></i><b>12.7</b> matplotlib</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="animotion.html"><a href="animotion.html"><i class="fa fa-check"></i><b>13</b> 动画</a><ul>
+<li class="chapter" data-level="13.1" data-path="animotion.html"><a href="animotion.html#js-"><i class="fa fa-check"></i><b>13.1</b> JS 动画</a></li>
+<li class="chapter" data-level="13.2" data-path="animotion.html"><a href="animotion.html#svg-"><i class="fa fa-check"></i><b>13.2</b> svg 动画</a></li>
+<li class="chapter" data-level="13.3" data-path="animotion.html"><a href="animotion.html#mapmate"><i class="fa fa-check"></i><b>13.3</b> mapmate</a></li>
+</ul></li>
+<li class="part"><span><b>III 统计计算</b></span></li>
+<li class="chapter" data-level="14" data-path="optimation.html"><a href="optimation.html"><i class="fa fa-check"></i><b>14</b> 数值优化</a><ul>
+<li class="chapter" data-level="14.1" data-path="optimation.html"><a href="optimation.html#section-14.1"><i class="fa fa-check"></i><b>14.1</b> 测试函数</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="section-15.html"><a href="section-15.html"><i class="fa fa-check"></i><b>15</b> 随机模拟</a><ul>
+<li class="chapter" data-level="15.1" data-path="section-15.html"><a href="section-15.html#section-15.1"><i class="fa fa-check"></i><b>15.1</b> 随机数</a></li>
+<li class="chapter" data-level="15.2" data-path="section-15.html"><a href="section-15.html#section-15.2"><i class="fa fa-check"></i><b>15.2</b> 随机过程</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="section-15.html"><a href="section-15.html#section-15.2.1"><i class="fa fa-check"></i><b>15.2.1</b> 随机游走</a></li>
+<li class="chapter" data-level="15.2.2" data-path="section-15.html"><a href="section-15.html#section-15.2.2"><i class="fa fa-check"></i><b>15.2.2</b> 遍历定理</a></li>
+<li class="chapter" data-level="15.2.3" data-path="section-15.html"><a href="section-15.html#m-h-"><i class="fa fa-check"></i><b>15.2.3</b> M-H 算法</a></li>
+<li class="chapter" data-level="15.2.4" data-path="section-15.html"><a href="section-15.html#gibbs-"><i class="fa fa-check"></i><b>15.2.4</b> Gibbs 算法</a></li>
+<li class="chapter" data-level="15.2.5" data-path="section-15.html"><a href="section-15.html#hmc-"><i class="fa fa-check"></i><b>15.2.5</b> HMC 算法</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="section-15.html"><a href="section-15.html#section-15.3"><i class="fa fa-check"></i><b>15.3</b> 分布式</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="section-15.html"><a href="section-15.html#rmpi"><i class="fa fa-check"></i><b>15.3.1</b> Rmpi</a></li>
+<li class="chapter" data-level="15.3.2" data-path="section-15.html"><a href="section-15.html#rhpc"><i class="fa fa-check"></i><b>15.3.2</b> Rhpc</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>16</b> 贝叶斯计算</a><ul>
+<li class="chapter" data-level="16.1" data-path="bayes.html"><a href="bayes.html#bugs-"><i class="fa fa-check"></i><b>16.1</b> BUGS 软件</a></li>
+<li class="chapter" data-level="16.2" data-path="bayes.html"><a href="bayes.html#stan-"><i class="fa fa-check"></i><b>16.2</b> Stan 框架</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="bayes.html"><a href="bayes.html#pystan-"><i class="fa fa-check"></i><b>16.2.1</b> PyStan 接口</a></li>
+<li class="chapter" data-level="16.2.2" data-path="bayes.html"><a href="bayes.html#rstan-"><i class="fa fa-check"></i><b>16.2.2</b> RStan 接口</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-inla.html"><a href="r-inla.html"><i class="fa fa-check"></i><b>17</b> 近似推断</a><ul>
+<li class="chapter" data-level="17.1" data-path="r-inla.html"><a href="r-inla.html#-"><i class="fa fa-check"></i><b>17.1</b> 高斯-马尔科夫随机场</a></li>
+<li class="chapter" data-level="17.2" data-path="r-inla.html"><a href="r-inla.html#section-17.2"><i class="fa fa-check"></i><b>17.2</b> 贝叶斯近似推断</a></li>
+</ul></li>
+<li class="part"><span><b>IV 数据分析</b></span></li>
+<li class="chapter" data-level="18" data-path="spatial.html"><a href="spatial.html"><i class="fa fa-check"></i><b>18</b> 空间数据</a><ul>
+<li class="chapter" data-level="18.1" data-path="spatial.html"><a href="spatial.html#section-18.1"><i class="fa fa-check"></i><b>18.1</b> 分析与可视化</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="network.html"><a href="network.html"><i class="fa fa-check"></i><b>19</b> 网络数据</a><ul>
+<li class="chapter" data-level="19.1" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>19.1</b> 分析与可视化</a></li>
+<li class="chapter" data-level="19.2" data-path="network.html"><a href="network.html#gephi"><i class="fa fa-check"></i><b>19.2</b> gephi</a></li>
+</ul></li>
+<li class="part"><span><b>V 统计模型</b></span></li>
+<li class="chapter" data-level="20" data-path="glm.html"><a href="glm.html"><i class="fa fa-check"></i><b>20</b> 广义线性模型</a><ul>
+<li class="chapter" data-level="20.1" data-path="glm.html"><a href="glm.html#section-20.1"><i class="fa fa-check"></i><b>20.1</b> 线性模型</a><ul>
+<li class="chapter" data-level="20.1.1" data-path="glm.html"><a href="glm.html#section-20.1.1"><i class="fa fa-check"></i><b>20.1.1</b> 参数估计</a></li>
+<li class="chapter" data-level="20.1.2" data-path="glm.html"><a href="glm.html#section-20.1.2"><i class="fa fa-check"></i><b>20.1.2</b> 最小二乘</a></li>
+<li class="chapter" data-level="20.1.3" data-path="glm.html"><a href="glm.html#section-20.1.3"><i class="fa fa-check"></i><b>20.1.3</b> 最大似然</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>20.2</b> 参数估计</a><ul>
+<li class="chapter" data-level="20.2.1" data-path="glm.html"><a href="glm.html#section-20.2.1"><i class="fa fa-check"></i><b>20.2.1</b> 最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.2" data-path="glm.html"><a href="glm.html#section-20.2.2"><i class="fa fa-check"></i><b>20.2.2</b> 广义最小二乘估计</a></li>
+<li class="chapter" data-level="20.2.3" data-path="glm.html"><a href="glm.html#section-20.2.3"><i class="fa fa-check"></i><b>20.2.3</b> 最大似然估计</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="glm.html"><a href="glm.html#section-20.3"><i class="fa fa-check"></i><b>20.3</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="mixed-model.html"><a href="mixed-model.html"><i class="fa fa-check"></i><b>21</b> 混合效应模型</a><ul>
+<li class="chapter" data-level="21.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.1"><i class="fa fa-check"></i><b>21.1</b> 方差分析</a></li>
+<li class="chapter" data-level="21.2" data-path="mixed-model.html"><a href="mixed-model.html#section-21.2"><i class="fa fa-check"></i><b>21.2</b> 线性混合效应模型</a></li>
+<li class="chapter" data-level="21.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.3"><i class="fa fa-check"></i><b>21.3</b> 广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.4" data-path="mixed-model.html"><a href="mixed-model.html#section-21.4"><i class="fa fa-check"></i><b>21.4</b> 空间广义线性混合效应模型</a></li>
+<li class="chapter" data-level="21.5" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>21.5</b> 参数估计</a><ul>
+<li class="chapter" data-level="21.5.1" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.1"><i class="fa fa-check"></i><b>21.5.1</b> 限制极大似然估计</a></li>
+<li class="chapter" data-level="21.5.2" data-path="mixed-model.html"><a href="mixed-model.html#profile-"><i class="fa fa-check"></i><b>21.5.2</b> profile 似然估计</a></li>
+<li class="chapter" data-level="21.5.3" data-path="mixed-model.html"><a href="mixed-model.html#section-21.5.3"><i class="fa fa-check"></i><b>21.5.3</b> 贝叶斯估计</a></li>
+</ul></li>
+<li class="chapter" data-level="21.6" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>21.6</b> 高维问题</a></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="gam.html"><a href="gam.html"><i class="fa fa-check"></i><b>22</b> 广义可加模型</a><ul>
+<li class="chapter" data-level="22.1" data-path="gam.html"><a href="gam.html#section-22.1"><i class="fa fa-check"></i><b>22.1</b> 一般广义可加模型</a></li>
+<li class="chapter" data-level="22.2" data-path="gam.html"><a href="gam.html#section-22.2"><i class="fa fa-check"></i><b>22.2</b> 广义可加混合效应模型</a></li>
+<li class="chapter" data-level="22.3" data-path="mixed-model.html"><a href="mixed-model.html#-2"><i class="fa fa-check"></i><b>22.3</b> 高维问题</a></li>
+</ul></li>
+<li class="appendix"><span><b>附录</b></span></li>
+<li class="chapter" data-level="A" data-path="command-line.html"><a href="command-line.html"><i class="fa fa-check"></i><b>A</b> 命令行</a><ul>
+<li class="chapter" data-level="A.1" data-path="command-line.html"><a href="command-line.html#apt"><i class="fa fa-check"></i><b>A.1</b> 软件包管理器</a><ul>
+<li class="chapter" data-level="A.1.1" data-path="command-line.html"><a href="command-line.html#ppa"><i class="fa fa-check"></i><b>A.1.1</b> 添加和删除 PPA</a></li>
+<li class="chapter" data-level="A.1.2" data-path="command-line.html"><a href="command-line.html#clean"><i class="fa fa-check"></i><b>A.1.2</b> 清理修复软件包</a></li>
+<li class="chapter" data-level="A.1.3" data-path="command-line.html"><a href="command-line.html#search-show-install"><i class="fa fa-check"></i><b>A.1.3</b> 搜索查询安装</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="command-line.html"><a href="command-line.html#tlmgr"><i class="fa fa-check"></i><b>A.2</b> LaTeX 包管理器</a><ul>
+<li class="chapter" data-level="A.2.1" data-path="command-line.html"><a href="command-line.html#install-update"><i class="fa fa-check"></i><b>A.2.1</b> 安装和更新</a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="24-r2cpp.html"><a href="#section-A.3"><i class="fa fa-check"></i><b>A.3</b> 查看文件</a></li>
+<li class="chapter" data-level="A.4" data-path="24-r2cpp.html"><a href="#section-A.4"><i class="fa fa-check"></i><b>A.4</b> 挂载共享文件夹</a></li>
+<li class="chapter" data-level="A.5" data-path="command-line.html"><a href="command-line.html#tar-"><i class="fa fa-check"></i><b>A.5</b> tar 压缩文件</a></li>
+<li class="chapter" data-level="A.6" data-path="command-line.html"><a href="command-line.html#cp-"><i class="fa fa-check"></i><b>A.6</b> cp 到共享文件夹</a><ul>
+<li class="chapter" data-level="A.6.1" data-path="command-line.html"><a href="command-line.html#search"><i class="fa fa-check"></i><b>A.6.1</b> 搜索</a></li>
+</ul></li>
+<li class="chapter" data-level="A.7" data-path="command-line.html"><a href="command-line.html#File-Manipulation"><i class="fa fa-check"></i><b>A.7</b> 文件操作</a><ul>
+<li class="chapter" data-level="A.7.1" data-path="network.html"><a href="network.html#-1"><i class="fa fa-check"></i><b>A.7.1</b> 查看文件</a></li>
+<li class="chapter" data-level="A.7.2" data-path="command-line.html"><a href="command-line.html#create-delete"><i class="fa fa-check"></i><b>A.7.2</b> 新建和删除</a></li>
+<li class="chapter" data-level="A.7.3" data-path="24-r2cpp.html"><a href="#section-A.7.3"><i class="fa fa-check"></i><b>A.7.3</b> 解压和压缩</a></li>
+<li class="chapter" data-level="A.7.4" data-path="24-r2cpp.html"><a href="#section-A.7.4"><i class="fa fa-check"></i><b>A.7.4</b> 移动文件</a></li>
+<li class="chapter" data-level="A.7.5" data-path="24-r2cpp.html"><a href="#section-A.7.5"><i class="fa fa-check"></i><b>A.7.5</b> 查看文件大小</a></li>
+</ul></li>
+<li class="chapter" data-level="A.8" data-path="command-line.html"><a href="command-line.html#Git"><i class="fa fa-check"></i><b>A.8</b> Git 命令</a><ul>
+<li class="chapter" data-level="A.8.1" data-path="24-r2cpp.html"><a href="#section-A.8.1"><i class="fa fa-check"></i><b>A.8.1</b> 删除子模块</a></li>
+<li class="chapter" data-level="A.8.2" data-path="command-line.html"><a href="command-line.html#-commit"><i class="fa fa-check"></i><b>A.8.2</b> 合并上流 commit</a></li>
+<li class="chapter" data-level="A.8.3" data-path="24-r2cpp.html"><a href="#section-A.8.3"><i class="fa fa-check"></i><b>A.8.3</b> 大文件支持</a></li>
+<li class="chapter" data-level="A.8.4" data-path="24-r2cpp.html"><a href="#section-A.8.4"><i class="fa fa-check"></i><b>A.8.4</b> 新建分支</a></li>
+<li class="chapter" data-level="A.8.5" data-path="24-r2cpp.html"><a href="#section-A.8.5"><i class="fa fa-check"></i><b>A.8.5</b> 创建站点</a></li>
+<li class="chapter" data-level="A.8.6" data-path="24-r2cpp.html"><a href="#section-A.8.6"><i class="fa fa-check"></i><b>A.8.6</b> 回车换行</a></li>
+<li class="chapter" data-level="A.8.7" data-path="command-line.html"><a href="command-line.html#pr"><i class="fa fa-check"></i><b>A.8.7</b> 创建PR</a></li>
+</ul></li>
+<li class="chapter" data-level="A.9" data-path="command-line.html"><a href="command-line.html#software-installation"><i class="fa fa-check"></i><b>A.9</b> 安装软件</a><ul>
+<li class="chapter" data-level="A.9.1" data-path="command-line.html"><a href="command-line.html#r"><i class="fa fa-check"></i><b>A.9.1</b> R</a></li>
+<li class="chapter" data-level="A.9.2" data-path="command-line.html"><a href="command-line.html#gcc"><i class="fa fa-check"></i><b>A.9.2</b> GCC</a></li>
+<li class="chapter" data-level="A.9.3" data-path="command-line.html"><a href="command-line.html#python"><i class="fa fa-check"></i><b>A.9.3</b> Python</a></li>
+<li class="chapter" data-level="A.9.4" data-path="command-line.html"><a href="command-line.html#lapack"><i class="fa fa-check"></i><b>A.9.4</b> Lapack</a></li>
+<li class="chapter" data-level="A.9.5" data-path="command-line.html"><a href="command-line.html#octave"><i class="fa fa-check"></i><b>A.9.5</b> Octave</a></li>
+<li class="chapter" data-level="A.9.6" data-path="command-line.html"><a href="command-line.html#pandoc"><i class="fa fa-check"></i><b>A.9.6</b> Pandoc</a></li>
+<li class="chapter" data-level="A.9.7" data-path="command-line.html"><a href="command-line.html#rstudio"><i class="fa fa-check"></i><b>A.9.7</b> RStudio</a></li>
+<li class="chapter" data-level="A.9.8" data-path="command-line.html"><a href="command-line.html#calibre"><i class="fa fa-check"></i><b>A.9.8</b> Calibre</a></li>
+<li class="chapter" data-level="A.9.9" data-path="command-line.html"><a href="command-line.html#hugo"><i class="fa fa-check"></i><b>A.9.9</b> HUGO</a></li>
+<li class="chapter" data-level="A.9.10" data-path="command-line.html"><a href="command-line.html#zsh"><i class="fa fa-check"></i><b>A.9.10</b> zsh</a></li>
+<li class="chapter" data-level="A.9.11" data-path="command-line.html"><a href="command-line.html#tinytex"><i class="fa fa-check"></i><b>A.9.11</b> TinyTeX</a></li>
+</ul></li>
+<li class="chapter" data-level="A.10" data-path="command-line.html"><a href="command-line.html#ubuntu-14.04.5"><i class="fa fa-check"></i><b>A.10</b> Ubuntu 14.04.5</a></li>
+<li class="chapter" data-level="A.11" data-path="command-line.html"><a href="command-line.html#centos-7-tinytex"><i class="fa fa-check"></i><b>A.11</b> CentOS 7/ TinyTeX</a></li>
+<li class="chapter" data-level="A.12" data-path="command-line.html"><a href="command-line.html#fedora"><i class="fa fa-check"></i><b>A.12</b> 安装 Fedora 27</a><ul>
+<li class="chapter" data-level="A.12.1" data-path="command-line.html"><a href="command-line.html#fedora-tinytex"><i class="fa fa-check"></i><b>A.12.1</b> 安装 TinyTeX</a></li>
+<li class="chapter" data-level="A.12.2" data-path="command-line.html"><a href="command-line.html#fedora-rstudio"><i class="fa fa-check"></i><b>A.12.2</b> 安装 RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="A.13" data-path="command-line.html"><a href="command-line.html#install-packages"><i class="fa fa-check"></i><b>A.13</b> 安装 R 包</a><ul>
+<li class="chapter" data-level="A.13.1" data-path="command-line.html"><a href="command-line.html#magick"><i class="fa fa-check"></i><b>A.13.1</b> magick</a></li>
+<li class="chapter" data-level="A.13.2" data-path="command-line.html"><a href="command-line.html#v8"><i class="fa fa-check"></i><b>A.13.2</b> V8</a></li>
+<li class="chapter" data-level="A.13.3" data-path="command-line.html"><a href="command-line.html#curl"><i class="fa fa-check"></i><b>A.13.3</b> curl</a></li>
+<li class="chapter" data-level="A.13.4" data-path="command-line.html"><a href="command-line.html#openssl"><i class="fa fa-check"></i><b>A.13.4</b> openssl</a></li>
+<li class="chapter" data-level="A.13.5" data-path="command-line.html"><a href="command-line.html#rJava"><i class="fa fa-check"></i><b>A.13.5</b> rJava</a></li>
+<li class="chapter" data-level="A.13.6" data-path="command-line.html"><a href="command-line.html#devtools"><i class="fa fa-check"></i><b>A.13.6</b> devtools</a></li>
+<li class="chapter" data-level="A.13.7" data-path="command-line.html"><a href="command-line.html#colorspace"><i class="fa fa-check"></i><b>A.13.7</b> colorspace</a></li>
+<li class="chapter" data-level="A.13.8" data-path="command-line.html"><a href="command-line.html#imager"><i class="fa fa-check"></i><b>A.13.8</b> imager</a></li>
+<li class="chapter" data-level="A.13.9" data-path="command-line.html"><a href="command-line.html#sf-centos"><i class="fa fa-check"></i><b>A.13.9</b> sf (CentOS7)</a></li>
+<li class="chapter" data-level="A.13.10" data-path="command-line.html"><a href="command-line.html#sf"><i class="fa fa-check"></i><b>A.13.10</b> sf</a></li>
+<li class="chapter" data-level="A.13.11" data-path="command-line.html"><a href="command-line.html#lwgeom"><i class="fa fa-check"></i><b>A.13.11</b> lwgeom</a></li>
+<li class="chapter" data-level="A.13.12" data-path="command-line.html"><a href="command-line.html#tmap"><i class="fa fa-check"></i><b>A.13.12</b> tmap</a></li>
+<li class="chapter" data-level="A.13.13" data-path="command-line.html"><a href="command-line.html#rstan"><i class="fa fa-check"></i><b>A.13.13</b> rstan</a></li>
+<li class="chapter" data-level="A.13.14" data-path="command-line.html"><a href="command-line.html#rmpfr"><i class="fa fa-check"></i><b>A.13.14</b> Rmpfr</a></li>
+<li class="chapter" data-level="A.13.15" data-path="command-line.html"><a href="command-line.html#openssl"><i class="fa fa-check"></i><b>A.13.15</b> openssl</a></li>
+<li class="chapter" data-level="A.13.16" data-path="command-line.html"><a href="command-line.html#webshot"><i class="fa fa-check"></i><b>A.13.16</b> webshot</a></li>
+<li class="chapter" data-level="A.13.17" data-path="command-line.html"><a href="command-line.html#gifski"><i class="fa fa-check"></i><b>A.13.17</b> gifski</a></li>
+<li class="chapter" data-level="A.13.18" data-path="command-line.html"><a href="command-line.html#RDieHarder"><i class="fa fa-check"></i><b>A.13.18</b> RDieHarder</a></li>
+<li class="chapter" data-level="A.13.19" data-path="command-line.html"><a href="command-line.html#rgl"><i class="fa fa-check"></i><b>A.13.19</b> rgl</a></li>
+<li class="chapter" data-level="A.13.20" data-path="command-line.html"><a href="command-line.html#INLA"><i class="fa fa-check"></i><b>A.13.20</b> INLA</a></li>
+<li class="chapter" data-level="A.13.21" data-path="command-line.html"><a href="command-line.html#sparklyr"><i class="fa fa-check"></i><b>A.13.21</b> sparklyr</a></li>
+<li class="chapter" data-level="A.13.22" data-path="command-line.html"><a href="command-line.html#mxnet-1"><i class="fa fa-check"></i><b>A.13.22</b> mxnet</a></li>
+<li class="chapter" data-level="A.13.23" data-path="command-line.html"><a href="command-line.html#environment"><i class="fa fa-check"></i><b>A.13.23</b> 环境</a></li>
+</ul></li>
+<li class="chapter" data-level="A.14" data-path="command-line.html"><a href="command-line.html#docker"><i class="fa fa-check"></i><b>A.14</b> Docker</a><ul>
+<li class="chapter" data-level="A.14.1" data-path="command-line.html"><a href="command-line.html#pull-images"><i class="fa fa-check"></i><b>A.14.1</b> Pull Images</a></li>
+<li class="chapter" data-level="A.14.2" data-path="command-line.html"><a href="command-line.html#windows8"><i class="fa fa-check"></i><b>A.14.2</b> Docker (Windows 8.1)</a></li>
+<li class="chapter" data-level="A.14.3" data-path="command-line.html"><a href="command-line.html#putty-login-docker"><i class="fa fa-check"></i><b>A.14.3</b> PuTTY</a></li>
+<li class="chapter" data-level="A.14.4" data-path="command-line.html"><a href="command-line.html#docker-centos"><i class="fa fa-check"></i><b>A.14.4</b> Docker (CentOS)</a></li>
+<li class="chapter" data-level="A.14.5" data-path="command-line.html"><a href="command-line.html#common-commands"><i class="fa fa-check"></i><b>A.14.5</b> 常用命令</a></li>
+</ul></li>
+<li class="chapter" data-level="A.15" data-path="command-line.html"><a href="command-line.html#deep-learning-library"><i class="fa fa-check"></i><b>A.15</b> 机器学习 or 深度学习</a><ul>
+<li class="chapter" data-level="A.15.1" data-path="command-line.html"><a href="command-line.html#dmtk"><i class="fa fa-check"></i><b>A.15.1</b> DMTK</a></li>
+<li class="chapter" data-level="A.15.2" data-path="command-line.html"><a href="command-line.html#tensorflow-1"><i class="fa fa-check"></i><b>A.15.2</b> TensorFlow</a></li>
+<li class="chapter" data-level="A.15.3" data-path="command-line.html"><a href="command-line.html#apache-mxnet"><i class="fa fa-check"></i><b>A.15.3</b> Apache MXNet</a></li>
+<li class="chapter" data-level="A.15.4" data-path="command-line.html"><a href="command-line.html#xgboost"><i class="fa fa-check"></i><b>A.15.4</b> XGBoost</a></li>
+<li class="chapter" data-level="A.15.5" data-path="command-line.html"><a href="command-line.html#catboost"><i class="fa fa-check"></i><b>A.15.5</b> CatBoost</a></li>
+<li class="chapter" data-level="A.15.6" data-path="command-line.html"><a href="command-line.html#xlearn"><i class="fa fa-check"></i><b>A.15.6</b> xLearn</a></li>
+<li class="chapter" data-level="A.15.7" data-path="command-line.html"><a href="command-line.html#xlearning"><i class="fa fa-check"></i><b>A.15.7</b> XLearning</a></li>
+<li class="chapter" data-level="A.15.8" data-path="command-line.html"><a href="command-line.html#gpflow"><i class="fa fa-check"></i><b>A.15.8</b> GPflow</a></li>
+</ul></li>
+<li class="chapter" data-level="A.16" data-path="command-line.html"><a href="command-line.html#Natural-Language-Processing"><i class="fa fa-check"></i><b>A.16</b> 自然语言处理</a><ul>
+<li class="chapter" data-level="A.16.1" data-path="command-line.html"><a href="command-line.html#Text-Classification"><i class="fa fa-check"></i><b>A.16.1</b> 文本分类</a></li>
+</ul></li>
+<li class="chapter" data-level="A.17" data-path="command-line.html"><a href="command-line.html#book-list"><i class="fa fa-check"></i><b>A.17</b> 书单</a></li>
+<li class="chapter" data-level="A.18" data-path="command-line.html"><a href="command-line.html#homepage"><i class="fa fa-check"></i><b>A.18</b> 主页</a></li>
+<li class="chapter" data-level="A.19" data-path="command-line.html"><a href="command-line.html#blogger"><i class="fa fa-check"></i><b>A.19</b> 博客</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="chap-R-Markdown.html"><a href="chap-R-Markdown.html"><i class="fa fa-check"></i><b>B</b> R Markdown</a><ul>
+<li class="chapter" data-level="B.1" data-path="chap-R-Markdown.html"><a href="chap-R-Markdown.html#bookdown"><i class="fa fa-check"></i><b>B.1</b> bookdown</a></li>
+<li class="chapter" data-level="B.2" data-path="chap-R-Markdown.html"><a href="chap-R-Markdown.html#kableExtra"><i class="fa fa-check"></i><b>B.2</b> 复杂表格制作</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="python-plot.html"><a href="python-plot.html"><i class="fa fa-check"></i><b>C</b> Python 绘图</a><ul>
+<li class="chapter" data-level="C.1" data-path="python-plot.html"><a href="python-plot.html#matplotlib"><i class="fa fa-check"></i><b>C.1</b> matplotlib</a></li>
+<li class="chapter" data-level="C.2" data-path="python-plot.html"><a href="python-plot.html#seaborn"><i class="fa fa-check"></i><b>C.2</b> seaborn</a></li>
+<li class="chapter" data-level="C.3" data-path="python-plot.html"><a href="python-plot.html#pyglet"><i class="fa fa-check"></i><b>C.3</b> pyglet</a></li>
+<li class="chapter" data-level="C.4" data-path="python-plot.html"><a href="python-plot.html#mayavi"><i class="fa fa-check"></i><b>C.4</b> mayavi</a></li>
+<li class="chapter" data-level="C.5" data-path="python-plot.html"><a href="python-plot.html#bokeh"><i class="fa fa-check"></i><b>C.5</b> bokeh</a></li>
+<li class="chapter" data-level="C.6" data-path="python-plot.html"><a href="python-plot.html#plotly"><i class="fa fa-check"></i><b>C.6</b> plotly</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="performance.html"><a href="performance.html"><i class="fa fa-check"></i><b>D</b> 性能提升</a><ul>
+<li class="chapter" data-level="D.1" data-path="performance.html"><a href="performance.html#rcpp"><i class="fa fa-check"></i><b>D.1</b> Rcpp</a><ul>
+<li class="chapter" data-level="D.1.1" data-path="performance.html"><a href="performance.html#rcppoctave"><i class="fa fa-check"></i><b>D.1.1</b> RcppOctave</a></li>
+<li class="chapter" data-level="D.1.2" data-path="performance.html"><a href="performance.html#rcppgsl"><i class="fa fa-check"></i><b>D.1.2</b> RcppGSL</a></li>
+<li class="chapter" data-level="D.1.3" data-path="performance.html"><a href="performance.html#rcpparmadillo"><i class="fa fa-check"></i><b>D.1.3</b> RcppArmadillo</a></li>
+<li class="chapter" data-level="D.1.4" data-path="performance.html"><a href="performance.html#rcppparallel"><i class="fa fa-check"></i><b>D.1.4</b> RcppParallel</a></li>
+<li class="chapter" data-level="D.1.5" data-path="performance.html"><a href="performance.html#rcppnumerical"><i class="fa fa-check"></i><b>D.1.5</b> RcppNumerical</a></li>
+<li class="chapter" data-level="D.1.6" data-path="performance.html"><a href="performance.html#rcppalgos"><i class="fa fa-check"></i><b>D.1.6</b> RcppAlgos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="https://xiangyun.netlify.com/">Xiangyun Huang</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">notesdown</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="performance" class="section level1">
+<h1><span class="header-section-number">D</span> 性能提升</h1>
+<ul>
+<li><a href="http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines">C++ 编程风格指南</a></li>
+<li><p><a href="https://github.com/isocpp/CppCoreGuidelines" class="uri">https://github.com/isocpp/CppCoreGuidelines</a></p></li>
+<li>如何充分利用 Rcpp 包</li>
+<li><p>设个目标，锻炼一下编码能力，关于统计计算和可视化尽可能提供两个方案，至少包含基础 R 包的实现</p></li>
+</ul>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">Pkgs &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="kw">list.files</span>(<span class="kw">R.home</span>(<span class="st">&quot;library&quot;</span>)), <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb367-2" data-line-number="2">  <span class="kw">packageDescription</span>(<span class="dt">pkg =</span> x, <span class="dt">fields =</span> <span class="st">&quot;Priority&quot;</span>))</a>
+<a class="sourceLine" id="cb367-3" data-line-number="3"><span class="kw">names</span>(Pkgs[Pkgs <span class="op">==</span><span class="st"> &quot;base&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(Pkgs)])</a>
+<a class="sourceLine" id="cb367-4" data-line-number="4"><span class="co">#&gt;  [1] &quot;base&quot;      &quot;compiler&quot;  &quot;datasets&quot;  &quot;graphics&quot;  &quot;grDevices&quot;</span></a>
+<a class="sourceLine" id="cb367-5" data-line-number="5"><span class="co">#&gt;  [6] &quot;grid&quot;      &quot;methods&quot;   &quot;parallel&quot;  &quot;splines&quot;   &quot;stats&quot;    </span></a>
+<a class="sourceLine" id="cb367-6" data-line-number="6"><span class="co">#&gt; [11] &quot;stats4&quot;    &quot;tcltk&quot;     &quot;tools&quot;     &quot;utils&quot;</span></a></code></pre></div>
+<p>计算程序运行时间</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1">.proctime00 &lt;-<span class="st"> </span><span class="kw">proc.time</span>()</a>
+<a class="sourceLine" id="cb368-2" data-line-number="2">s &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb368-3" data-line-number="3"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq</span>(<span class="dv">1000</span>)) {</a>
+<a class="sourceLine" id="cb368-4" data-line-number="4">  s &lt;-<span class="st"> </span>s <span class="op">+</span><span class="st"> </span>i</a>
+<a class="sourceLine" id="cb368-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb368-6" data-line-number="6"><span class="kw">proc.time</span>() <span class="op">-</span><span class="st"> </span>.proctime00</a>
+<a class="sourceLine" id="cb368-7" data-line-number="7"><span class="co">#&gt;    user  system elapsed </span></a>
+<a class="sourceLine" id="cb368-8" data-line-number="8"><span class="co">#&gt;   0.008   0.000   0.008</span></a></code></pre></div>
+<div id="rcpp" class="section level2">
+<h2><span class="header-section-number">D.1</span> Rcpp</h2>
+<div id="rcppoctave" class="section level3">
+<h3><span class="header-section-number">D.1.1</span> RcppOctave</h3>
+<p>混合编程</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;renozao/RcppOctave&#39;</span>)</a>
+<a class="sourceLine" id="cb369-2" data-line-number="2"><span class="co">#&gt; Downloading GitHub repo renozao/RcppOctave@master</span></a>
+<a class="sourceLine" id="cb369-3" data-line-number="3"><span class="co">#&gt; bibtex   (NA -&gt; 0.4.2) [CRAN]</span></a>
+<a class="sourceLine" id="cb369-4" data-line-number="4"><span class="co">#&gt; pkgmaker (NA -&gt; 0.27 ) [CRAN]</span></a>
+<a class="sourceLine" id="cb369-5" data-line-number="5"><span class="co">#&gt; registry (NA -&gt; 0.5  ) [CRAN]</span></a>
+<a class="sourceLine" id="cb369-6" data-line-number="6"><span class="co">#&gt; Installing 3 packages: bibtex, pkgmaker, registry</span></a>
+<a class="sourceLine" id="cb369-7" data-line-number="7"><span class="co">#&gt; Installing packages into &#39;/home/travis/R/Library&#39;</span></a>
+<a class="sourceLine" id="cb369-8" data-line-number="8"><span class="co">#&gt; (as &#39;lib&#39; is unspecified)</span></a>
+<a class="sourceLine" id="cb369-9" data-line-number="9"><span class="co">#&gt;   </span></a>
+<a class="sourceLine" id="cb369-10" data-line-number="10">   checking <span class="cf">for</span> file ‘<span class="op">/</span>tmp<span class="op">/</span>RtmpQ3xKvt<span class="op">/</span>remotes5046f8e8975<span class="op">/</span>renozao<span class="op">-</span>RcppOctave<span class="op">-</span>fcf4d02<span class="op">/</span>DESCRIPTION’ ...</a>
+<a class="sourceLine" id="cb369-11" data-line-number="11">  </a>
+<a class="sourceLine" id="cb369-12" data-line-number="12">✔  checking <span class="cf">for</span> file ‘<span class="op">/</span>tmp<span class="op">/</span>RtmpQ3xKvt<span class="op">/</span>remotes5046f8e8975<span class="op">/</span>renozao<span class="op">-</span>RcppOctave<span class="op">-</span>fcf4d02<span class="op">/</span>DESCRIPTION’</a>
+<a class="sourceLine" id="cb369-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-14" data-line-number="14">  </a>
+<a class="sourceLine" id="cb369-15" data-line-number="15">─  preparing ‘RcppOctave’<span class="op">:</span></a>
+<a class="sourceLine" id="cb369-16" data-line-number="16"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-17" data-line-number="17"><span class="st">  </span></a>
+<a class="sourceLine" id="cb369-18" data-line-number="18"><span class="st">   </span>checking DESCRIPTION meta<span class="op">-</span>information ...</a>
+<a class="sourceLine" id="cb369-19" data-line-number="19">  </a>
+<a class="sourceLine" id="cb369-20" data-line-number="20">✔  checking DESCRIPTION meta<span class="op">-</span>information</a>
+<a class="sourceLine" id="cb369-21" data-line-number="21"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-22" data-line-number="22">  </a>
+<a class="sourceLine" id="cb369-23" data-line-number="23">─  cleaning src</a>
+<a class="sourceLine" id="cb369-24" data-line-number="24"><span class="co">#&gt; ─  running ‘cleanup’</span></a>
+<a class="sourceLine" id="cb369-25" data-line-number="25"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-26" data-line-number="26">  </a>
+<a class="sourceLine" id="cb369-27" data-line-number="27">─  installing the package to process help pages</a>
+<a class="sourceLine" id="cb369-28" data-line-number="28"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-29" data-line-number="29">  </a>
+<a class="sourceLine" id="cb369-30" data-line-number="30">─  cleaning <span class="kw">src</span> (<span class="fl">20.8</span>s)</a>
+<a class="sourceLine" id="cb369-31" data-line-number="31"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-32" data-line-number="32">  </a>
+<a class="sourceLine" id="cb369-33" data-line-number="33">─  running ‘cleanup’</a>
+<a class="sourceLine" id="cb369-34" data-line-number="34"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-35" data-line-number="35">  </a>
+<a class="sourceLine" id="cb369-36" data-line-number="36">─  checking <span class="cf">for</span> LF line<span class="op">-</span>endings <span class="cf">in</span> source and make files and shell scripts</a>
+<a class="sourceLine" id="cb369-37" data-line-number="37"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-38" data-line-number="38">  </a>
+<a class="sourceLine" id="cb369-39" data-line-number="39">─  checking <span class="cf">for</span> empty or unneeded directories</a>
+<a class="sourceLine" id="cb369-40" data-line-number="40"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-41" data-line-number="41">  </a>
+<a class="sourceLine" id="cb369-42" data-line-number="42">─  building ‘RcppOctave_<span class="dv">0</span>.<span class="fl">19.</span>tar.gz’</a>
+<a class="sourceLine" id="cb369-43" data-line-number="43"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-44" data-line-number="44">  </a>
+<a class="sourceLine" id="cb369-45" data-line-number="45">   </a>
+<a class="sourceLine" id="cb369-46" data-line-number="46"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb369-47" data-line-number="47"><span class="co">#&gt; Installing package into &#39;/home/travis/R/Library&#39;</span></a>
+<a class="sourceLine" id="cb369-48" data-line-number="48"><span class="co">#&gt; (as &#39;lib&#39; is unspecified)</span></a></code></pre></div>
+</div>
+<div id="rcppgsl" class="section level3">
+<h3><span class="header-section-number">D.1.2</span> RcppGSL</h3>
+</div>
+<div id="rcpparmadillo" class="section level3">
+<h3><span class="header-section-number">D.1.3</span> RcppArmadillo</h3>
+</div>
+<div id="rcppparallel" class="section level3">
+<h3><span class="header-section-number">D.1.4</span> RcppParallel</h3>
+</div>
+<div id="rcppnumerical" class="section level3">
+<h3><span class="header-section-number">D.1.5</span> RcppNumerical</h3>
+</div>
+<div id="rcppalgos" class="section level3">
+<h3><span class="header-section-number">D.1.6</span> RcppAlgos</h3>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">session_info</span>(<span class="dt">pkgs =</span> <span class="kw">c</span>(<span class="st">&quot;Rcpp&quot;</span>, <span class="st">&quot;RcppOctave&quot;</span>))</a>
+<a class="sourceLine" id="cb370-2" data-line-number="2"><span class="co">#&gt; ─ Session info ──────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb370-3" data-line-number="3"><span class="co">#&gt;  setting  value                       </span></a>
+<a class="sourceLine" id="cb370-4" data-line-number="4"><span class="co">#&gt;  version  R version 3.5.1 (2017-01-27)</span></a>
+<a class="sourceLine" id="cb370-5" data-line-number="5"><span class="co">#&gt;  os       Ubuntu 14.04.5 LTS          </span></a>
+<a class="sourceLine" id="cb370-6" data-line-number="6"><span class="co">#&gt;  system   x86_64, linux-gnu           </span></a>
+<a class="sourceLine" id="cb370-7" data-line-number="7"><span class="co">#&gt;  ui       X11                         </span></a>
+<a class="sourceLine" id="cb370-8" data-line-number="8"><span class="co">#&gt;  language (EN)                        </span></a>
+<a class="sourceLine" id="cb370-9" data-line-number="9"><span class="co">#&gt;  collate  en_US.UTF-8                 </span></a>
+<a class="sourceLine" id="cb370-10" data-line-number="10"><span class="co">#&gt;  ctype    en_US.UTF-8                 </span></a>
+<a class="sourceLine" id="cb370-11" data-line-number="11"><span class="co">#&gt;  tz       UTC                         </span></a>
+<a class="sourceLine" id="cb370-12" data-line-number="12"><span class="co">#&gt;  date     2018-10-29                  </span></a>
+<a class="sourceLine" id="cb370-13" data-line-number="13"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb370-14" data-line-number="14"><span class="co">#&gt; ─ Packages ──────────────────────────────────────────────────────────────</span></a>
+<a class="sourceLine" id="cb370-15" data-line-number="15"><span class="co">#&gt;  package    * version date       lib source                             </span></a>
+<a class="sourceLine" id="cb370-16" data-line-number="16"><span class="co">#&gt;  bibtex       0.4.2   2017-06-30 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-17" data-line-number="17"><span class="co">#&gt;  codetools    0.2-15  2016-10-05 [3] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-18" data-line-number="18"><span class="co">#&gt;  digest       0.6.18  2018-10-10 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-19" data-line-number="19"><span class="co">#&gt;  glue         1.3.0   2018-07-17 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-20" data-line-number="20"><span class="co">#&gt;  magrittr   * 1.5     2014-11-22 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-21" data-line-number="21"><span class="co">#&gt;  pkgmaker     0.27    2018-05-25 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-22" data-line-number="22"><span class="co">#&gt;  Rcpp         0.12.19 2018-10-01 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-23" data-line-number="23"><span class="co">#&gt;  RcppOctave   0.19    2018-10-29 [1] Github (renozao/RcppOctave@fcf4d02)</span></a>
+<a class="sourceLine" id="cb370-24" data-line-number="24"><span class="co">#&gt;  registry     0.5     2017-12-03 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-25" data-line-number="25"><span class="co">#&gt;  stringi      1.2.4   2018-07-20 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-26" data-line-number="26"><span class="co">#&gt;  stringr      1.3.1   2018-05-10 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-27" data-line-number="27"><span class="co">#&gt;  withr        2.1.2   2018-03-15 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-28" data-line-number="28"><span class="co">#&gt;  xtable       1.8-3   2018-08-29 [1] CRAN (R 3.5.1)                     </span></a>
+<a class="sourceLine" id="cb370-29" data-line-number="29"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb370-30" data-line-number="30"><span class="co">#&gt; [1] /home/travis/R/Library</span></a>
+<a class="sourceLine" id="cb370-31" data-line-number="31"><span class="co">#&gt; [2] /usr/local/lib/R/site-library</span></a>
+<a class="sourceLine" id="cb370-32" data-line-number="32"><span class="co">#&gt; [3] /home/travis/R-bin/lib/R/library</span></a></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="python-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": true,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/XiangyunHuang/notesdown/edit/master/24-r2cpp.Rmd",
+"text": "Edit"
+},
+"download": ["notesdown.pdf", "notesdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
