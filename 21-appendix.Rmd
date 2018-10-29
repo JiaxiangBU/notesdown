@@ -732,20 +732,13 @@ font_name <- unique(do.call(rbind,strsplit(font_db,split = ":"))[,2])
 substr(font_name, 2, nchar(font_name))
 ```
 
-```{r,eval=is_on_travis}
+```{r}
 tinytex::tl_pkgs()
-```
-
-```{r,eval=is_on_travis}
-.packages(T)
 capabilities()
 extSoftVersion()
 names(pdfFonts())
-devtools::find_rtools()
-rmarkdown::pandoc_available()
 rmarkdown::pandoc_version()
 ```
-
 
 - Windows 下安装
 
