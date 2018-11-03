@@ -161,6 +161,28 @@ tlmgr install inconsolata ctex l3kernel l3packages \
 make 
 sudo make install
 ```
+
+```
+sudo yum remove texlive-\*
+```
+安装 texinfo 编译手册
+
+```bash
+wget https://ftp.gnu.org/gnu/texinfo/texinfo-6.5.tar.gz
+
+tar -xzf texinfo-6.5.tar.gz
+cd texinfo-6.5
+./configure
+make 
+sudo make install
+
+wget https://ftp.gnu.org/gnu/texinfo/texinfo.tex
+
+cp texinfo.tex ~/R-devel/doc/manual
+
+cp ~/texinfo-6.5/doc/txi-en.tex   ~/R-devel/doc/manual
+```
+
 - 安装 sf
 
 ```bash
