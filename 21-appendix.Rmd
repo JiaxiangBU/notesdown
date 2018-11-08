@@ -36,6 +36,14 @@ sudo apt-get autoclean # 删除已卸的软件的备份
 sudo apt-get clean # 删除已装或已卸的软件的备份
 ```
 
+删除旧的内核
+
+```bash
+dpkg --list | grep linux-image
+sudo apt-get purge linux-image-3.19.0-{18,20,21,25}
+sudo update-grub2
+```
+
 ### 搜索查询安装 {#search-show-install}
 
 ```bash

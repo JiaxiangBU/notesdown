@@ -86,17 +86,17 @@ before_script:
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd")'
 
-deploy:
-  - provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    on:
-      branch: master
-    local_dir: _book
-  - provider: script
-    script: netlify deploy --prod --dir _book
-    skip_cleanup: true
+#deploy:
+#  - provider: pages
+#    skip_cleanup: true
+#    github_token: $GITHUB_TOKEN
+#    on:
+#      branch: master
+#    local_dir: _book
+#  - provider: script
+#    script: netlify deploy --prod --dir _book
+#    skip_cleanup: true
 
 # deploy 
-#after_success:
-#  - netlify deploy --prod --dir _book
+after_success:
+  - netlify deploy --prod --dir _book
