@@ -10,10 +10,11 @@ BugReports: https://github.com/XiangyunHuang/notesdown/issues
 License: MIT + file LICENSE
 URL: https://github.com/XiangyunHuang/notesdown
 Depends: 
-    R (>= 3.1.0)
+    R (>= 3.5.0)
 Imports: 
   bookdown,
   colorspace,
+  echarts4r,
   knitr,
   rticles,
   rstan,
@@ -21,14 +22,13 @@ Imports:
   ggplot2,
   gridExtra,
   INLA,
+  plotly,
+  r2d3
 Remotes: 
   leonawicz/mapmate,
   dgrtwo/gganimate,
-  JohnCoene/echarts4r,
-  rstudio/r2d3,
   renozao/RcppOctave,
-  cosname/recharts,
-  ropensci/plotly
+  cosname/recharts
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
 Roxygen: list(markdown = TRUE)
