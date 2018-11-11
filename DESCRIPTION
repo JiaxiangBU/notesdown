@@ -17,17 +17,14 @@ Imports:
   echarts4r,
   knitr,
   rticles,
-  rstan,
   svglite,
   ggplot2,
   gridExtra,
-  INLA,
   plotly,
   r2d3
 Remotes: 
   leonawicz/mapmate,
   dgrtwo/gganimate,
-  renozao/RcppOctave,
   cosname/recharts
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000

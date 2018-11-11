@@ -24,9 +24,6 @@ git:
 repos:
   CRAN: https://cloud.r-project.org
   RForge: https://r-forge.r-project.org
-  INLA: https://inla.r-inla-download.org/R/stable
-#  ropensci: http://packages.ropensci.org
-#  deltarho: http://packages.deltarho.org
 
 addons:
   apt:
@@ -35,12 +32,11 @@ addons:
       - sourceline: ppa:opencpu/jq
       - sourceline: ppa:opencpu/imagemagick
       - sourceline: ppa:ubuntugis/ubuntugis-unstable
-      - sourceline: ppa:octave/stable
     packages:
       - ghostscript
       - imagemagick
-      - libmagick++-dev
       - optipng
+      - libmagick++-dev      
       - libwebp-dev
       - libgsl0ldbl
       - dieharder
@@ -58,8 +54,6 @@ addons:
       - python-tk
       - python-numpy
       - python-matplotlib
-      - octave
-      - liboctave-dev
       - proj-bin 
       - libpaper-utils
       - libatlas3-base

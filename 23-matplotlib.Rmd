@@ -206,7 +206,3 @@ p.y_range.range_padding = 0.12
 show(p)
 ```
 
-## plotly
-
-商业图形库
-

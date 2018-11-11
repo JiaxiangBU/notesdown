@@ -23,6 +23,14 @@ sudo add-apt-repository -y ppa:opencpu/imagemagick
 sudo add-apt-repository --remove ppa:opencpu/imagemagick
 ```
 
+安装软件 octave 的依赖
+
+```
+sudo yum install yum-utils
+sudo yum-builddep octave
+yum deplist octave
+```
+
 ### 清理修复软件包 {#clean}
 
 ```bash
