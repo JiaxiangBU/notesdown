@@ -39,14 +39,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   echo = TRUE,
   cache = TRUE,
-  citation.bibtex.max=999,
   out.width = "70%",
   fig.align = "center",
   fig.width = 6,
-  fig.asp = 0.618, # 1 / phi
-  engine.path = list(
-    octave = "/usr/bin/octave-cli"
-  )
+  fig.asp = 0.618 # 1 / phi
 )
 ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".pdf" else ".png"
 
@@ -55,6 +51,7 @@ ext <- if (knitr::is_html_output()) ".svg" else if (knitr::is_latex_output()) ".
 options(
   repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/",
   tikzDefaultEngine = "xetex",
+  citation.bibtex.max = 999,
   tikzXelatexPackages = c(
     getOption("tikzXelatexPackages"),
     "\\usepackage[colorlinks, breaklinks]{hyperref}",
@@ -72,7 +69,7 @@ knitr::knit_hooks$set(
   optipng = knitr::hook_optipng,
   pdfcrop = knitr::hook_pdfcrop,
   small.mar = function(before, options, envir) {
-    if (before) par(mar = c(4.1, 4.1, 0.5, 0.5))  # smaller margin on top and right
+    if (before) par(mar = c(4.1, 4.1, 0.5, 0.5)) # smaller margin on top and right
   }
 )
 
@@ -106,11 +103,11 @@ knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
   }
 })
 
-is_on_travis = identical(Sys.getenv("TRAVIS"), "true")
-is_online = curl::has_internet()
+is_on_travis <- identical(Sys.getenv("TRAVIS"), "true")
+is_online <- curl::has_internet()
 
 library(reticulate)
-if(is_on_travis) use_virtualenv("shims") else use_python("/usr/bin/python", required = FALSE)
+if (is_on_travis) use_virtualenv("shims") else use_python("/usr/bin/python", required = FALSE)
 # Python 环境的描述在附录
 # required = FALSE 默认值，如果按照指定的位置没有找到 Python 就会扫描其它版本
 # use_python("/opt/pyenv/shims/python")

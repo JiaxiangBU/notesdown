@@ -17,15 +17,11 @@ rmd_files: [
   "00-notations.Rmd",
   
   # 基础篇
-  "01-Foundations.Rmd",
-  
   "01A-installations.Rmd",
   "01B-operators.Rmd",
   "01C-manipulations.Rmd",
   
   # 绘图篇
-  "02-Graphics.Rmd",
-  
   "02A-plot.Rmd",
   "02B-grid.Rmd",
   "02C-interactions.Rmd",
