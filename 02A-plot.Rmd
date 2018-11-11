@@ -1,13 +1,6 @@
 # 基础图形 {#graphics}
 
 ```{r include = FALSE}
-Pkgs <- c(
-  "ISLR", "raster", "sp"
-)
-if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
-  install.packages(setdiff(Pkgs, .packages(TRUE)))
-}
-
 if (!"spDataLarge" %in% .packages(TRUE)) {
   install.packages("spDataLarge",
     repos = "https://nowosad.github.io/drat/",

@@ -1,13 +1,5 @@
 # 字体 {#fonts}
 
-```{r include = FALSE}
-Pkgs <- c(
-  "maps", "mapdata", "mapproj"
-)
-if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
-  install.packages(setdiff(Pkgs, .packages(TRUE)))
-```
-
 ## CJK 字体
 
 windows 下，支持 `pdf`，`cairo_pdf` 和 `svg` 设备，如 `cairo_pdf(file = "cjk.pdf",width=3,height=1)`

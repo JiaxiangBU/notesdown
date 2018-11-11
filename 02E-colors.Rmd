@@ -1,14 +1,5 @@
 # 配色 {#color}
 
-```{r include = FALSE}
-Pkgs <- c(
-  "colorspace", "scales", "palr", "colortools", "colormap",
-  "dichromat", "yarrr", "colorRamps", "ColorPalette", "viridisLite", "pals"
-)
-if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
-  install.packages(setdiff(Pkgs, .packages(TRUE)))
-```
-
 君子爱色，取之有道：有些人功力深厚，黑白灰几乎打遍天下无敌手，如科波拉执导的《教父》、沃卓斯基执导的《黑客帝国》等等，但我还是要说，好色乃人之本性也，花花世界，岂能都是法印眼中的白骨！再说《红楼梦》里，芍药丛中，桃花树下，滴翠亭边，栊翠庵里，处处都是湘云、黛玉、宝钗、妙玉留下的诗歌。
 
 黑西装、黑领带和白衬衫，让人一下子想到了电影《黑客帝国》，构建了整幅画轴，黑领带换黑领结和红玫瑰，转而又想到电影《教父》的主角维托·唐·科莱昂，黑白灰就占了电影的主色调。这么素的颜色怎么就能这么丰富呢？这就是配色的技艺了！

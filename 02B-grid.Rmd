@@ -1,15 +1,5 @@
 # 高级图形 {#ggplot}
 
-```{r,include=FALSE}
-Pkgs <- c(
-  "cranlogs", "ggthemes",
-  "tidyverse","ggrepel"
-)
-if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
-  install.packages(setdiff(Pkgs, .packages(TRUE)))
-}
-```
-
 - Claus O. Wilke 新书：数据可视化基础 [Fundamentals of Data Visualization](http://serialmentor.com/dataviz/) 全 R/ggplot2 实现
 
 

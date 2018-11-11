@@ -23,7 +23,7 @@ github-repo: "xiangyunhuang/notesdown"
 cover-image: "images/dragon.png"
 apple-touch-icon: "images/dragon.png"
 apple-touch-icon-size: 120
-favicon: "favicon.ico"
+favicon: "images/favicon.ico"
 ---
 
 ```{r include = FALSE}

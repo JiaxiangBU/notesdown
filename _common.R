@@ -3,17 +3,6 @@ set.seed(2018)
 options(digits = 3)
 library(magrittr)
 
-lapply(c(
-  "bookdown", "styler", "tikzDevice", "extrafont",
-  "formatR", "ggplot2", "fortunes", "reticulate",
-  "showtext", "sysfonts", "showtextdb",
-  "fontcm",
-  "tikzDevice", "filehash", "png",
-  "xkcd", "extrafontdb", "Rttf2pt1", "extrafont"
-), function(pkg) {
-  if (system.file(package = pkg) == "") install.packages(pkg)
-})
-
 if (!all(c("source-han-sans-cn", "source-han-serif-cn") %in% showtextdb::font_installed())) {
   showtextdb::font_install(showtextdb::source_han_serif("CN"))
   showtextdb::font_install(showtextdb::source_han_sans("CN"))

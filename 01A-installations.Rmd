@@ -2,14 +2,6 @@
 
 # 安装与配置 {#install-setup}
 
-```{r include = FALSE, eval = .Platform$OS.type != "windows"}
-Pkgs <- c(
-  "RDieHarder", "magrittr"
-)
-if (length(setdiff(Pkgs, .packages(TRUE))) > 0) 
-  install.packages(setdiff(Pkgs, .packages(TRUE)))
-```
-
 ## 小技巧 {#tricks}
 
 1. 设置 Notepad++ 为 Git Bash 默认编辑器
