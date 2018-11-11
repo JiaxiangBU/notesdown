@@ -28,6 +28,7 @@ Imports:
   ggthemes,
   gridExtra,
   highcharter,
+  inline,
   ISLR,
   leaflet,
   magick,
@@ -51,6 +52,7 @@ Imports:
   svglite,
   tidyverse,
   tikzDevice,
+  V8,
   webp,
   xkcd,
   yarrr

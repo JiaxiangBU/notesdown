@@ -4,16 +4,6 @@
 
 # 命令行 {#command-line}
 
-```{r,include=FALSE}
-db <- tools::CRAN_package_db()
-Pkgs <- c(
-  "inline"
-)
-if (length(setdiff(Pkgs, .packages(TRUE))) > 0) {
-  install.packages(setdiff(Pkgs, .packages(TRUE)))
-}
-```
-
 ## 软件包管理器 {#apt}
 
 ### 添加和删除 PPA {#ppa}
@@ -1295,6 +1285,7 @@ sudo apt-get install -y libmagick++-dev
 ```
 
 ```{r}
+db <- tools::CRAN_package_db()
 tools::dependsOnPkgs("magick", installed = db)
 ```
 
@@ -1828,7 +1819,6 @@ libcurlVersion()
 La_version()
 La_library()
 
-extSoftVersion()
 .Machine
 .Platform
 .Device

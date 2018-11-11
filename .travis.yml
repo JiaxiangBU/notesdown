@@ -56,9 +56,6 @@ addons:
       - python-matplotlib
       - proj-bin 
       - libpaper-utils
-      - libatlas3-base
-      - libopenblas-base 
-      - pstoedit
       - cargo
       - gcc-7
       - g++-7

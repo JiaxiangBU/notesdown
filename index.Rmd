@@ -7,6 +7,7 @@ geometry: margin=1.18in
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
+papersize: b5
 lof: yes
 lot: yes
 graphics: yes
@@ -16,7 +17,7 @@ links-as-notes: no
 colorlinks: yes
 toccolor: magenta
 mathspec: yes
-classoption: "hyperref, a4paper, UTF8, zihao = -4, linespread = 1.3, table"
+classoption: "UTF8, zihao = -4, linespread = 1.3, table"
 description: "Some notes about R and other open souce softwares, such as Pandoc, LaTeX, Inkscape, Ghostscript, Git, Stan, Octave and Python."
 url: 'https\://notesdown.netlify.com/'
 github-repo: "xiangyunhuang/notesdown"
