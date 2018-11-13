@@ -821,6 +821,7 @@ ps -aux | grep ssh
 
 ## CentOS 7
 
+
 - 配置网络
 
 ```bash
@@ -958,6 +959,15 @@ make
 sudo make install
 ```
 
+```bash
+./configure --enable-R-shlib --enable-byte-compiled-packages \
+  --enable-BLAS-shlib --enable-memory-profiling \
+  --with-lapack --with-blas
+```
+
+```bash  
+sudo yum install pango pango-devel pcre pcre-devel pcre2 pcre2-devel
+```
 
 安装 texinfo 编译手册
 
