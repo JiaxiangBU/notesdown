@@ -2,6 +2,11 @@
 
 ## 集合运算
 
+```r
+# 查看文件
+rinternals <- file.path(R.home("include"),"Rinternals.h")
+file.show(rinternals)
+```
 
 ## 正则匹配
 

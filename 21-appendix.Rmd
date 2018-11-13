@@ -271,7 +271,31 @@ du -sh * | sort -nr
 
 ## Git 命令 {#Git}
 
-### 删除子模块
+### 添加 {#git-add}
+
+
+```bash
+git add .
+```
+
+提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+
+```bash
+git add -u
+```
+
+提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)，`git add --update`的缩写
+
+```bash
+git add -A
+```
+
+提交所有变化，`git add --all` 的缩写
+
+
+
+
+### 移除子模块 {#remove-submodule}
 
 <https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/>
 
@@ -314,7 +338,7 @@ git merge upstream/master master
 git push origin master
 ```
 
-### 大文件支持
+### 大文件支持 {#large-file-support}
 
 ```bash
 sudo apt install git-lfs
@@ -325,7 +349,7 @@ git commit -m "track *.psd files using Git LFS"
 git push origin master
 ```
 
-### 新建分支
+### 新建分支 {#checkout-new-branch}
 
 
 ```bash
@@ -341,7 +365,7 @@ git commit -m "balabala"
 git push --set-upstream origin stan
 ```
 
-### 创建站点
+### 创建站点 {#create-gh-site}
 
 基于 GitHub Pages 创建站点用于存放图片和数据
 
@@ -366,7 +390,7 @@ git push --set-upstream origin gh-pages
 
 <https://xiangyunhuang.github.io/home/data/eqList2018_05_18.xls>
 
-### 回车换行
+### 回车换行 {#CRLF}
 
 CR (Carriage Return) 表示回车，LF (Line Feed) 表示换行，Windows 下用回车加换行表示下一行，UNIX/Linux 采用换行符 (LF) 表示下一行，MAC OS 则采用回车符 (CR) 表示下一行
 
@@ -420,7 +444,7 @@ git push origin master:cos-art
 位于 [Github](https://github.com/liuhui998/gitbook) [Git Community Book 中译本](http://gitbook.liuhui998.com/)
 
 
-### 创建PR 
+### 创建 PR {#create-pull-requests}
 
 ```bash
 git pull --rebase git@github.com:yihui/xaringan.git master
