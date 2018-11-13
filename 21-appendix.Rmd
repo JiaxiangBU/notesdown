@@ -15,7 +15,7 @@ sudo add-apt-repository --remove ppa:opencpu/imagemagick
 
 安装软件 octave 的依赖
 
-```
+```bash
 sudo yum install yum-utils
 sudo yum-builddep octave
 yum deplist octave
@@ -536,15 +536,10 @@ RUN mkdir ~/.fonts \
 wqy-unibit-fonts wqy-microhei-fonts wqy-zenhei-fonts
 ```
 
-
-
 * 安装 Microsoft R Open <https://mran.microsoft.com/documents/rro/installation#revorinst-lin>
 * 安装 Machine Learning Server
     + [在线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-install)
     + [离线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-offline)
-
-
-
 
 ### GCC 
 
@@ -570,7 +565,7 @@ source /opt/rh/devtoolset-2/enable
 
 Python 版本和位置
 
-```{r, eval = !Sys.which('python') == ""}
+```r
 Sys.which("python")
 system2("python", args = "--version", stderr = TRUE)
 ```
@@ -585,7 +580,7 @@ sudo apt-get update
 
 可用的 python 模块
 
-```{python, eval = !Sys.which('python') == ""}
+```python
 help('modules')
 ```
 
@@ -629,7 +624,7 @@ sudo apt-get install -y octave
 
 查看安装的版本
 
-```{r, eval = !Sys.which('octave') == ""}
+```r
 Sys.which("octave")
 system("octave --version")
 ```
@@ -1295,8 +1290,7 @@ sudo apt-get install -y libmagick++-dev
 ```
 
 ```{r}
-db <- tools::CRAN_package_db()
-tools::dependsOnPkgs("magick", installed = db)
+tools::dependsOnPkgs("magick")
 ```
 
 ### V8 {#v8}
@@ -1316,7 +1310,7 @@ sudo yum install v8-314-devel
 直接或间接依赖 **V8** 的 R 包
 
 ```{r}
-tools::dependsOnPkgs("V8", installed = db)
+tools::dependsOnPkgs("V8")
 ```
 
 ### curl 
@@ -1364,7 +1358,7 @@ Done.
 然后 `install.packages("rJava")`
 
 ```{r}
-tools::dependsOnPkgs("rJava", installed = db, 
+tools::dependsOnPkgs("rJava", 
                      recursive = F, dependencies = "Imports")
 ```
 
@@ -1476,13 +1470,13 @@ sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 ```
 
 ```{r}
-tools::dependsOnPkgs("sf", installed = db)
+tools::dependsOnPkgs("sf")
 ```
 
 依赖情况是直接导入 **sf** 包的
 
 ```{r}
-tools::dependsOnPkgs("sf", installed = db,
+tools::dependsOnPkgs("sf",
                      recursive = F, dependencies = "Imports")
 ```
 
