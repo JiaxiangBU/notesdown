@@ -978,10 +978,12 @@ make
 sudo make install
 ```
 
+使用 OpenBLAS  `--with-blas="-lgoto2"`
+
 ```bash
 ./configure --enable-R-shlib --enable-byte-compiled-packages \
   --enable-BLAS-shlib --enable-memory-profiling \
-  --with-lapack --with-blas
+  --with-blas="-lopenblas" 
 ```
 
 ```bash  
