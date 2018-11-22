@@ -1,14 +1,14 @@
 # 安装 R 包 {#install-r-packages}
 
-- 从指定的镜像站点安装（源头）
+从指定的镜像站点安装
 
-```{r,eval=FALSE}
+```r
 install.packages("rbokeh", repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
 ```
 
-- 再指定安装的位置（本地）
+在指定安装的位置
 
-```{r,eval=FALSE}
+```r
 install.packages("rbokeh",
   repos = c(
     deltarho = "http://packages.deltarho.org",
@@ -18,16 +18,16 @@ install.packages("rbokeh",
 )
 ```
 
-- 安装 Bioconductor 上的 R 包
+安装 Bioconductor 上的 R 包
 
-```{r,eval=FALSE}
+```r
 source("https://bioconductor.org/biocLite.R")
 BiocInstaller::biocLite("rbokeh")
 ```
 
-- 安装Github上的R包
+安装Github上的R包
 
-```{r,eval=FALSE}
+```r
 devtools::install_github("bokeh/rbokeh")
 ```
 
@@ -88,10 +88,7 @@ tools::dependsOnPkgs("V8")
 # curl RCurl 包
 sudo yum install libcurl-devel
 ```
-
-
 ## rJava {#rJava}
-
 
 **rJava** 开发仓库 <https://github.com/s-u/rJava> 确定安装了 JDK后， 以 root 权限运行
 
@@ -405,7 +402,6 @@ install.packages('gifski')
 
 有关随机数检验的一本好书 [@Goucher2009]，以及 StackOverflow 上关于[随机数分析的探讨](https://stackoverflow.com/questions/4027756/random-number-analysis/4027781)，统计之都^[<https://cosx.org/>]上 [随机数生成及其在统计模拟中的应用](https://cosx.org/2017/05/random-number-generation/)
 
-
 ```bash
 sudo apt-get install -y libgsl-dev libdieharder-dev
 ```
@@ -458,7 +454,6 @@ CentOS 上安装 rgl
 sudo yum install mesa-libGLU mesa-libGLU-devel
 ```
 
-
 ## INLA {#INLA}
 
 ```r
@@ -480,7 +475,6 @@ spark_install(version = "2.2.0", hadoop_version = "2.7")
 ```
 
 ## mxnet
-
 
 ```bash
 sudo apt-get install -y libatlas-base-dev liblapack-dev libopencv-dev libjemalloc-dev
@@ -511,7 +505,7 @@ make rpkg
 
 [ClickHouse](https://clickhouse.yandex/) 独辟蹊径，基于 C++ 的实现，数据查询速度超级快，官网介绍碾压大量传统数据库。还有不少接口，其中还有 R 的 <https://github.com/hannesmuehleisen/clickhouse-r> 
 
-- 安装
+安装
 
 ```r
 devtools::install_github("hannesmuehleisen/clickhouse-r")
@@ -519,7 +513,7 @@ devtools::install_github("hannesmuehleisen/clickhouse-r")
 
 下载 <https://clickhouse.yandex/docs/en/single/#installation>
 
-- 使用
+使用
 
 ```{r,eval=FALSE}
 library(DBI)
