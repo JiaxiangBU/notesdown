@@ -204,7 +204,7 @@ sudo apt-get update
 
 可用的 python 模块
 
-```python
+```r
 help('modules')
 ```
 
@@ -228,7 +228,6 @@ cp include/*.h /usr/local/include # 将 lapacke 的头文件复制到系统头�
 cd ..                 # 返回到 lapack-3.7.1 目录    
 cp *.a /usr/local/lib # 将生成的所有库文件复制到系统库目录 
 ```
-
 
 ## Octave {#octave}
 
@@ -421,7 +420,7 @@ wget -qO- \
     "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | sh -s - --admin --no-path
 ```
 
-## Ubuntu 14.04.5
+# Ubuntu 14.04.5 {#trusty}
 
 ```bash
 # 启用网络
@@ -446,7 +445,7 @@ sudo /etc/init.d/ssh start
 ps -aux | grep ssh
 ```
 
-## CentOS 7
+# CentOS 7 {#centos7}
 
 
 - 配置网络
@@ -492,7 +491,7 @@ sudo systemctl status sshd
 
 虚拟机能 ping 通主机，主机不能 ping 通虚拟机，原因是 VirtualBox Host-Only Network #3 与虚拟机 ip 不在同一网段，修改 VirtualBox Host-Only Network #3 的配置为自动获取
 
-### R
+## R
 
 ```bash
 sudo yum install epel-release
@@ -524,21 +523,7 @@ install.packages(c(
 ))
 ```
 
-### zsh
-
-```bash
-sudo yum update && sudo yum -y install zsh curl wget deltarpm
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-
-查看文件夹大小
-
-```bash
-du -h -d 1
-```
-
-### RStudio Server
+## RStudio Server
 
 ```bash
 wget https://download2.rstudio.org/rstudio-server-rhel-1.1.456-x86_64.rpm
@@ -556,11 +541,8 @@ rsession-which-r=/usr/local/bin/R
 ```
 
 - rstudio 手册
+
 http://docs.rstudio.com/ide/server-pro/
-
-- 可用的字体
-
-CentOS 下 repo 中常见字体名字
 
 将 Windows 下的字体拷贝到 CentOS 系统上
 
@@ -576,7 +558,7 @@ tlmgr install inconsolata ctex l3kernel l3packages \
    ms zapfding fancyvrb booktabs
 ```
 
-### compile 
+## compile 
 
 配置 R 的命令
 
@@ -699,7 +681,7 @@ tlmgr install ctex ms ulem xecjk environ trimspaces \
   times helvetic courier
 ```  
 
-## 安装 Fedora 27 {#fedora}
+# 安装 Fedora 27 {#fedora27}
 
 先从 [清华开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/) 下载 Fedora 镜像 `Fedora-Server-netinst-x86_64-27-1.6.iso` 启动 VBox 分配硬件资源后
 
@@ -752,7 +734,7 @@ install.packages("sf")
 使用 Fedora 最新版系统或者 Rocker 提供的 Docker 镜像，不然需要手动编译安装 GEOS^[<http://trac.osgeo.org/geos>] 和 gdal^[<http://trac.osgeo.org/gdal>]，CentOS 自带的包版本太低，不够 **sf** 包使用，这就是新手面临的痛点。CentOS 仓库自带的依赖库版本有点低，需要手动安装高版本，安装 rgdal 包没有问题，而 sf 包目前处于一种活跃开发状态，且是空间数据分析的新标准，使用的都是新版本的依赖库。
 
 
-### 安装 TinyTeX {#fedora-tinytex}
+## 安装 TinyTeX {#fedora-tinytex}
 
 从最初的命令行开始
 
@@ -841,7 +823,7 @@ loaded via a namespace (and not attached):
 [1] compiler_3.4.3 tools_3.4.3    tinytex_0.2.3
 ```
 
-### 安装 RStudio {#fedora-rstudio}
+## 安装 RStudio {#fedora-rstudio}
 
 以管理员账户登录系统，下载安装 RStudio Server 开源版本
 
@@ -862,7 +844,7 @@ chmod -v u-w /etc/sudoers # 收回权限
 ```
 
 
-## Docker {#docker}
+# Docker {#docker}
 
 Docker 相比虚拟机占用资源少，拉起来就可以用，虚拟机还需要各种环境配置，很多与R有关的项目现在都提供Docker镜像，大大方便了开发人员和数据分析师。当然 docker 的环境隔离性，对主机系统侵入小，即使挂了，再拉起来也就是了，安全性和可靠性高。
 
@@ -883,7 +865,7 @@ Docker 相比虚拟机占用资源少，拉起来就可以用，虚拟机还需�
     + Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
     + 参见高策的博客 <http://gaocegege.com>
 
-### Pull Images
+## Pull Images
 
 重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
 
@@ -927,7 +909,7 @@ docker exec -it 6f932357e6ce /bin/bash
 由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
 
 
-### Docker (Windows 8.1) {#windows8}
+## Docker (Windows 8.1) {#windows8}
 
 对于 Windows 8.1 来说，需要下载 [Docker ToolBox for Windows](https://docs.docker.com/toolbox/toolbox_install_windows/) 和 [Boot2Docker](https://github.com/boot2docker/boot2docker)^[目前官方已进入维护模式]，由于 Docker for Windows 需要 Windows 10 Pro，如图 \@ref(fig:docker-installation-error)所示
 
@@ -1017,7 +999,7 @@ docker-machine ssh default
 knitr::include_graphics(path = "figures/04g-docker-pull-image-git-bash.png")
 ```
 
-### PuTTY {#putty-login-docker}
+## PuTTY {#putty-login-docker}
 
 首先在 PuTTY 中设置分配给 Docker 的 IP
 
@@ -1045,7 +1027,7 @@ knitr::include_graphics(path = c("figures/04m-docker-pull-image-via-putty.png",
 ```
 
 
-### Docker (CentOS)
+## Docker (CentOS)
 
 安装必要的依赖
 
@@ -1105,7 +1087,7 @@ rocker/geospatial
 knitr::include_graphics(path = "figures/04f-docker-centos.png")
 ```
 
-### 常用命令 {#common-commands}
+## 常用命令 {#common-commands}
 
 - 拉取 docker pull
 - 启动 docker start

@@ -48,7 +48,7 @@ devtools::session_info("showtext")
 推荐 `devtools::session_info("package")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
 ```
 
-### magick {#magick}
+## magick {#magick}
 
 在 Ubuntu 14.04 (trusty) or 16.04 (xenial) 可以获得最新的 libmagick++-dev 库
 
@@ -62,7 +62,7 @@ sudo apt-get install -y libmagick++-dev
 tools::dependsOnPkgs("magick")
 ```
 
-### V8 {#v8}
+## V8 {#v8}
 
 Ubuntu
 
@@ -82,7 +82,7 @@ sudo yum install v8-314-devel
 tools::dependsOnPkgs("V8")
 ```
 
-### curl 
+## curl 
 
 ```bash
 # curl RCurl 包
@@ -90,7 +90,7 @@ sudo yum install libcurl-devel
 ```
 
 
-### rJava {#rJava}
+## rJava {#rJava}
 
 
 **rJava** 开发仓库 <https://github.com/s-u/rJava> 确定安装了 JDK后， 以 root 权限运行
@@ -131,7 +131,7 @@ tools::dependsOnPkgs("rJava",
                      recursive = F, dependencies = "Imports")
 ```
 
-### devtools {#devtools}
+## devtools {#devtools}
 
 开发仓库 <https://github.com/r-lib/devtools>
 
@@ -146,7 +146,7 @@ png 和 jpeg
 sudo apt-get install libjpeg-dev libpng-dev
 ```
 
-### colorspace {#colorspace}
+## colorspace {#colorspace}
 
 从 [R-Forge](http://R-Forge.R-project.org) 安装开发版 **colorspace** 
 
@@ -154,7 +154,7 @@ sudo apt-get install libjpeg-dev libpng-dev
 install.packages("colorspace", repos = "http://R-Forge.R-project.org")
 ```
 
-### imager
+## imager
 
 ```bash
 sudo apt-get install libfftw3-dev libX11-dev libtiff-dev
@@ -172,7 +172,7 @@ install.packages('imager')
 
 https://github.com/dahtah/imager
 
-### sf (CentOS7) {#sf-centos}
+## sf (CentOS7) {#sf-centos}
 
 ```r
 wget http://download.osgeo.org/gdal/2.3.1/gdal-2.3.1.tar.gz
@@ -228,7 +228,7 @@ install.packages("lwgeom")
 ```
 
 
-### sf {#sf}
+## sf {#sf}
 
 开发仓库 <https://github.com/r-spatial/sf>
 
@@ -250,7 +250,7 @@ tools::dependsOnPkgs("sf",
 ```
 
 
-### lwgeom {#lwgeom}
+## lwgeom {#lwgeom}
 
 开发仓库 <https://github.com/r-spatial/lwgeom>
 
@@ -272,7 +272,7 @@ install.packages("udunits2",configure.args='--with-udunits2-include=/usr/include
 ```
 
 
-### tmap {#tmap}
+## tmap {#tmap}
 
 在 Ubuntu 16.04 下
 
@@ -308,7 +308,7 @@ sudo apt-get install libgdal-dev libgeos-dev  libproj-dev  libudunits2-dev \
 ```
 
 
-### rstan {#rstan}
+## rstan {#rstan}
 
 目前二进制版的 rstan 只在 Ubuntu 14.04 (trusty) or 16.04 (xenial) 上提供，自己编译的话，可以参考 rstan 仓库的 Wiki^[<https://github.com/stan-dev/rstan/wiki/Installing-RStan-on-Mac-or-Linux>]。 
 
@@ -327,7 +327,7 @@ sudo add-apt-repository ppa:marutter/c2d4u3.5
 sudo apt-get update
 ```
 
-### Rmpfr
+## Rmpfr
 
 ```bash
 sudo apt-get install libmpfr-dev
@@ -337,7 +337,7 @@ sudo apt-get install libmpfr-dev
 install.packages("Rmpfr")
 ```
 
-### openssl {#openssl}
+## openssl {#openssl}
 
 ```bash
 # PKI openssl 包
@@ -350,7 +350,7 @@ sudo yum install openssl-devel
 sudo apt-get install -y libssl-dev
 ```
 
-### geojson
+## geojson
 
 ```bash
 sudo yum install jq-devel protobuf-devel
@@ -360,7 +360,7 @@ sudo yum install jq-devel protobuf-devel
 install.packages(c('geojson','geojsonio','jqr','protolite'))
 ```
 
-### lgcp
+## lgcp
 
 ```bash
 sudo yum install bwidget
@@ -370,7 +370,7 @@ sudo yum install bwidget
 install.packages(c('rpanel','lgcp'))
 ```
 
-### ijtiff
+## ijtiff
 
 ```bash
 sudo yum install jbigkit-devel
@@ -380,7 +380,7 @@ sudo yum install jbigkit-devel
 install.packages('ijtiff')
 ```
 
-### webshot
+## webshot
 
 ```bash
 sudo apt install phantomjs
@@ -389,7 +389,7 @@ sudo apt install phantomjs
 install.packages("webshot")
 ```
 
-### gifski
+## gifski
 
 ```bash
 sudo apt-get install cargo
@@ -401,7 +401,7 @@ install.packages('gifski')
 
 开发版 knitr 支持 <https://yihui.name/en/2018/08/gifski-knitr/>
 
-### RDieHarder {#RDieHarder}
+## RDieHarder {#RDieHarder}
 
 有关随机数检验的一本好书 [@Goucher2009]，以及 StackOverflow 上关于[随机数分析的探讨](https://stackoverflow.com/questions/4027756/random-number-analysis/4027781)，统计之都^[<https://cosx.org/>]上 [随机数生成及其在统计模拟中的应用](https://cosx.org/2017/05/random-number-generation/)
 
@@ -438,7 +438,7 @@ dieharder -d 15
 dieharder -d 15 -h
 ```
 
-### rgl {#rgl}
+## rgl {#rgl}
 
 ```bash
 sudo add-apt-repository ppa:marutter/rrutter
@@ -459,7 +459,7 @@ sudo yum install mesa-libGLU mesa-libGLU-devel
 ```
 
 
-### INLA {#INLA}
+## INLA {#INLA}
 
 ```r
 ## try http:// if https:// URLs are not supported
@@ -471,7 +471,7 @@ biocLite(c("Rgraphviz", "graph"), ask = FALSE)
 install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
 ```
 
-### sparklyr
+## sparklyr
 
 ```{r,eval=FALSE}
 library(sparklyr)
@@ -479,7 +479,7 @@ library(sparklyr)
 spark_install(version = "2.2.0", hadoop_version = "2.7")
 ```
 
-### mxnet
+## mxnet
 
 
 ```bash
@@ -501,7 +501,7 @@ devtools::install_deps('path/to/R-package')
 make rpkg
 ```
 
-### DBI
+## DBI
 
 这是一个存放在Github上的包，随着 ClikHouse 在大厂的流行，此包也受到越来越多的关注
 与数据仓库如何连接，如何查询数据，背后的接口 DBI 如何使用，实例化一个新的接口（如 clickhouse2r ）
@@ -566,7 +566,7 @@ idate <- "2018-05-03"
 ```
 ````
 
-SQL中使用R的变量并将结果输出为数据框
+SQL 中使用R的变量并将结果输出为数据框
 
 ````markdown
 `r ''````{sql, output.var="data_output"}
@@ -582,7 +582,7 @@ SELECT * FROM user_table where date_format(created_date,'%Y-%m-%d')>=?idate
 ```
 ````
 
-### 环境 {#environment}
+## 环境 {#environment}
 
 ```{r}
 libcurlVersion()
@@ -598,7 +598,7 @@ La_library()
 
 Sys.localeconv()
 Sys.info()
-Sys.getenv()
+# Sys.getenv()
 
 Sys.getlocale()
 ```
