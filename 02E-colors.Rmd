@@ -44,7 +44,11 @@ Adobe RGB  sRGB   P3广色域
 颜色空间及其区别 HCL and HSV color spaces
 基于网页、人眼、打印机使用不同的颜色模式为何
 
+Proposed Changes to Colors in R Graphics
+https://developer.r-project.org/sRGB-RFC.html
 
+Support for Raster Output in R Graphics
+https://developer.r-project.org/Raster/raster-RFC.html
 
 哪里可以获取颜色
 

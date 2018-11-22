@@ -1,0 +1,604 @@
+# 安装 R 包 {#install-r-packages}
+
+- 从指定的镜像站点安装（源头）
+
+```{r,eval=FALSE}
+install.packages("rbokeh", repos = "https://mirrors.tuna.tsinghua.edu.cn/CRAN/")
+```
+
+- 再指定安装的位置（本地）
+
+```{r,eval=FALSE}
+install.packages("rbokeh",
+  repos = c(
+    deltarho = "http://packages.deltarho.org",
+    getOption("repos")
+  ),
+  lib = R.home("site-library")
+)
+```
+
+- 安装 Bioconductor 上的 R 包
+
+```{r,eval=FALSE}
+source("https://bioconductor.org/biocLite.R")
+BiocInstaller::biocLite("rbokeh")
+```
+
+- 安装Github上的R包
+
+```{r,eval=FALSE}
+devtools::install_github("bokeh/rbokeh")
+```
+
+- 依赖问题：主要针对离线安装和源码编译安装
+- 平台问题：有些 R 包只能装在 Linux 操作系统上
+- 软件问题：有些 R 包要求相应 R 软件版本
+- 特定库依赖：如 **RDieHarder** \index{RDieHarder} 包就依赖 `libgsl-dev` 和 `libdieharder-dev` 库
+
+所以我们需要查看以下信息
+
+```r
+sessionInfo()
+# 或者
+devtools::session_info("showtext")
+```
+
+```{block2, type='rmdnote'}
+推荐 `devtools::session_info("package")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
+```
+
+### magick {#magick}
+
+在 Ubuntu 14.04 (trusty) or 16.04 (xenial) 可以获得最新的 libmagick++-dev 库
+
+```bash
+sudo add-apt-repository -y ppa:opencpu/imagemagick
+sudo apt-get update
+sudo apt-get install -y libmagick++-dev 
+```
+
+```{r}
+tools::dependsOnPkgs("magick")
+```
+
+### V8 {#v8}
+
+Ubuntu
+
+```bash
+sudo apt install libv8-3.14-dev
+```
+
+CentOS
+
+```bash
+sudo yum install v8-314-devel
+```
+
+直接或间接依赖 **V8** 的 R 包
+
+```{r}
+tools::dependsOnPkgs("V8")
+```
+
+### curl 
+
+```bash
+# curl RCurl 包
+sudo yum install libcurl-devel
+```
+
+
+### rJava {#rJava}
+
+
+**rJava** 开发仓库 <https://github.com/s-u/rJava> 确定安装了 JDK后， 以 root 权限运行
+
+```bash
+sudo R CMD javareconf
+```
+
+应该输出
+
+```
+Java interpreter : /usr/bin/java
+Java version     : 1.8.0_171
+Java home path   : /usr/lib/jvm/java-8-openjdk-amd64/jre
+Java compiler    : /usr/bin/javac
+Java headers gen.: /usr/bin/javah
+Java archive tool: /usr/bin/jar
+
+trying to compile and link a JNI program
+detected JNI cpp flags    : -I$(JAVA_HOME)/../include -I $(JAVA_HOME)/../include/linux
+detected JNI linker flags : -L$(JAVA_HOME)/lib/amd64/ser ver -ljvm
+gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/lib/jvm /java-8-openjdk-amd64/jre/../include -I/usr/lib/jvm/java -8-openjdk-amd64/jre/../include/linux  -I/usr/local/incl ude   -fpic  -g -O2  -c conftest.c -o conftest.o
+gcc -shared -L/usr/local/lib -o conftest.so conftest.o - L/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server  -ljvm
+
+
+JAVA_HOME        : /usr/lib/jvm/java-8-openjdk-amd64/jre
+Java library path: $(JAVA_HOME)/lib/amd64/server
+JNI cpp flags    : -I$(JAVA_HOME)/../include -I$(JAVA_HO ME)/../include/linux
+JNI linker flags : -L$(JAVA_HOME)/lib/amd64/server -ljvm
+Updating Java configuration in /usr/local/lib/R
+Done.
+```
+
+然后 `install.packages("rJava")`
+
+```{r}
+tools::dependsOnPkgs("rJava", 
+                     recursive = F, dependencies = "Imports")
+```
+
+### devtools {#devtools}
+
+开发仓库 <https://github.com/r-lib/devtools>
+
+```bash
+sudo apt-get install libncurses5-dev libreadline-dev libpcre3-dev \ 
+    zlib1g-dev libbz2-dev liblzma-dev libicu-dev libssh2-1-dev libgit2-dev
+```
+
+png 和 jpeg
+
+```bash
+sudo apt-get install libjpeg-dev libpng-dev
+```
+
+### colorspace {#colorspace}
+
+从 [R-Forge](http://R-Forge.R-project.org) 安装开发版 **colorspace** 
+
+```{r, eval=packageVersion('colorspace') < "1.4.0"}
+install.packages("colorspace", repos = "http://R-Forge.R-project.org")
+```
+
+### imager
+
+```bash
+sudo apt-get install libfftw3-dev libX11-dev libtiff-dev
+```
+
+CentOS
+
+```bash
+sudo yum install fftw-devel
+```
+
+```r
+install.packages('imager')
+```
+
+https://github.com/dahtah/imager
+
+### sf (CentOS7) {#sf-centos}
+
+```r
+wget http://download.osgeo.org/gdal/2.3.1/gdal-2.3.1.tar.gz
+tar -xzf gdal-2.3.1.tar.gz
+cd gdal-2.3.1
+./configure
+make
+sudo make install
+```
+
+checkout you replaced the default gdal:
+
+```bash
+echo "/usr/local/lib" > /etc/ld.so.conf.d/libgdal-x86_64.conf
+sudo ldconfig # relink to new gdal # need to relogin R
+```
+
+install geos-devel for lwgeom
+
+```bash
+sudo yum install -y geos-devel
+wget http://download.osgeo.org/geos/geos-3.6.3.tar.bz2
+tar -xjf geos-3.6.3.tar.bz2
+cd geos-3.6.3
+./configure
+make
+sudo make install
+sudo ldconfig # relink to new gdal # need to relogin R
+```
+
+```bash
+sudo yum install udunits2-devel
+```
+
+```r
+install.packages("udunits2",configure.args='--with-udunits2-include=/usr/include/udunits2/')
+```
+
+```bash
+sudo yum install postgresql-devel
+```
+
+```r
+install.packages("RPostgreSQL",dependencies=TRUE)
+```
+
+```bash
+sudo yum install -y liblwgeom
+```
+
+```r
+install.packages("lwgeom")
+```
+
+
+### sf {#sf}
+
+开发仓库 <https://github.com/r-spatial/sf>
+
+```bash
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update
+sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev 
+```
+
+```{r}
+tools::dependsOnPkgs("sf")
+```
+
+依赖情况是直接导入 **sf** 包的
+
+```{r}
+tools::dependsOnPkgs("sf",
+                     recursive = F, dependencies = "Imports")
+```
+
+
+### lwgeom {#lwgeom}
+
+开发仓库 <https://github.com/r-spatial/lwgeom>
+
+```bash
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update
+sudo apt-get install libgdal-dev libgeos-dev libproj-dev \
+     libudunits2-dev liblwgeom-dev
+```
+
+安装完上述库后，还可以安装 rgdal 和 udunits2^[最新开发版 <ftp://ftp.unidata.ucar.edu/pub/udunits>]
+
+安装 udunits2 可能需要指定开发文件位置
+
+```r
+install.packages("udunits2",configure.args='--with-udunits2-include=/usr/include/udunits2')
+--configure-args='--with-udunits2-lib=/usr/local/lib'  UDUNITS2_LIB
+--configure-args='--with-udunits2-include=/usr/include/udunits2'  UDUNITS2_INCLUDE
+```
+
+
+### tmap {#tmap}
+
+在 Ubuntu 16.04 下
+
+```bash
+# install fundamental spatial libraries (needed for sf, sp, rgdal, rgeos)
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update
+sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev 
+
+# install v8, needed for the R package V8 which reverse imports geojsonio and rmapshaper -> tmaptools -> tmap
+sudo apt-get install libv8-3.14-dev
+
+
+# install jq, needed for the R package jqr whith reverse imports: geojson -> geojsonio -> rmapshaper -> tmaptools -> tmap
+sudo add-apt-repository -y ppa:opencpu/jq
+sudo apt-get update -q
+sudo apt-get install -y libjq-dev
+
+# install libraries needed for the R package protolite, which reverse imports: geojson -> geojsonio -> rmapshaper -> tmaptools -> tmap
+sudo apt-get install -y libprotobuf-dev protobuf-compiler
+
+# other libraries
+sudo apt-get install libssl-dev
+sudo apt-get install libcairo2-dev
+```
+
+在 Ubuntu 17/18 下
+
+```bash
+sudo apt-get install libgdal-dev libgeos-dev  libproj-dev  libudunits2-dev \
+    libv8-dev  libjq-dev  libprotobuf-dev  protobuf-compiler \
+    libssl-dev libcairo2-dev
+```
+
+
+### rstan {#rstan}
+
+目前二进制版的 rstan 只在 Ubuntu 14.04 (trusty) or 16.04 (xenial) 上提供，自己编译的话，可以参考 rstan 仓库的 Wiki^[<https://github.com/stan-dev/rstan/wiki/Installing-RStan-on-Mac-or-Linux>]。 
+
+```bash
+# Add marutter's c2d4u repository, (and rrutter for CRAN builds too)
+sudo add-apt-repository -y "ppa:marutter/rrutter"
+sudo add-apt-repository -y "ppa:marutter/c2d4u"
+sudo apt-get update
+sudo apt-get install r-cran-rstan
+```
+
+Ubuntu 18.04 bionic
+
+```bash
+sudo add-apt-repository ppa:marutter/c2d4u3.5
+sudo apt-get update
+```
+
+### Rmpfr
+
+```bash
+sudo apt-get install libmpfr-dev
+```
+
+```r
+install.packages("Rmpfr")
+```
+
+### openssl {#openssl}
+
+```bash
+# PKI openssl 包
+sudo yum install openssl-devel
+```
+
+开发仓库 <https://github.com/jeroen/openssl>
+
+```bash
+sudo apt-get install -y libssl-dev
+```
+
+### geojson
+
+```bash
+sudo yum install jq-devel protobuf-devel
+```
+
+```r
+install.packages(c('geojson','geojsonio','jqr','protolite'))
+```
+
+### lgcp
+
+```bash
+sudo yum install bwidget
+```
+
+```r
+install.packages(c('rpanel','lgcp'))
+```
+
+### ijtiff
+
+```bash
+sudo yum install jbigkit-devel
+```
+
+```r
+install.packages('ijtiff')
+```
+
+### webshot
+
+```bash
+sudo apt install phantomjs
+```
+```r
+install.packages("webshot")
+```
+
+### gifski
+
+```bash
+sudo apt-get install cargo
+```
+
+```r
+install.packages('gifski')
+```
+
+开发版 knitr 支持 <https://yihui.name/en/2018/08/gifski-knitr/>
+
+### RDieHarder {#RDieHarder}
+
+有关随机数检验的一本好书 [@Goucher2009]，以及 StackOverflow 上关于[随机数分析的探讨](https://stackoverflow.com/questions/4027756/random-number-analysis/4027781)，统计之都^[<https://cosx.org/>]上 [随机数生成及其在统计模拟中的应用](https://cosx.org/2017/05/random-number-generation/)
+
+
+```bash
+sudo apt-get install -y libgsl-dev libdieharder-dev
+```
+
+CentOS 下安装过程
+
+```bash
+sudo yum install gsl gsl-devel dieharder dieharder-devel dieharder-libs
+```
+
+```r
+install.packages("RDieHarder",configure.args='--with-dieharder-lib=/usr/lib/libdieharder')
+```
+
+dieharder 命令帮助 `dieharder h`
+
+```bash
+dieharder -l
+```
+
+查看 `Test Number`为 15的检验
+
+```bash
+dieharder -d 15
+```
+
+15号检验的说明
+
+```bash
+dieharder -d 15 -h
+```
+
+### rgl {#rgl}
+
+```bash
+sudo add-apt-repository ppa:marutter/rrutter
+sudo apt-get update
+sudo apt-get install r-cran-rgl
+```
+
+或者
+
+```bash
+sudo apt-get install libcgal-dev libglu1-mesa-dev libglu1-mesa-dev libx11-dev
+```
+
+CentOS 上安装 rgl
+
+```bash
+sudo yum install mesa-libGLU mesa-libGLU-devel
+```
+
+
+### INLA {#INLA}
+
+```r
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+# 选择就近的站点
+chooseBioCmirror()
+chooseCRANmirror()
+biocLite(c("Rgraphviz", "graph"), ask = FALSE)
+install.packages("INLA", repos = c(getOption("repos"), INLA = "https://inla.r-inla-download.org/R/stable"), dep = TRUE)
+```
+
+### sparklyr
+
+```{r,eval=FALSE}
+library(sparklyr)
+# spark_available_versions()
+spark_install(version = "2.2.0", hadoop_version = "2.7")
+```
+
+### mxnet
+
+
+```bash
+sudo apt-get install -y libatlas-base-dev liblapack-dev libopencv-dev libjemalloc-dev
+
+git clone --depth=1 --branch=master https://github.com/apache/incubator-mxnet
+
+cd incubator-mxnet
+git submodule update --init --recursive 
+
+make -j2 USE_OPENCV=1 USE_BLAS=atlas
+```
+
+```r
+devtools::install_deps('path/to/R-package')
+```
+
+```bash
+make rpkg
+```
+
+### DBI
+
+这是一个存放在Github上的包，随着 ClikHouse 在大厂的流行，此包也受到越来越多的关注
+与数据仓库如何连接，如何查询数据，背后的接口 DBI 如何使用，实例化一个新的接口（如 clickhouse2r ）
+
+- <https://github.com/hannesmuehleisen/clickhouse-r>
+- 壮士！交给你个任务，基于 clickhouse 的 odbc 驱动 <https://github.com/yandex/clickhouse-odbc> 写了 R 包如何，顺带介绍 clickhouse ，再给统计之都投篇稿子，在明年的 R 会给个相关报告。名字 r4clickhouse 还是 clickhouse4r 呢
+
+[ClickHouse](https://clickhouse.yandex/) 独辟蹊径，基于 C++ 的实现，数据查询速度超级快，官网介绍碾压大量传统数据库。还有不少接口，其中还有 R 的 <https://github.com/hannesmuehleisen/clickhouse-r> 
+
+- 安装
+
+```r
+devtools::install_github("hannesmuehleisen/clickhouse-r")
+```
+
+下载 <https://clickhouse.yandex/docs/en/single/#installation>
+
+- 使用
+
+```{r,eval=FALSE}
+library(DBI)
+con <- dbConnect(clickhouse::clickhouse(),
+  host = "localhost",
+  port = 8123L,
+  user = "default",
+  password = ""
+)
+dbWriteTable(con, "mtcars", mtcars)
+dbListTables(con)
+dbGetQuery(con, "SELECT COUNT(*) FROM mtcars")
+d <- dbReadTable(con, "mtcars")
+dbDisconnect(con)
+```
+
+发现它和 knitr  里的 SQL 钩子，都用 DBI 这个R包  <https://github.com/rstats-db/DBI>
+
+```{r clickhouse,fig.cap="ClickHouse与R"}
+knitr::include_graphics(path = "images/clickhouse.png")
+```
+
+参考 <https://d.cosx.org/d/419974-r-markdown-sql>
+
+````markdown
+`r ''````{r setup}
+library(DBI)
+library(RMySQL)
+# 这里的数据库链接信息我改了
+db <- dbConnect(MySQL(),
+  dbname = "dbtest",
+  username = "user_test",
+  password = "password",
+  host = "10.10.101.10",
+  port = 3306
+)
+# 创建默认连接
+knitr::opts_chunk$set(connection = "db")
+# 设置字符，以免中文查询乱码
+dbSendQuery(db, "SET NAMES utf8")
+# 设置日期变量，以运用在SQL中
+idate <- "2018-05-03"
+# 请忽略我
+```
+````
+
+SQL中使用R的变量并将结果输出为数据框
+
+````markdown
+`r ''````{sql, output.var="data_output"}
+SELECT * FROM user_table where date_format(created_date,'%Y-%m-%d')>=?idate  
+# 请忽略我
+```
+````
+
+以上代码会将SQL的运行结果存在 `data_output` 这是数据库中。如果SQL比较长，为了代码美观，把带有变量的SQL保存为.sql脚本，那怎么在SQL的chunk中直接导入SQL文件
+
+````markdown
+`r ''````{sql, code=readLines("你的脚本.sql")}
+```
+````
+
+### 环境 {#environment}
+
+```{r}
+libcurlVersion()
+.Library
+.Library.site
+
+La_version()
+La_library()
+
+.Machine
+.Platform
+.Device
+
+Sys.localeconv()
+Sys.info()
+Sys.getenv()
+
+Sys.getlocale()
+```

@@ -1,0 +1,451 @@
+# 命令行 {#command-line}
+
+## apt 软件包管理器 {#apt}
+
+### 添加和删除 PPA {#ppa}
+
+```bash
+sudo add-apt-repository -y ppa:opencpu/imagemagick
+sudo add-apt-repository --remove ppa:opencpu/imagemagick
+```
+
+安装软件 octave 的依赖
+
+```bash
+sudo yum install yum-utils
+sudo yum-builddep octave
+yum deplist octave
+```
+
+### 清理修复软件包 {#clean}
+
+```bash
+sudo aptitude install build-essential # 修复依赖问题
+sudo apt update # 更新资源列表
+sudo apt-get upgrade # 更新软件包
+apt list --upgradable # 列出可升级的包
+sudo apt clean
+sudo apt autoremove
+sudo apt-get autoclean # 删除已卸的软件的备份
+sudo apt-get clean # 删除已装或已卸的软件的备份
+```
+
+删除旧的内核
+
+```bash
+dpkg --list | grep linux-image
+sudo apt-get purge linux-image-3.19.0-{18,20,21,25}
+sudo update-grub2
+```
+
+### 搜索查询安装 {#search-show-install}
+
+```bash
+# 搜索
+apt-cache search octave | grep octave
+# 查询
+apt show octave
+# 安装
+sudo apt install octave
+```
+
+```bash
+sudo apt-get install lsb-core
+```
+
+```bash
+lsb_release -a
+```
+
+## LaTeX 包管理器 {#tlmgr}
+
+LaTeX 包管理器说的其实是 tlmgr (TeXLive Manager)
+
+```{r}
+base::system('xelatex --version', intern = TRUE)
+```
+
+```{r}
+base::system('tlmgr info --list --only-installed --data name,size', intern = TRUE)
+# or tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
+```
+
+tlmgr 管理器手册
+https://www.tug.org/texlive/doc/tlmgr.html#install-option-...-pkg
+
+
+### 安装和更新 {#install-update}
+
+```bash
+# 就近选择 CTAN 镜像站点
+tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+# 可更新的 TeX 包列表
+tlmgr update --list
+# 更新所有已经安装的 TeX 包
+tlmgr update --all
+# 更新 tlmgr 管理器本身
+tlmgr update --self
+# 安装
+tlmgr install ctex fandol
+# 列出套装
+tlmgr list schemes
+tlmgr list collections
+# 列出已经安装的 TeX 包
+tlmgr list --only-installed
+```
+
+## 查看文件
+
+```bash
+head -n 100 clientip.csv # 查看文件前100行
+tail -n 20 clientip.csv  # 查看文件后20行
+```
+
+## 挂载共享文件夹
+
+```bash
+sudo mount -t vboxsf -o uid=1000,gid=1000 Downloads /home/share
+sudo chmod -R 777 ./share  给目录添加权限
+```
+## tar 压缩文件 {#tar}
+
+```bash
+tar -cjf clientip.tar.bz2 clientip.csv
+```
+## cp 到共享文件夹 {#cp}
+
+```bash
+sudo cp /home/cloud/clientip.tar.bz2 ./
+sudo cp /home/cloud/clientipSQL.tar.bz2 ./
+
+sudo cp /home/cloud/clientip.csv ./  #  复制到当前文件夹下
+sudo cp /home/cloud/clientip.SQL ./
+```
+
+安装 GPG 公钥（只限Win/Mac）
+
+```bash
+tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
+```
+
+## 搜索 {#search}
+
+```bash
+tlmgr search *what*
+```
+
+- 参数 \*what\* 是正则表达式
+
+```{r}
+# tlmgr search --file tikz.sty
+tinytex::tlmgr_search('tikz.sty')
+```
+
+这样，我们就可以知道要使用 `\usepackage{tikz}` 就得先安装 **pgf** 包，此外，管道命令也是支持的
+
+```bash
+tlmgr search --file font | grep math
+```
+查询 CTAN 仓库列表
+
+```bash
+tlmgr repository list
+```
+
+
+## 文件操作 {#File-Manipulation}
+
+Linux 命令行工具是非常强大的^[<https://www.datascienceatthecommandline.com/>]。
+
+1. 查看文件
+
+```bash
+ls -a
+```
+
+列出目录下所有文件
+
+```bash
+ls -1 
+```
+一行显示一个文件或文件夹
+
+```bash
+ls -l 
+```
+
+按从 aA-zZ 的顺序列出所有文件以及所属权限
+
+```bash
+ls -rl 
+```
+
+相比于 `ls -l` 文件是逆序排列
+
+```bash
+ls -lh
+```
+
+列出文件或文件夹（不包含子文件夹）的大小 
+
+```bash
+ls -ld 
+```
+
+列出当前目录本身，而不是其所包含的内容
+
+2. 创建文件夹
+
+```bash
+mkdir images
+```
+
+创建文件用 `touch` 如 `touch .Rprofile` 
+
+```bash
+# 删除文件夹及子文件夹，递归删除
+rm -rf images/
+# 删除文件
+rm .Rprofile
+```
+
+3. 解压和压缩
+
+tar 解压
+
+```bash
+tar -xzvf R-3.5.1.tar.gz
+```
+
+其中，`-v` 显示解压后的文件
+
+tar 压缩
+
+```bash
+tar -czvf rstan.tar.gz rstan/
+```
+
+当前目录下，将 `rstan/` 目录压缩为 `rstan.tar.gz` 文件
+
+
+4. 移动文件
+
+在当前目录下
+
+```bash
+# 移动文件夹 images 下的所有文件到 figures 文件夹下
+mv images/* figures/
+# images 文件夹移动到 figures 文件夹下
+mv images/ figures/
+# 移动特定的文件
+mv images/*.png figures/
+```
+
+同一目录下有两个文件 `R-3.5.1.tar.gz` 未下载完整 和 `R-3.5.1.tar.gz.1` 完全下载
+
+```bash
+# 删除 R-3.5.1.tar.gz
+rm R-3.5.1.tar.gz
+# 重命名 R-3.5.1.tar.gz.1 
+mv R-3.5.1.tar.gz.1  R-3.5.1.tar.gz
+```
+
+5. 查看文件大小
+
+当前目录下各文件夹的大小， `-h` 表示人类可读的方式显示，如 Kb、Mb、Gb，`-d` 表示目录深度 `du --human-readable --max-depth=1 ./`
+
+```bash
+du -h -d 1 ./
+```
+
+```bash
+# 对当前目录下的文件/夹 按大小排序
+du -sh * | sort -nr
+```
+
+## Git 命令 {#Git}
+
+### 添加 {#git-add}
+
+
+```bash
+git add .
+```
+
+提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+
+```bash
+git add -u
+```
+
+提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)，`git add --update`的缩写
+
+```bash
+git add -A
+```
+
+提交所有变化，`git add --all` 的缩写
+
+
+
+
+### 移除子模块 {#remove-submodule}
+
+<https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/>
+
+### 合并上流 commit {#merge-upstream-commits}
+
+```bash
+git clone --depth=5 https://github.com/XiangyunHuang/cosx.org.git
+git submodule update --init --recursive
+```
+
+```bash
+# 查看远程分支
+cd cosx.org
+git remote -v
+```
+
+```bash
+origin  https://github.com/XiangyunHuang/cosx.org.git (fetch)
+origin  https://github.com/XiangyunHuang/cosx.org.git (push)
+```
+
+
+```bash
+# 添加上流分支
+git remote add upstream https://github.com/cosname/cosx.org.git
+git remote -v
+```
+
+```bash
+origin  https://github.com/XiangyunHuang/cosx.org.git (fetch)
+origin  https://github.com/XiangyunHuang/cosx.org.git (push)
+upstream        https://github.com/cosname/cosx.org.git (fetch)
+upstream        https://github.com/cosname/cosx.org.git (push)
+```
+
+```bash
+# 获取上流 commit 并且合并到我的 master 分支
+git fetch upstream
+git merge upstream/master master
+git push origin master
+```
+
+### 大文件支持 {#large-file-support}
+
+```bash
+sudo apt install git-lfs
+git lfs install
+git lfs track "*.psd"
+git add .gitattributes
+git commit -m "track *.psd files using Git LFS"
+git push origin master
+```
+
+### 新建分支 {#checkout-new-branch}
+
+
+```bash
+git checkout -b stan # 新建 stan 分支
+git branch -v # 查看本地分支 stan 前有个星号标记
+git pull --rebase git@github.com:XiangyunHuang/cosx.org.git master
+# 同步到远程分支 stan
+git push --set-upstream origin stan
+git push origin master:stan
+
+git add .
+git commit -m "balabala"
+git push --set-upstream origin stan
+```
+
+### 创建站点 {#create-gh-site}
+
+基于 GitHub Pages 创建站点用于存放图片和数据
+
+1. 在Github上创建一个空的仓库，命名为 uploads，没有 readme.md 和 LICENSE
+2. 在本地创建目录 uploads 
+3. 切换到 uploads 目录下
+
+```bash
+git init 
+git checkout -b gh-pages
+git remote add origin https://github.com/XiangyunHuang/home.git
+```
+添加图片或者数据，并且 git add 和 commit 后
+
+```bash
+git push --set-upstream origin gh-pages
+```
+
+这样仓库 home 只包含 gh-pages 分支
+
+数据地址即为
+
+<https://xiangyunhuang.github.io/home/data/eqList2018_05_18.xls>
+
+### 回车换行 {#CRLF}
+
+CR (Carriage Return) 表示回车，LF (Line Feed) 表示换行，Windows 下用回车加换行表示下一行，UNIX/Linux 采用换行符 (LF) 表示下一行，MAC OS 则采用回车符 (CR) 表示下一行
+
+```bash
+git config --global core.autocrlf false
+```
+
+添加子模块
+
+```bash
+git submodule add git://github.com/jgm/pandoc-templates.git templates
+```
+
+克隆项目
+
+```bash
+git clone --depth=10 --branch=master --recursive \
+    git@github.com:XiangyunHuang/pandoc4everything.git
+```
+
+配置账户
+
+```bash
+git config --global user.email "email"
+git config --global user.name "username"
+touch .git-credentials
+echo "https://username:password@github.com" >> .git-credentials
+git config --global credential.helper store
+```
+
+往空的 Github 仓库添加本地文件
+
+```bash
+git init
+git remote add origin https://github.com/XiangyunHuang/notesdown.git
+git add -A
+git commit -m "balabala"
+git push -u origin master
+```
+
+本地新建仓库推送至远程分支
+
+```bash
+git remote add origin https://github.com/XiangyunHuang/notesdown.git
+git add .
+git commit -m "init cos-art"
+# 此时远程仓库 notesdown 还没有 cos-art 分支
+git push origin master:cos-art
+```
+
+位于 [Github](https://github.com/liuhui998/gitbook) [Git Community Book 中译本](http://gitbook.liuhui998.com/)
+
+
+### 创建 PR {#create-pull-requests}
+
+```bash
+git pull --rebase git@github.com:yihui/xaringan.git master
+# then force push to your master branch
+```
+
+参考 <https://github.com/yihui/xaringan/pull/107>
+
+> I don't recommend you to use your master branch for pull requests, because all commits will be squashed before merging, e.g. c2c2055 Then you will have some trouble with syncing your master branch with the master branch here (your choices are (1) delete your repo and fork again; or (2) force push; either option is not good). For pull requests, I recommend that you always use different branches for different pull requests.

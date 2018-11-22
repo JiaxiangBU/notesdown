@@ -38,7 +38,10 @@ rmd_files: [
 
   "22-markdown.Rmd",
   "23-matplotlib.Rmd",
-
+  "24-command-line.Rmd",
+  "25-install-packages.Rmd",
+  "26-install-softwares.Rmd",
+  
   # 参考文献
   "27-references.Rmd",
 ]
