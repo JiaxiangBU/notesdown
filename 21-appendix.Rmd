@@ -4,6 +4,18 @@
 
 # 机器学习 or 深度学习 {#deep-learning-library}
 
+caret (Classification And Regression Training) R package that contains misc functions for training and plotting classification and regression models
+https://topepo.github.io/caret
+
+Local Interpretable Model-Agnostic Explanations (R port of original Python package)
+https://github.com/thomasp85/lime
+
+Explanations of model predictions with live and breakDown packages https://arxiv.org/abs/1804.01955
+
+Descriptive mAchine Learning EXplanations
+https://github.com/pbiecek/DALEX
+
+
 deep learning from first principles in python r and octave <https://gigadom.wordpress.com>
 
 ## DMTK
