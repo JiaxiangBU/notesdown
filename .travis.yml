@@ -32,9 +32,22 @@ addons:
       - sourceline: ppa:opencpu/jq
     packages:
       - ghostscript
+      - imagemagick
       - optipng
       - gcc-7
       - g++-7
+      - libmagick++-dev      	
+      - libwebp-dev	
+      - libgsl0ldbl	
+      - libpoppler-cpp-dev	
+      - libv8-dev	
+      - libprotobuf-dev 	
+      - protobuf-compiler	
+      - libjq-dev	
+      - libudunits2-dev	
+      - libproj-dev 	
+      - libgeos-dev 	
+      - libgdal-dev	
 
 before_install:
   - mkdir ~/.R
