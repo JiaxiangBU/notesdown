@@ -49,7 +49,7 @@ Table: (\#tab:insert-tab) A table caption^[With a footnote]
 
 ```{asis}
 <div align="center">
-![(\#fig:insert-fig) 插入图^[这里也是脚注哦]](figures/fig11.png){ width=45% }
+![插入图^[这里也是脚注哦]](figures/fig11.png){#fig:insert-fig width=45% }
 </div>
 ```
 

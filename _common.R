@@ -81,6 +81,7 @@ to_svg <- function(fig_path) {
 to_png <- function(fig_path) {
   return(sub("\\.pdf$", ".png", fig_path))
 }
+
 # copy https://github.com/yihui/knitr-examples/blob/master/085-pdfcrop.Rnw
 knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
   # use this hook only for dev='tikz' and externalized tikz graphics
@@ -95,12 +96,10 @@ knitr::knit_hooks$set(tikz2png = function(before, options, envir) {
 is_on_travis <- identical(Sys.getenv("TRAVIS"), "true")
 is_online <- curl::has_internet()
 
-library(reticulate)
-if (is_on_travis) use_virtualenv("shims") else use_condaenv(condaenv = 'base')
+# library(reticulate)
+# if (is_on_travis) use_virtualenv("shims") else use_condaenv(condaenv = 'base')
 # Python 环境的描述在附录
 # required = FALSE 默认值，如果按照指定的位置没有找到 Python 就会扫描其它版本
-# use_python("/opt/pyenv/shims/python")
-# use_virtualenv("shims")
 
 # 设置环境变量 RSTUDIO_CONNECT_SERVER 由 travis-ci 设置
 connectServer <- Sys.getenv("RSTUDIO_CONNECT_SERVER") # https://bookdown.org

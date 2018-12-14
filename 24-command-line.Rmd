@@ -28,6 +28,7 @@ sudo apt clean
 sudo apt autoremove
 sudo apt-get autoclean # 删除已卸的软件的备份
 sudo apt-get clean # 删除已装或已卸的软件的备份
+sudo apt-get autoremove --purge * # 推荐卸载软件的方式
 ```
 
 删除旧的内核
@@ -287,9 +288,6 @@ git add -A
 
 提交所有变化，`git add --all` 的缩写
 
-
-
-
 ### 移除子模块 {#remove-submodule}
 
 <https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule/>
@@ -299,27 +297,22 @@ git add -A
 ```bash
 git clone --depth=5 https://github.com/XiangyunHuang/cosx.org.git
 git submodule update --init --recursive
-```
 
-```bash
 # 查看远程分支
 cd cosx.org
 git remote -v
 ```
-
-```bash
+```
 origin  https://github.com/XiangyunHuang/cosx.org.git (fetch)
 origin  https://github.com/XiangyunHuang/cosx.org.git (push)
 ```
-
 
 ```bash
 # 添加上流分支
 git remote add upstream https://github.com/cosname/cosx.org.git
 git remote -v
 ```
-
-```bash
+```
 origin  https://github.com/XiangyunHuang/cosx.org.git (fetch)
 origin  https://github.com/XiangyunHuang/cosx.org.git (push)
 upstream        https://github.com/cosname/cosx.org.git (fetch)
@@ -379,9 +372,7 @@ git remote add origin https://github.com/XiangyunHuang/home.git
 git push --set-upstream origin gh-pages
 ```
 
-这样仓库 home 只包含 gh-pages 分支
-
-数据地址即为
+这样仓库 home 只包含 gh-pages 分支，数据地址即为以日期为分割线
 
 <https://xiangyunhuang.github.io/home/data/eqList2018_05_18.xls>
 

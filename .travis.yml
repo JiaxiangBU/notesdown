@@ -30,45 +30,20 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
       - sourceline: ppa:opencpu/jq
-      - sourceline: ppa:opencpu/imagemagick
-      - sourceline: ppa:ubuntugis/ubuntugis-unstable
     packages:
       - ghostscript
-      - imagemagick
       - optipng
-      - libmagick++-dev      
-      - libwebp-dev
-      - libgsl0ldbl
-      - dieharder
-      - libdieharder3
-      - libdieharder-dev
-      - libpoppler-cpp-dev
-      - libv8-dev
-      - libprotobuf-dev 
-      - protobuf-compiler
-      - libjq-dev
-      - libudunits2-dev
-      - libproj-dev 
-      - libgeos-dev 
-      - libgdal-dev
-      - python-tk
-      - python-numpy
-      - python-matplotlib
-      - proj-bin 
-      - libpaper-utils
-      - cargo
       - gcc-7
       - g++-7
 
 before_install:
   - mkdir ~/.R
   - cp Makevars ~/.R
-  - nvm install 8
-  - nvm use 8
+  - nvm install stable
   - npm install netlify-cli -g
   - curl -fLo /tmp/tinytex.tar.gz https://travis-bin.yihui.name/tinytex.tar.gz
-  - tar xzf /tmp/tinytex.tar.gz -C /$HOME
-  - export PATH=/$HOME/.TinyTeX/bin/x86_64-linux:$PATH
+  - tar -xzf /tmp/tinytex.tar.gz -C $HOME
+  - export PATH=$HOME/.TinyTeX/bin/x86_64-linux:$PATH
   - tlmgr install $(cat latex/TeXLive.pkgs | tr '\n' ' ') || true
 
 before_script:

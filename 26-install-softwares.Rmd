@@ -20,6 +20,46 @@ sudo add-apt-repository -y ppa:git-core/ppa
 sudo add-apt-repository --remove ppa:ubuntu-toolchain-r/test
 ```
 
+## Git
+
+官网安装指导 https://git-scm.com/download/linux 
+
+- Ubuntu 
+
+```bash
+sudo add-apt-repository -y ppa:git-core/ppa
+sudo apt update && apt install git
+```
+
+- CentOS
+
+```bash
+sudo sh -c "$(curl -fsSL https://setup.ius.io/)"
+sudo yum update && sudo yum install git2u
+```
+
+## TeXLive
+
+从这里安装 https://github.com/FluidityProject/yum-centos7-texlive
+
+```bash
+sudo curl -fLo /etc/yum.repos.d/texlive.repo https://raw.githubusercontent.com/FluidityProject/yum-centos7-texlive/master/texlive-centos7.repo
+sudo yum update && sudo yum install R
+```
+
+## JAGS
+
+```bash
+sudo curl -fLo /etc/yum.repos.d/jags.repo http://download.opensuse.org/repositories/home:/cornell_vrdc/CentOS_7/home:cornell_vrdc.repo
+sudo yum install jags4 jags4-devel
+```
+
+```r
+install.packages('rjags')
+```
+
+
+
 ## R 
 
 在 Ubuntu/Debian 系统上安装最新开发版，请看 <https://cran.r-project.org/bin/linux/debian/index.html>
@@ -31,7 +71,7 @@ sudo apt-get update
 sudo apt-get install r-base-dev
 ```
 
-R 自3.5以来出现大的不同
+R 自 3.5 以来出现大的不同
 
 ```bash
 sudo apt-add-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/"
@@ -164,8 +204,6 @@ ln -s /$RTOP/r-devel/build/bin/R R-devel
 ln -s /$RTOP/r-devel/build/bin/Rscript Rscript-devel
 ```
 
-
-	
 ## GCC 
 
 CentOS 7 默认版本是 gcc-4.8.5
@@ -420,7 +458,7 @@ wget -qO- \
     "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | sh -s - --admin --no-path
 ```
 
-# Ubuntu 14.04.5 {#trusty}
+## Ubuntu 14.04.5 虚拟机 {#trusty}
 
 ```bash
 # 启用网络
@@ -428,25 +466,31 @@ sudo vi /etc/network/interfaces
 # 添加
 auto eth1
 iface eth1 inet dhcp
+```
 
-# 重启 网络
+重启网络
+
+```bash
 # sudo service network-manager restart
 sudo /etc/init.d/networking restart
+```
 
-# 重启虚拟机
+设置 repos 镜像地址
 
-# 设置源仓
+```bash
 wget https://tuna.moe/oh-my-tuna/oh-my-tuna.py
 sudo python oh-my-tuna.py --global
+```
 
-# 安装确认 openssh-server 服务
+安装确认 openssh-server 服务
+
+```bash
 sudo apt install openssh-server
 sudo /etc/init.d/ssh start
 ps -aux | grep ssh
 ```
 
-# CentOS 7 {#centos7}
-
+## CentOS 7 虚拟机 {#centos7}
 
 - 配置网络
 
@@ -491,7 +535,7 @@ sudo systemctl status sshd
 
 虚拟机能 ping 通主机，主机不能 ping 通虚拟机，原因是 VirtualBox Host-Only Network #3 与虚拟机 ip 不在同一网段，修改 VirtualBox Host-Only Network #3 的配置为自动获取
 
-## R
+### 安装 R
 
 ```bash
 sudo yum install epel-release
@@ -523,7 +567,7 @@ install.packages(c(
 ))
 ```
 
-## RStudio Server
+### 安装 RStudio Server
 
 ```bash
 wget https://download2.rstudio.org/rstudio-server-rhel-1.1.456-x86_64.rpm
@@ -558,7 +602,7 @@ tlmgr install inconsolata ctex l3kernel l3packages \
    ms zapfding fancyvrb booktabs
 ```
 
-## compile 
+### 编译 R {#compile-on-centos}
 
 配置 R 的命令
 
@@ -586,18 +630,16 @@ sudo yum install pango pango-devel pcre pcre-devel pcre2 pcre2-devel
 
 ```bash
 wget https://ftp.gnu.org/gnu/texinfo/texinfo-6.5.tar.gz
-
 tar -xzf texinfo-6.5.tar.gz
 cd texinfo-6.5
+
 ./configure
 make 
 sudo make install
 
-wget https://ftp.gnu.org/gnu/texinfo/texinfo.tex
+cp ~/texinfo-6.5/doc/txi-en.tex ~/R-devel/doc/manual
 
-cp texinfo.tex ~/R-devel/doc/manual
-
-cp ~/texinfo-6.5/doc/txi-en.tex   ~/R-devel/doc/manual
+curl -fLo ~/R-devel/doc/manual/texinfo.tex https://ftp.gnu.org/gnu/texinfo/texinfo.tex
 ```
 
 - 安装 sf
@@ -617,30 +659,6 @@ make
 sudo make install
 ```
 
-安装 Git
-
-```bash
-wget https://centos7.iuscommunity.org/ius-release.rpm
-sudo yum localinstall ius-release
-sudo yum update && sudo yum install git2u
-```
-
-安装 JAGS
-
-```bash
-wget http://download.opensuse.org/repositories/home:/cornell_vrdc/CentOS_7/home:cornell_vrdc.repo
-sudo yum install jags4 jags4-devel
-```
-
-```r
-install.packages('rjags')
-```
-
-安装 texlive/tinytex
-
-从这里安装 https://github.com/FluidityProject/yum-centos7-texlive
-
-
 ```bash
 sudo yum install perl-Digest-MD5
 ```
@@ -656,6 +674,7 @@ sudo yum remove texlive-\*
 ```bash
 sudo yum install levien-inconsolata-fonts texlive-inconsolata texlive-fandol texlive-ctex
 ```
+
 ```bash
 tlmgr install ctex ms ulem xecjk environ trimspaces \
   zhnumber fandol xltxtra realscripts
@@ -681,7 +700,7 @@ tlmgr install ctex ms ulem xecjk environ trimspaces \
   times helvetic courier
 ```  
 
-# 安装 Fedora 27 {#fedora27}
+## Fedora 27 虚拟机 {#fedora27}
 
 先从 [清华开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/) 下载 Fedora 镜像 `Fedora-Server-netinst-x86_64-27-1.6.iso` 启动 VBox 分配硬件资源后
 
@@ -734,7 +753,7 @@ install.packages("sf")
 使用 Fedora 最新版系统或者 Rocker 提供的 Docker 镜像，不然需要手动编译安装 GEOS^[<http://trac.osgeo.org/geos>] 和 gdal^[<http://trac.osgeo.org/gdal>]，CentOS 自带的包版本太低，不够 **sf** 包使用，这就是新手面临的痛点。CentOS 仓库自带的依赖库版本有点低，需要手动安装高版本，安装 rgdal 包没有问题，而 sf 包目前处于一种活跃开发状态，且是空间数据分析的新标准，使用的都是新版本的依赖库。
 
 
-## 安装 TinyTeX {#fedora-tinytex}
+### 安装 TinyTeX {#fedora-tinytex}
 
 从最初的命令行开始
 
@@ -823,7 +842,7 @@ loaded via a namespace (and not attached):
 [1] compiler_3.4.3 tools_3.4.3    tinytex_0.2.3
 ```
 
-## 安装 RStudio {#fedora-rstudio}
+### 安装 RStudio Server {#fedora-rstudio}
 
 以管理员账户登录系统，下载安装 RStudio Server 开源版本
 
@@ -844,7 +863,7 @@ chmod -v u-w /etc/sudoers # 收回权限
 ```
 
 
-# Docker {#docker}
+## Docker {#docker}
 
 Docker 相比虚拟机占用资源少，拉起来就可以用，虚拟机还需要各种环境配置，很多与R有关的项目现在都提供Docker镜像，大大方便了开发人员和数据分析师。当然 docker 的环境隔离性，对主机系统侵入小，即使挂了，再拉起来也就是了，安全性和可靠性高。
 
@@ -865,7 +884,7 @@ Docker 相比虚拟机占用资源少，拉起来就可以用，虚拟机还需�
     + Kubernetes 容器集群管理 <https://www.kubernetes.org.cn>
     + 参见高策的博客 <http://gaocegege.com>
 
-## Pull Images
+### 拉取镜像 {#pull-images}
 
 重复实现的关键是拉取一个现有的 Docker 镜像，可以免去安装和环境配置的诸多麻烦。
 
@@ -909,7 +928,7 @@ docker exec -it 6f932357e6ce /bin/bash
 由于要安装 rstan 和 rstanarm 包，编译的过程中需要比较大的内存空间，默认分配给 docker 的内存要增加到 4 Gb，也就装个软件，大一点的基于 stan 实现的模型，还是适合放在大机器上跑，笔电可以跑跑简单的模型，学习一下就可以了。
 
 
-## Docker (Windows 8.1) {#windows8}
+### 安装 Docker (Windows 8.1) {#install-docker-windows-8.1}
 
 对于 Windows 8.1 来说，需要下载 [Docker ToolBox for Windows](https://docs.docker.com/toolbox/toolbox_install_windows/) 和 [Boot2Docker](https://github.com/boot2docker/boot2docker)^[目前官方已进入维护模式]，由于 Docker for Windows 需要 Windows 10 Pro，如图 \@ref(fig:docker-installation-error)所示
 
@@ -999,7 +1018,7 @@ docker-machine ssh default
 knitr::include_graphics(path = "figures/04g-docker-pull-image-git-bash.png")
 ```
 
-## PuTTY {#putty-login-docker}
+### PuTTY 登陆虚拟机和 Docker {#putty-login-docker}
 
 首先在 PuTTY 中设置分配给 Docker 的 IP
 
@@ -1027,7 +1046,7 @@ knitr::include_graphics(path = c("figures/04m-docker-pull-image-via-putty.png",
 ```
 
 
-## Docker (CentOS)
+### 安装 Docker (CentOS) {#docker-on-centos}
 
 安装必要的依赖
 
@@ -1058,13 +1077,13 @@ sudo sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc
 sudo yum install docker-ce
 ```
 
-查看可用的docker-ce版本
+查看可用的 docker-ce 版本，安装目前最新版本 `docker-ce.x86_64 0:17.09.0.ce-1.el7.centos`
 
 ```bash
 yum list docker-ce --showduplicates | sort -r
 ```
 
-安装的是目前最新版本 `docker-ce.x86_64 0:17.09.0.ce-1.el7.centos`         
+### 拉取镜像 {#pull-images}
 
 拉取 Docker 镜像 `rocker/geospatial`，创建指定用户及密码，授予用户 root 权限，设置共享目录，每次启动都检查更新、配置IP等造成启动时间长，再配置自己的环境
 
@@ -1087,9 +1106,38 @@ rocker/geospatial
 knitr::include_graphics(path = "figures/04f-docker-centos.png")
 ```
 
-## 常用命令 {#common-commands}
+### 常用命令 {#common-commands}
 
 - 拉取 docker pull
 - 启动 docker start
 - 运行 docker run
 - 移除 docker rm(i)
+
+1. 移除容器和镜像
+
+查看容器  
+
+```bash
+docker ps -a
+```
+
+删除容器 `docker rm 容器 ID`
+
+```bash
+docker rm 6f932357e6ce
+```
+
+查看镜像 
+
+```bash
+docker images
+```
+
+删除镜像 
+
+`docker rmi 镜像 ID`
+
+```bash
+docker rmi 811281c54b23
+```
+
