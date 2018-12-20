@@ -6,7 +6,7 @@
 sudo apt-add-repository -y "deb https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/linux/ubuntu trusty-cran35/"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 
-sudo add-apt-repository ppa:marutter/c2d4u3.5
+sudo add-apt-repository -y ppa:marutter/c2d4u3.5
 sudo add-apt-repository -y "ppa:marutter/rrutter3.5"
 sudo add-apt-repository -y "ppa:opencpu/jq"
 sudo add-apt-repository -y "ppa:ubuntugis/ppa"
@@ -15,7 +15,6 @@ sudo apt-add-repository -y "ppa:opencpu/imagemagick"
 sudo apt-add-repository -y "ppa:ubuntugis/ubuntugis-unstable"
 sudo apt-add-repository -y "ppa:octave/stable"
 sudo apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
-sudo add-apt-repository -y ppa:git-core/ppa
 
 sudo add-apt-repository --remove ppa:ubuntu-toolchain-r/test
 ```
@@ -58,8 +57,6 @@ sudo yum install jags4 jags4-devel
 install.packages('rjags')
 ```
 
-
-
 ## R 
 
 在 Ubuntu/Debian 系统上安装最新开发版，请看 <https://cran.r-project.org/bin/linux/debian/index.html>
@@ -95,23 +92,6 @@ strsplit(Sys.getenv("PATH"),split = .Platform$path.sep) %>% unlist
 
 Windows 下安装指导见《R语言忍者秘笈》的第二章^[<https://bookdown.org/yihui/r-ninja/setup.html>]
 
-推荐没事多翻翻官网 [FAQ 文档](https://mirrors.tuna.tsinghua.edu.cn/CRAN/doc/FAQ/R-FAQ.html) 以及6本自带的手册
-
-* **An Introduction to R** (R-intro) includes information on data types, programming elements, statistical modeling and graphics. This document is based on the **Notes on S-PLUS** by Bill Venables and David Smith.
-    + 介绍数据类型，编程基础，统计模型和图形
-* **Writing R Extensions** (R-exts) currently describes the process of creating R add-on packages, writing R documentation, R’s system and foreign language interfaces, and the R API.
-    + 描述创建扩展包、写R包文档的过程，介绍 R 系统，外部语言接口以及 R 的API
-* **R Data Import/Export** (R-data) is a guide to importing and exporting data to and from R.
-    + 从 R 导入和导出数据
-* **The R Language Definition** (R-lang), a first version of the *Kernighan & Ritchie of R*, explains evaluation, parsing, object oriented programming, computing on the language, and so forth.
-    + 介绍 R 语言程序设计，解释计算、解析、面向对象编程以及计算
-* **R Installation and Administration** (R-admin).
-    + R 安装和管理
-* **R Internals** (R-ints) is a guide to R’s internal structures. (Added in R 2.4.0.)
-    + R 内部结构指南
-
-Hadley Wickham 正在写文档介绍 [Documentation for R's internal C API](https://github.com/hadley/r-internals)
-
 - 从源码编译 R 的需求在哪呢？
 
 1. 爱折腾的极客：玩配置，学习 make 相关工具和 Linux 世界的依赖
@@ -136,73 +116,10 @@ RUN mkdir ~/.fonts \
   && fc-cache -fv ~/.fonts \
 ```
 
-文泉驿字体
-
-```
-wqy-unibit-fonts wqy-microhei-fonts wqy-zenhei-fonts
-```
-
 * 安装 Microsoft R Open <https://mran.microsoft.com/documents/rro/installation#revorinst-lin>
 * 安装 Machine Learning Server
     + [在线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-install)
     + [离线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-offline)
-
-	
- https://cran.r-project.org/bin/linux/debian/index.html
-
-1. 设置路径
-
-```bash
-mkdir -p ~/svn/R
-export RTOP=~/svn/R
-export REPOS=https://svn.r-project.org/R
-```
-
-2. 同步远程开发版代码
-
-```bash
-cd $RTOP
-svn co $REPOS/trunk r-devel/source
-mkdir $RTOP/r-devel/build
-```
-
-3. 下一次只需同步源码仓
-
-```bash
-cd $RTOP/r-devel/source
-svn up
-```
-
-4. 推荐级别的 R 包源码
-
-```bash
-cd $RTOP/r-devel/source/tools
-./rsync-recommended
-```
-
-5. configure 准备编译
-
-```bash
-cd $RTOP/r-devel/build
-../source/configure
-```
-
-6. 编译检查
-
-```bash
-make
-make check
-make pdf
-make info
-```
-
-7. 建立快捷方式
-
-```bash
-cd /usr/local/bin
-ln -s /$RTOP/r-devel/build/bin/R R-devel
-ln -s /$RTOP/r-devel/build/bin/Rscript Rscript-devel
-```
 
 ## GCC 
 
@@ -245,6 +162,15 @@ sudo apt-get update
 ```r
 help('modules')
 ```
+
+## JASP
+
+[JASP][jasp] 是一款免费的统计软件[^jasp]，主要由阿姆斯特丹大学 E. J. Wagenmakers 教授[^ej] 领导的团队维护开发，实现了很多贝叶斯和频率统计方法，相似的图形用户界面使得 JASP 可以作为 SPSS 的替代，目前实现的功能见 <https://jasp-stats.org/current-functionality/>
+
+[jasp]: https://jasp-stats.org
+[^jasp]: 源代码托管在 Github 上 https://github.com/jasp-stats/jasp-desktop
+[^ej]: 他的个人主页 https://www.ejwagenmakers.com/ 和博客 https://www.bayesianspectacles.org/
+
 
 ## Lapack
 

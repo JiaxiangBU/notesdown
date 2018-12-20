@@ -71,6 +71,24 @@ knitr::include_graphics('images/peaks3D.png', dpi = NA)
     + blogdown: Creating Websites with R Markdown <https://bookdown.org/yihui/blogdown/>
     + R Markdown: The Definitive Guide <https://bookdown.org/yihui/rmarkdown/>
 
+
+推荐没事多翻翻官网 [FAQ 文档](https://mirrors.tuna.tsinghua.edu.cn/CRAN/doc/FAQ/R-FAQ.html) 以及6本自带的手册
+
+* **An Introduction to R** (R-intro) includes information on data types, programming elements, statistical modeling and graphics. This document is based on the **Notes on S-PLUS** by Bill Venables and David Smith.
+    + 介绍数据类型，编程基础，统计模型和图形
+* **Writing R Extensions** (R-exts) currently describes the process of creating R add-on packages, writing R documentation, R’s system and foreign language interfaces, and the R API.
+    + 描述创建扩展包、写R包文档的过程，介绍 R 系统，外部语言接口以及 R 的API
+* **R Data Import/Export** (R-data) is a guide to importing and exporting data to and from R.
+    + 从 R 导入和导出数据
+* **The R Language Definition** (R-lang), a first version of the *Kernighan & Ritchie of R*, explains evaluation, parsing, object oriented programming, computing on the language, and so forth.
+    + 介绍 R 语言程序设计，解释计算、解析、面向对象编程以及计算
+* **R Installation and Administration** (R-admin).
+    + R 安装和管理
+* **R Internals** (R-ints) is a guide to R’s internal structures. (Added in R 2.4.0.)
+    + R 内部结构指南
+	
+Hadley Wickham 正在写文档介绍 [Documentation for R's internal C API](https://github.com/hadley/r-internals)
+	
 <!-- The R-Box 的创意来自 VirtualBox OSE，R-Box 容纳的是R基础、统计图形、统计计算、优化算法、统计模型等 -->
 <!-- ```{r vbox-ose, echo=FALSE, out.width="55%", fig.cap="The R-Box", fig.link='https://www.virtualbox.org/wiki/Downloads'} -->
 <!-- knitr::include_graphics(path = "images/VBoxOSE.png") -->
