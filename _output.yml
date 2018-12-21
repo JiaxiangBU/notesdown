@@ -26,5 +26,6 @@ bookdown::pdf_book:
   toc_appendix: yes
   highlight_bw: no
   template: latex/default.latex
+  quote_footer: ["\\hspace*{\\fill} ", ""]
 #bookdown::epub_book: 
 #  dev: svglite

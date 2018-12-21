@@ -45,17 +45,13 @@ knitr::opts_chunk$set(
 knitr::include_graphics('images/peaks3D.png', dpi = NA)
 ```
 
-> 荃者所以在鱼，得鱼而忘荃；蹄者所以在兔；得兔而忘蹄；言者所以在意，得意而忘言。吾安得夫忘言之人而与之言哉！
+> 荃者所以在鱼，得鱼而忘荃；蹄者所以在兔；得兔而忘蹄；言者所以在意，得意而忘言。吾安得夫忘言之人而与之言哉！  
+> --- 摘自 《庄子·杂篇·物》
 
-```{block2, type = 'flushright', html.tag = 'p'}
---- 摘自 《庄子·杂篇·物》
-```
 
-> The fish trap exists because of the fish; once you've gotten the fish, you can forget the trap. The rabbit snare exists because of the rabbit; once you've gotten the rabbit, you can forget the snare. Words exist because of meaning; once you've gotten the meaning, you can forget the words. Where can I find a man who has forgotten words so I can have a word with him ? ^[Translated by [Eric D. Kolaczyk](http://math.bu.edu/people/kolaczyk/teach.html)]
+> The fish trap exists because of the fish; once you've gotten the fish, you can forget the trap. The rabbit snare exists because of the rabbit; once you've gotten the rabbit, you can forget the snare. Words exist because of meaning; once you've gotten the meaning, you can forget the words. Where can I find a man who has forgotten words so I can have a word with him ? ^[Translated by [Eric D. Kolaczyk](http://math.bu.edu/people/kolaczyk/teach.html)]  
+> --- Chuang Tzu
 
-```{block2, type = 'flushright', html.tag = 'p'}
---- Chuang Tzu
-```
 
 1. 把平时遇到的问题分类汇总形成一本笔记，用以时常查看和更新。
 2. 网罗精美的案例，学习之，应用之

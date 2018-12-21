@@ -76,6 +76,43 @@ plot( rnorm( 10 ) )
 plot( rnorm( 10 ) )
 ```
 
+* here is my first
+  list item.
+* and my second.
+
+轻微强调 This text is _emphasized with underscores_, and this
+is *emphasized with asterisks*.
+
+特别强调 This is **strong emphasis** and __with underscores__.
+
+删除线 This ~~is deleted text.~~
+
+上下标 H~2~O is a liquid.  2^10^ is 1024. C^137^ 是一种放射性元素
+
+## 引用
+
+注意在引用末尾空两格，出处另起一行
+
+> Trellis graphics are a bit like hash functions: 
+> you can be close to the target, but get a far-off result.[^lattice-panel]   
+> --- Dieter Menne
+
+[^lattice-panel]: (about problems with creating a suitable lattice panel function) R-help (August 2008)
+
+> If you imagine that this pen is Trellis, then Lattice is not this pen.[^lattice-pen]  
+> --- Paul Murrell
+
+[^lattice-pen]: (on the difference of Lattice (which eventually was called grid) and Trellis) DSC 2001, Wien (March 2001)
+
+> You're overlooking something like line 800 of the documentation for xyplot. [...] 
+> It's probably in the R-FAQ as well, 
+> since my original feeling was that this behaviour was chosen 
+> in order to confuse people and see how many people read the FAQ... :) [^xyplot]  
+> --- Barry Rowlingson 
+
+[^xyplot]: (about the fact that lattice objects have to be print()ed) R-help (May 2005)
+
+R 提供了两套图形系统，分别是 graphics 包提供的基础绘图系统和 grid 包提供的栅格绘图系统，后者主要以两个 R 包为大家所熟知，一个是 lattice 包，另一个是 ggplot2 包。
 
 - 公式
 
