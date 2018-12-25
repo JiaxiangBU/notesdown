@@ -154,16 +154,21 @@ saveWorkbook(wb, file = "example.xlsx", overwrite = TRUE)
 
 ### cut
 
-```
+```{r}
 Z <- stats::rnorm(10000)
 table(cut(Z, breaks = -6:6))
 # 条形图
 plot(cut(Z, breaks = -6:6))
+```
+
+```{r}
 # 落在区间 [-6，6] 内的点
 sum(table(cut(Z, breaks = -6:6, labels = FALSE)))
 # 直方图
 hist(Z, breaks = -6:6)
+```
 
+```{r}
 aaa <- c(1,2,3,4,5,2,3,4,5,6,7)
 cut(aaa, 3)
 cut(aaa, 3, dig.lab = 4, ordered = TRUE)
@@ -171,13 +176,12 @@ cut(aaa, 3, dig.lab = 4, ordered = TRUE)
 labs <- levels(cut(aaa, 3))
 cbind(lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
       upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) ))
-
 ```
 
 - findInterval
 - embed
 
-## 数据库
+## 数据库 {#database}
 
 RMariaDB: Implements a 'DBI'-compliant interface to 'MariaDB' (<https://mariadb.org/>) and 'MySQL' (<https://www.mysql.com/>) databases. <https://github.com/r-dbi/RMariaDB>
 
@@ -188,20 +192,20 @@ RMariaDB: Implements a 'DBI'-compliant interface to 'MariaDB' (<https://mariadb.
 # 读取一系列同一格式的数据文件
 read_list <- function(list_of_datasets, read_func){
 
-        read_and_assign <- function(dataset, read_func){
-                dataset_name <- as.name(dataset)
-                dataset_name <- read_func(dataset)
-        }
+	read_and_assign <- function(dataset, read_func){
+			dataset_name <- as.name(dataset)
+			dataset_name <- read_func(dataset)
+	}
 
-        # invisible is used to suppress the unneeded output
-        output <- invisible(
-                sapply(list_of_datasets,
-                           read_and_assign, read_func = read_func, simplify = FALSE, USE.NAMES = TRUE))
+	# invisible is used to suppress the unneeded output
+	output <- invisible(
+			sapply(list_of_datasets,
+					   read_and_assign, read_func = read_func, simplify = FALSE, USE.NAMES = TRUE))
 
-        # Remove the extension at the end of the data set names
-        names_of_datasets <- c(unlist(strsplit(list_of_datasets, "[.]"))[c(T, F)])
-        names(output) <- names_of_datasets
-        return(output)
+	# Remove the extension at the end of the data set names
+	names_of_datasets <- c(unlist(strsplit(list_of_datasets, "[.]"))[c(T, F)])
+	names(output) <- names_of_datasets
+	return(output)
 }
 
 data_files <- list.files(pattern = ".csv")  # 提取文件名.csv格式文件

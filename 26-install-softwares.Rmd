@@ -319,7 +319,7 @@ tar xzf /tmp/tinytex.tar.gz -C ~ .TinyTeX
 修改 .bashrc 文件将 TinyTeX 的位置添加到系统路径里
 
 ```bash
-export PATH=/$HOME/.TinyTeX/bin/x86_64-linux:$PATH
+export PATH=$HOME/.TinyTeX/bin/x86_64-linux:$PATH
 ```
 
 更新 .bashrc 使得修改生效
@@ -464,7 +464,7 @@ sudo systemctl status sshd
 ### 安装 R
 
 ```bash
-sudo yum install epel-release
+sudo yum install -y epel-release
 sudo yum install -y R
 ```
 
@@ -528,14 +528,12 @@ tlmgr install inconsolata ctex l3kernel l3packages \
    ms zapfding fancyvrb booktabs
 ```
 
-### 编译 R {#compile-on-centos}
-
 配置 R 的命令
 
 ```bash
 ./configure --enable-R-shlib --enable-byte-compiled-packages \
   --enable-BLAS-shlib --enable-memory-profiling 
-
+make -j 2 all
 make 
 sudo make install
 ```
@@ -574,7 +572,7 @@ curl -fLo ~/R-devel/doc/manual/texinfo.tex https://ftp.gnu.org/gnu/texinfo/texin
 sudo yum install netcdf-devel hdf5-devel armadillo-devel \
     freexl-devel unixODBC-devel geos-devel \
     gdal-devel proj-devel proj-epsg proj-nad \
-    geos-devel udunits2-devel fftw fftw-devel gcc-objc gcc-objc++
+    udunits2-devel fftw fftw-devel 
 ```
 
 - 配置 rgdal
