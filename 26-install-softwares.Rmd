@@ -27,34 +27,7 @@ sudo add-apt-repository --remove ppa:ubuntu-toolchain-r/test
 
 ```bash
 sudo add-apt-repository -y ppa:git-core/ppa
-sudo apt update && apt install git
-```
-
-- CentOS
-
-```bash
-sudo sh -c "$(curl -fsSL https://setup.ius.io/)"
-sudo yum update && sudo yum install git2u
-```
-
-## TeXLive
-
-从这里安装 https://github.com/FluidityProject/yum-centos7-texlive
-
-```bash
-sudo curl -fLo /etc/yum.repos.d/texlive.repo https://raw.githubusercontent.com/FluidityProject/yum-centos7-texlive/master/texlive-centos7.repo
-sudo yum update && sudo yum install R
-```
-
-## JAGS
-
-```bash
-sudo curl -fLo /etc/yum.repos.d/jags.repo http://download.opensuse.org/repositories/home:/cornell_vrdc/CentOS_7/home:cornell_vrdc.repo
-sudo yum install jags4 jags4-devel
-```
-
-```r
-install.packages('rjags')
+sudo apt update && sudo apt install git
 ```
 
 ## R 
@@ -84,12 +57,6 @@ sudo add-apt-repository ppa:marutter/c2d4u3.5
 sudo apt-get update
 ```
 
-查询 PATH 环境变量包含的软件路径
-
-```{r}
-strsplit(Sys.getenv("PATH"),split = .Platform$path.sep) %>% unlist
-```
-
 Windows 下安装指导见《R语言忍者秘笈》的第二章^[<https://bookdown.org/yihui/r-ninja/setup.html>]
 
 - 从源码编译 R 的需求在哪呢？
@@ -107,39 +74,10 @@ cat(readLines("Dockerfile", encoding = "UTF-8") ,sep = "\n")
 
 这种方式可以安装到最新版的 R，同时省去了自己配置安装过程中的麻烦，只是系统自带的 texlive 还是比较旧，如何安装 tlmgr 管理器，安装新的 TeX 包到之前的位置值得考虑，主要目的是为中文的 R Markdown 文档服务。
 
-Pandoc 提供的 LaTeX 文类，是希望用户在 YAML 指定 CJKmainfont 等，显式地安装系统中文字体供使用，楷体和宋体，文泉驿黑体都是系统自带的。要我说可以用思源黑体和宋体，或者自己拷贝一份中文字体到 `~/.fonts` 然后刷新，就是添加这样一段代码，这种做法使用最广
-
-```
-RUN mkdir ~/.fonts \
-  && curl -o ~/.fonts/Inconsolata-Bold.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Bold.ttf \
-  && curl -o ~/.fonts/Inconsolata-Regular.ttf https://raw.githubusercontent.com/google/fonts/master/ofl/inconsolata/Inconsolata-Regular.ttf \
-  && fc-cache -fv ~/.fonts \
-```
-
 * 安装 Microsoft R Open <https://mran.microsoft.com/documents/rro/installation#revorinst-lin>
 * 安装 Machine Learning Server
     + [在线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-install)
     + [离线安装](https://docs.microsoft.com/en-us/machine-learning-server/install/machine-learning-server-linux-offline)
-
-## GCC 
-
-CentOS 7 默认版本是 gcc-4.8.5
-
-```bash
-sudo yum install centos-release-scl-rh
-sudo yum install devtoolset-4-gcc devtoolset-4-gcc-c++
-source /opt/rh/devtoolset-4/enable
-
-options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
-options("repos" = c(CRAN="https://mirrors.tuna.tsinghua.edu.cn/CRAN/"))
-
-# gcc 4.8.2
-rpm --import http://linuxsoft.cern.ch/cern/slc6X/x86_64/RPM-GPG-KEY-cern
-wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo
-sudo yum install devtoolset-2-toolchain
-sudo yum install devtoolset-2-gcc  devtoolset-2-gcc-c++
-source /opt/rh/devtoolset-2/enable
-```
 
 ## Python
 
@@ -282,18 +220,6 @@ wget https://github.com/gohugoio/hugo/releases/download/v0.45/hugo_0.45_Linux-64
 sudo gdebi hugo_0.45_Linux-64bit.deb
 ```
 
-## zsh {#zsh}
-
-
-Zshell 是一个比 bash 更好用的终端
-
-在 CentOS/Fedora 下
-
-```bash
-sudo yum update && sudo yum -y install zsh git
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
 ## TinyTeX {#tinytex}
 
 - Travis 安装
@@ -416,63 +342,8 @@ sudo /etc/init.d/ssh start
 ps -aux | grep ssh
 ```
 
-## CentOS 7 虚拟机 {#centos7}
+### 安装 R 包
 
-- 配置网络
-
-```bash
-sudo vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
-sudo vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
-```
-
-自动获取IP，只需将 ONBOOT=no 改为 ONBOOT=yes，然后重启网络
-
-```bash
-sudo service network restart
-```
-
-然后更新 yum  
-
-```bash
-sudo yum update 
-sudo yum groupinstall "Development Tools" 
-```
-
-删除之前的内核
-
-```bash
-rpm -qa | grep kernel
-sudo yum remove kernel-3.10.0-693.el7.x86_64
-```
-
-配置 VBox 的网卡2的网络为 仅主机(Host-Only)网络,网卡1的配置不变 
-
-```bash
-sudo systemctl stop firewalld # 关闭防火墙 
-sudo systemctl disable firewalld.service # 禁止启动
-```
-
-查看防火墙和 sshd 状态
-
-```bash
-sudo firewall-cmd --state #查看默认防火墙状态
-sudo systemctl status sshd 
-```
-
-虚拟机能 ping 通主机，主机不能 ping 通虚拟机，原因是 VirtualBox Host-Only Network #3 与虚拟机 ip 不在同一网段，修改 VirtualBox Host-Only Network #3 的配置为自动获取
-
-### 安装 R
-
-```bash
-sudo yum install -y epel-release
-sudo yum install -y R
-```
-
-R 包默认存放目录添加写权限，其他 R 包 放 site-library
-
-```bash
-sudo chmod -R +777 /usr/lib64/R/library
-```
 
 安装一些依赖
 
@@ -484,8 +355,6 @@ sudo yum install -y libcurl-devel openssl-devel libssh2-devel \
    mesa-libGLU mesa-libGLU-devel libicu-devel
 ```  
 
-- 安装 R 包
-
 ```r
 install.packages(c(
    'curl', 'openssl', 'git2r', 'xml2', 
@@ -493,61 +362,9 @@ install.packages(c(
 ))
 ```
 
-### 安装 RStudio Server
-
-```bash
-wget https://download2.rstudio.org/rstudio-server-rhel-1.1.456-x86_64.rpm
-sudo yum install rstudio-server-rhel-1.1.456-x86_64.rpm
-```
-
-- 配置 rstudio
-
-如果是自己编译安装 R，就需要手动这一步
-
-```bash
-sudo vi /etc/rstudio/rserver.conf 
-# 添加一行 
-rsession-which-r=/usr/local/bin/R
-```
-
-- rstudio 手册
-
-http://docs.rstudio.com/ide/server-pro/
-
-将 Windows 下的字体拷贝到 CentOS 系统上
-
-- 下载 R 源码包
-
-```bash
-wget https://mirrors.tuna.tsinghua.edu.cn/CRAN/src/base/R-3/R-3.5.1.tar.gz
-tar -xzvf R-3.5.1.tar.gz
-```
-
 ```bash
 tlmgr install inconsolata ctex l3kernel l3packages \
    ms zapfding fancyvrb booktabs
-```
-
-配置 R 的命令
-
-```bash
-./configure --enable-R-shlib --enable-byte-compiled-packages \
-  --enable-BLAS-shlib --enable-memory-profiling 
-make -j 2 all
-make 
-sudo make install
-```
-
-使用 OpenBLAS  `--with-blas="-lgoto2"`
-
-```bash
-./configure --enable-R-shlib --enable-byte-compiled-packages \
-  --enable-BLAS-shlib --enable-memory-profiling \
-  --with-blas="-lopenblas" 
-```
-
-```bash  
-sudo yum install pango pango-devel pcre pcre-devel pcre2 pcre2-devel
 ```
 
 安装 texinfo 编译手册
@@ -578,7 +395,7 @@ sudo yum install netcdf-devel hdf5-devel armadillo-devel \
 - 配置 rgdal
 
 ```bash
-./configure --with-armadillo=yes
+./configure
 make 
 sudo make install
 ```
@@ -615,7 +432,6 @@ sudo /opt/TinyTeX/bin/*/tlmgr path add
 
 ```r
 Rscript -e "tinytex::r_texmf()" 
-options(bitmapType = 'cairo')
 ```
 
 ```bash
