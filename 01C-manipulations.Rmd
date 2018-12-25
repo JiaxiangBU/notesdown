@@ -10,13 +10,6 @@ file.show(rinternals)
 
 ## 正则匹配
 
-字符串处理 [Handling Strings with R](http://www.gastonsanchez.com/r4strings/) Gaston Sanchez 著
-
-正则表达式 is ervrywhere，is 高级/hacker's skill 技能
-
-- [正则表达式速查表 -- Python3](https://www.dataquest.io/blog/large_files/python-regular-expressions-cheat-sheet.pdf)
-- [Online regex tester and debugger](https://regex101.com/)
-- [Regular expression operations](https://docs.python.org/3/library/re.html)
 
 以 CRAN 日志数据为例
 
@@ -97,9 +90,6 @@ with 和 within
 
 ### sapply
  
-### parallel
-
-
 https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family
 
 ```{r}
