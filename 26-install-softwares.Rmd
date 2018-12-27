@@ -154,61 +154,6 @@ Sys.which("octave")
 system("octave --version")
 ```
 
-
-## Pandoc {#pandoc}
-
-在 Pandoc 的开发仓库 GitHub 上下载 deb 包^[<https://github.com/jgm/pandoc/releases>] 
-
-```bash
-sudo apt-get install gdebi-core
-sudo gdebi pandoc-2.2.2.1-1-amd64.deb
-```
-
-## RStudio {#rstudio}
-
-安装 RStudio 或者 RStudio Server 请看官网介绍
-
--  <https://www.rstudio.com/products/rstudio/download/>
--  <http://docs.rstudio.com/ide/server-pro/>
-
-在 RStudio 官网^[<https://www.rstudio.com/products/rstudio/download/>] 下载最新的 RStudio 桌面版/服务器版 
-
-```bash
-wget https://download2.rstudio.org/rstudio-server-1.1.456-amd64.deb
-sudo gdebi rstudio-server-1.1.456-amd64.deb
-```
-
-设置 rstudio server 端口，在文件 `/etc/rstudio/rserver.conf` 下，设置
-
-```
-www-port=8080
-```
-
-获取机器的 IP 地址，如 192.168.106.3
-
-```bash
-ip addr
-```
-
-修改 rserver.conf 文件后需要重启才会生效，重启 rstudio server
-
-```bash
-sudo rstudio-server stop
-sudo rstudio-server start
-```
-
-从本地浏览器登陆 RStudio Server 网址 <http://192.168.106.3:8080/>
-
-http://docs.rstudio.com/ide/server-pro/
-
-## Calibre {#calibre}
-
-将 epub 转化为 mobi 格式
-
-```bash
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
-```
-
 ## HUGO {#hugo}
 
 在开发仓库下载最新发布的 deb 文件
