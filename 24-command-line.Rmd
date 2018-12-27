@@ -52,13 +52,10 @@ sudo apt install octave
 
 ```bash
 sudo apt-get install lsb-core
-```
-
-```bash
 lsb_release -a
 ```
 
-## LaTeX 包管理器 {#tlmgr}
+## tlmgr 管理器 {#tlmgr}
 
 LaTeX 包管理器说的其实是 tlmgr (TeXLive Manager)
 
@@ -71,37 +68,56 @@ base::system('tlmgr info --list --only-installed --data name,size', intern = TRU
 # or tinytex::tlmgr(c("info", "--list", "--only-installed", "--data", "name,size"))
 ```
 
-tlmgr 管理器手册
-https://www.tug.org/texlive/doc/tlmgr.html#install-option-...-pkg
+[tlmgr 管理器手册](https://www.tug.org/texlive/doc/tlmgr.html#install-option-...-pkg)
 
 
-### 安装和更新 {#install-update}
+1. 安装和更新
 
-```bash
-# 就近选择 CTAN 镜像站点
-tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
-tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
-# 可更新的 TeX 包列表
-tlmgr update --list
-# 更新所有已经安装的 TeX 包
-tlmgr update --all
-# 更新 tlmgr 管理器本身
-tlmgr update --self
-# 安装
-tlmgr install ctex fandol
-# 列出套装
-tlmgr list schemes
-tlmgr list collections
-# 列出已经安装的 TeX 包
-tlmgr list --only-installed
-```
+	```bash
+	# 就近选择 CTAN 镜像站点
+	tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+	tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+	# 可更新的 TeX 包列表
+	tlmgr update --list
+	# 更新所有已经安装的 TeX 包
+	tlmgr update --all
+	# 更新 tlmgr 管理器本身
+	tlmgr update --self
+	# 安装
+	tlmgr install ctex fandol
+	# 列出套装
+	tlmgr list schemes
+	tlmgr list collections
+	# 列出已经安装的 TeX 包
+	tlmgr list --only-installed
+	# 安装 GPG 公钥（只限Win/Mac）
+	tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
+	```
 
-## 查看文件
+2. 搜索
 
-```bash
-head -n 100 clientip.csv # 查看文件前100行
-tail -n 20 clientip.csv  # 查看文件后20行
-```
+	```bash
+	tlmgr search *what*
+	```
+
+	参数 `\*what\*` 是正则表达式
+
+	```{r}
+	# tlmgr search --file tikz.sty
+	tinytex::tlmgr_search('tikz.sty')
+	```
+
+	这样，我们就可以知道要使用 `\usepackage{tikz}` 就得先安装 **pgf** 包，此外，管道命令也是支持的
+
+	```bash
+	tlmgr search --file font | grep math
+	```
+	
+	查询 CTAN 仓库列表
+
+	```bash
+	tlmgr repository list
+	```
 
 ## 挂载共享文件夹
 
@@ -109,161 +125,104 @@ tail -n 20 clientip.csv  # 查看文件后20行
 sudo mount -t vboxsf -o uid=1000,gid=1000 Downloads /home/share
 sudo chmod -R 777 ./share  给目录添加权限
 ```
-## tar 压缩文件 {#tar}
 
-```bash
-tar -cjf clientip.tar.bz2 clientip.csv
-```
-## cp 到共享文件夹 {#cp}
+## 复制文件 {#cp}
+
+复制到当前文件夹下
 
 ```bash
 sudo cp /home/cloud/clientip.tar.bz2 ./
-sudo cp /home/cloud/clientipSQL.tar.bz2 ./
-
-sudo cp /home/cloud/clientip.csv ./  #  复制到当前文件夹下
-sudo cp /home/cloud/clientip.SQL ./
 ```
-
-安装 GPG 公钥（只限Win/Mac）
-
-```bash
-tlmgr --repository http://www.preining.info/tlgpg/ install tlgpg
-```
-
-## 搜索 {#search}
-
-```bash
-tlmgr search *what*
-```
-
-- 参数 \*what\* 是正则表达式
-
-```{r}
-# tlmgr search --file tikz.sty
-tinytex::tlmgr_search('tikz.sty')
-```
-
-这样，我们就可以知道要使用 `\usepackage{tikz}` 就得先安装 **pgf** 包，此外，管道命令也是支持的
-
-```bash
-tlmgr search --file font | grep math
-```
-查询 CTAN 仓库列表
-
-```bash
-tlmgr repository list
-```
-
-
-## 文件操作 {#File-Manipulation}
 
 Linux 命令行工具是非常强大的^[<https://www.datascienceatthecommandline.com/>]。
 
 1. 查看文件
 
-```bash
-ls -a
-```
+	```bash
+	ls -a
+	```
 
-列出目录下所有文件
+	列出目录下所有文件
 
-```bash
-ls -1 
-```
-一行显示一个文件或文件夹
+	```bash
+	ls -1 
+	```
 
-```bash
-ls -l 
-```
+	一行显示一个文件或文件夹
 
-按从 aA-zZ 的顺序列出所有文件以及所属权限
+	```bash
+	ls -l 
+	```
 
-```bash
-ls -rl 
-```
+	按从 aA-zZ 的顺序列出所有文件以及所属权限
 
-相比于 `ls -l` 文件是逆序排列
+	```bash
+	ls -rl 
+	```
 
-```bash
-ls -lh
-```
+	相比于 `ls -l` 文件是逆序排列
 
-列出文件或文件夹（不包含子文件夹）的大小 
+	```bash
+	ls -lh
+	```
 
-```bash
-ls -ld 
-```
+	列出文件或文件夹（不包含子文件夹）的大小 
 
-列出当前目录本身，而不是其所包含的内容
+	```bash
+	ls -ld 
+	```
 
-2. 创建文件夹
+	列出当前目录本身，而不是其所包含的内容
 
-```bash
-mkdir images
-```
+1. 创建文件（夹）
 
-创建文件用 `touch` 如 `touch .Rprofile` 
+	```bash
+	mkdir images
+	```
 
-```bash
-# 删除文件夹及子文件夹，递归删除
-rm -rf images/
-# 删除文件
-rm .Rprofile
-```
+	创建文件用 `touch` 如 `touch .Rprofile` 
 
-3. 解压和压缩
+	```bash
+	# 删除文件夹及子文件夹，递归删除
+	rm -rf images/
+	# 删除文件
+	rm .Rprofile
+	```
 
-tar 解压
+1. 移动文件
 
-```bash
-tar -xzvf R-3.5.1.tar.gz
-```
+	在当前目录下
 
-其中，`-v` 显示解压后的文件
+	```bash
+	# 移动文件夹 images 下的所有文件到 figures 文件夹下
+	mv images/* figures/
+	# images 文件夹移动到 figures 文件夹下
+	mv images/ figures/
+	# 移动特定的文件
+	mv images/*.png figures/
+	```
 
-tar 压缩
+	同一目录下有两个文件 `R-3.5.1.tar.gz` 未下载完整 和 `R-3.5.1.tar.gz.1` 完全下载
 
-```bash
-tar -czvf rstan.tar.gz rstan/
-```
+	```bash
+	# 删除 R-3.5.1.tar.gz
+	rm R-3.5.1.tar.gz
+	# 重命名 R-3.5.1.tar.gz.1 
+	mv R-3.5.1.tar.gz.1  R-3.5.1.tar.gz
+	```
 
-当前目录下，将 `rstan/` 目录压缩为 `rstan.tar.gz` 文件
+1. 查看文件大小
 
+	当前目录下各文件夹的大小， `-h` 表示人类可读的方式显示，如 Kb、Mb、Gb，`-d` 表示目录深度 `du --human-readable --max-depth=1 ./`
 
-4. 移动文件
+	```bash
+	du -h -d 1 ./
+	```
 
-在当前目录下
-
-```bash
-# 移动文件夹 images 下的所有文件到 figures 文件夹下
-mv images/* figures/
-# images 文件夹移动到 figures 文件夹下
-mv images/ figures/
-# 移动特定的文件
-mv images/*.png figures/
-```
-
-同一目录下有两个文件 `R-3.5.1.tar.gz` 未下载完整 和 `R-3.5.1.tar.gz.1` 完全下载
-
-```bash
-# 删除 R-3.5.1.tar.gz
-rm R-3.5.1.tar.gz
-# 重命名 R-3.5.1.tar.gz.1 
-mv R-3.5.1.tar.gz.1  R-3.5.1.tar.gz
-```
-
-5. 查看文件大小
-
-当前目录下各文件夹的大小， `-h` 表示人类可读的方式显示，如 Kb、Mb、Gb，`-d` 表示目录深度 `du --human-readable --max-depth=1 ./`
-
-```bash
-du -h -d 1 ./
-```
-
-```bash
-# 对当前目录下的文件/夹 按大小排序
-du -sh * | sort -nr
-```
+	```bash
+	# 对当前目录下的文件/夹 按大小排序
+	du -sh * | sort -nr
+	```
 
 ## Git 命令 {#Git}
 
@@ -297,8 +256,11 @@ git add -A
 ```bash
 git clone --depth=5 https://github.com/XiangyunHuang/cosx.org.git
 git submodule update --init --recursive
+```
 
-# 查看远程分支
+查看远程分支
+
+```bash
 cd cosx.org
 git remote -v
 ```
@@ -310,6 +272,7 @@ origin  https://github.com/XiangyunHuang/cosx.org.git (push)
 ```bash
 # 添加上流分支
 git remote add upstream https://github.com/cosname/cosx.org.git
+# 查看远程分支
 git remote -v
 ```
 ```
@@ -364,17 +327,18 @@ git push --set-upstream origin stan
 ```bash
 git init 
 git checkout -b gh-pages
-git remote add origin https://github.com/XiangyunHuang/home.git
+git remote add origin https://github.com/XiangyunHuang/uploads.git
 ```
+
 添加图片或者数据，并且 git add 和 commit 后
 
 ```bash
 git push --set-upstream origin gh-pages
 ```
 
-这样仓库 home 只包含 gh-pages 分支，数据地址即为以日期为分割线
+这样仓库 uploads 只包含 gh-pages 分支，数据地址即为以日期为分割线
 
-<https://xiangyunhuang.github.io/home/data/eqList2018_05_18.xls>
+<https://xiangyunhuang.github.io/uploads/data/eqList2018_05_18.xls>
 
 ### 回车换行 {#CRLF}
 
@@ -384,20 +348,20 @@ CR (Carriage Return) 表示回车，LF (Line Feed) 表示换行，Windows 下用
 git config --global core.autocrlf false
 ```
 
-添加子模块
+### 添加子模块
 
 ```bash
 git submodule add git://github.com/jgm/pandoc-templates.git templates
 ```
 
-克隆项目
+### 克隆项目
 
 ```bash
 git clone --depth=10 --branch=master --recursive \
     git@github.com:XiangyunHuang/pandoc4everything.git
 ```
 
-配置账户
+### 配置账户
 
 ```bash
 git config --global user.email "email"
@@ -407,7 +371,7 @@ echo "https://username:password@github.com" >> .git-credentials
 git config --global credential.helper store
 ```
 
-往空的 Github 仓库添加本地文件
+### 往空的 Github 仓库添加本地文件
 
 ```bash
 git init
@@ -417,7 +381,7 @@ git commit -m "balabala"
 git push -u origin master
 ```
 
-本地新建仓库推送至远程分支
+### 本地新建仓库推送至远程分支
 
 ```bash
 git remote add origin https://github.com/XiangyunHuang/notesdown.git
