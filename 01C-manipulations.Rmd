@@ -37,7 +37,7 @@ pkg <- utils::available.packages(repos = pkg_repos)
 pkg <- as.data.frame(pkg, stringsAsFactors = FALSE)
 
 pkg$Package
-download.packages("Rbooks", destdir = "~/",repos = "http://r-forge.r-project.org/")
+download.packages("Rbooks", destdir = "~/",repos = "https://r-forge.r-project.org/")
 ```
 
 
@@ -49,56 +49,6 @@ devtools::install_github("jonocarroll/butteRfly")
 my_socials <- collate_socials(user = c("jonocarroll", "carroll_jono", 4168169), 
                               socials = c("GitHub", "Twitter", "StackOverflow"))
 ```
-
-## 排序
-
-### order 
-
-### sort
-
-
-## 索引
-
-### which
-
-向量和矩阵中的操作
-
-### `[[`
-
-
-```r
-# which [] 索引性能比较
-
-n = 100000
-x = runif(n)
-i = logical(n)
-i[sample(n, n/4)] = TRUE
-microbenchmark::microbenchmark(x[i], x[which(i)], times = 1000)
-```
-
-## 分组
-
-by
-
-
-with 和 within
-
-
-## apply 
-
-### lapply
-
-### sapply
- 
-https://stackoverflow.com/questions/3505701/grouping-functions-tapply-by-aggregate-and-the-apply-family
-
-```{r}
-apropos("apply")
-```
-
-## 合并 
-
-### aggregate
 
 ## 映射 
 
