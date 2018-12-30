@@ -48,20 +48,6 @@ devtools::session_info("showtext")
 推荐 `devtools::session_info("package")` 而不是 `sessionInfo()`，尤其在遇到因为版本不对而带来错误的时候，如 <https://d.cosx.org/d/419765-showtext>
 ```
 
-## magick {#magick}
-
-在 Ubuntu 14.04 (trusty) or 16.04 (xenial) 可以获得最新的 libmagick++-dev 库
-
-```bash
-sudo add-apt-repository -y ppa:opencpu/imagemagick
-sudo apt-get update
-sudo apt-get install -y libmagick++-dev 
-```
-
-```{r}
-tools::dependsOnPkgs("magick")
-```
-
 ## V8 {#v8}
 
 Ubuntu
@@ -82,67 +68,6 @@ sudo yum install v8-314-devel
 tools::dependsOnPkgs("V8")
 ```
 
-## curl 
-
-```bash
-# curl RCurl 包
-sudo yum install libcurl-devel
-```
-## rJava {#rJava}
-
-**rJava** 开发仓库 <https://github.com/s-u/rJava> 确定安装了 JDK后， 以 root 权限运行
-
-```bash
-sudo R CMD javareconf
-```
-
-应该输出
-
-```
-Java interpreter : /usr/bin/java
-Java version     : 1.8.0_171
-Java home path   : /usr/lib/jvm/java-8-openjdk-amd64/jre
-Java compiler    : /usr/bin/javac
-Java headers gen.: /usr/bin/javah
-Java archive tool: /usr/bin/jar
-
-trying to compile and link a JNI program
-detected JNI cpp flags    : -I$(JAVA_HOME)/../include -I $(JAVA_HOME)/../include/linux
-detected JNI linker flags : -L$(JAVA_HOME)/lib/amd64/ser ver -ljvm
-gcc -I"/usr/local/lib/R/include" -DNDEBUG -I/usr/lib/jvm /java-8-openjdk-amd64/jre/../include -I/usr/lib/jvm/java -8-openjdk-amd64/jre/../include/linux  -I/usr/local/incl ude   -fpic  -g -O2  -c conftest.c -o conftest.o
-gcc -shared -L/usr/local/lib -o conftest.so conftest.o - L/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server  -ljvm
-
-
-JAVA_HOME        : /usr/lib/jvm/java-8-openjdk-amd64/jre
-Java library path: $(JAVA_HOME)/lib/amd64/server
-JNI cpp flags    : -I$(JAVA_HOME)/../include -I$(JAVA_HO ME)/../include/linux
-JNI linker flags : -L$(JAVA_HOME)/lib/amd64/server -ljvm
-Updating Java configuration in /usr/local/lib/R
-Done.
-```
-
-然后 `install.packages("rJava")`
-
-```{r}
-tools::dependsOnPkgs("rJava", 
-                     recursive = F, dependencies = "Imports")
-```
-
-## devtools {#devtools}
-
-开发仓库 <https://github.com/r-lib/devtools>
-
-```bash
-sudo apt-get install libncurses5-dev libreadline-dev libpcre3-dev \ 
-    zlib1g-dev libbz2-dev liblzma-dev libicu-dev libssh2-1-dev libgit2-dev
-```
-
-png 和 jpeg
-
-```bash
-sudo apt-get install libjpeg-dev libpng-dev
-```
-
 ## colorspace {#colorspace}
 
 从 [R-Forge](http://R-Forge.R-project.org) 安装开发版 **colorspace** 
@@ -150,24 +75,6 @@ sudo apt-get install libjpeg-dev libpng-dev
 ```{r, eval=packageVersion('colorspace') < "1.4.0"}
 install.packages("colorspace", repos = "http://R-Forge.R-project.org")
 ```
-
-## imager
-
-```bash
-sudo apt-get install libfftw3-dev libX11-dev libtiff-dev
-```
-
-CentOS
-
-```bash
-sudo yum install fftw-devel
-```
-
-```r
-install.packages('imager')
-```
-
-https://github.com/dahtah/imager
 
 ## sf (CentOS7) {#sf-centos}
 
@@ -334,19 +241,6 @@ sudo apt-get install libmpfr-dev
 install.packages("Rmpfr")
 ```
 
-## openssl {#openssl}
-
-```bash
-# PKI openssl 包
-sudo yum install openssl-devel
-```
-
-开发仓库 <https://github.com/jeroen/openssl>
-
-```bash
-sudo apt-get install -y libssl-dev
-```
-
 ## geojson
 
 ```bash
@@ -432,26 +326,6 @@ dieharder -d 15
 
 ```bash
 dieharder -d 15 -h
-```
-
-## rgl {#rgl}
-
-```bash
-sudo add-apt-repository ppa:marutter/rrutter
-sudo apt-get update
-sudo apt-get install r-cran-rgl
-```
-
-或者
-
-```bash
-sudo apt-get install libcgal-dev libglu1-mesa-dev libglu1-mesa-dev libx11-dev
-```
-
-CentOS 上安装 rgl
-
-```bash
-sudo yum install mesa-libGLU mesa-libGLU-devel
 ```
 
 ## INLA {#INLA}
