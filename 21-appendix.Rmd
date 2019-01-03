@@ -4,29 +4,12 @@
 
 # 机器学习 or 深度学习 {#deep-learning-library}
 
-- [RStudio/CentOS](http://192.168.132.3:8787/)
-- [RStudio/Base](http://192.168.141.3:8181/)
-- [RStudio/Rocker](http://192.168.99.100:8080/)
-- [RStudio/Xenial](http://192.168.56.101:8383/)
-- [RStudio/Fedora](http://192.168.9.3:8787/)
-
-- [(book) Python 最佳实践指南](https://pythonguidecn.readthedocs.io/zh/latest/)
-- [Python 中文文档](https://docs.python.org/zh-cn/3/)
-- [NLP-Zhang Yi](http://codewithzhangyi.com/)
-- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/)
-- [Natural Language Processing with Python](http://www.nltk.org/book/)
-- [前言 · Docker -- 从入门到实践](https://docker_practice.gitee.io/)
-- [book: The caret Package](https://topepo.github.io/caret/index.html)
-
 制作书签，首先下载安装好 python 如 minconda
 
 ```bash
 git clone git@github.com:kent666a/py-chrome-bookmarks-markdown.git
 python py-chrome-bookmarks-markdown.py filename.md
 ```
-
-caret (Classification And Regression Training) R package that contains misc functions for training and plotting classification and regression models
-https://topepo.github.io/caret
 
 Local Interpretable Model-Agnostic Explanations (R port of original Python package)
 https://github.com/thomasp85/lime
@@ -117,79 +100,22 @@ Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
 
 [Abien Fred Agarap](https://afagarap.me/) Statistical Analysis on E-Commerce Reviews, with Sentiment Classification using Bidirectional Recurrent Neural Network (RNN) 实现 keras 和 sklearn <https://github.com/AFAgarap/ecommerce-reviews-analysis>
 
-# 书单 {#book-list}
 
-- [Pro Git 中文第二版](https://git-scm.com/book/zh/v2) Scott Chacon, Ben Straub 著
-- [Advanced R 第二版](https://adv-r.hadley.nz/) Hadley Wickham 著
-- [Geocomputation with R](https://geocompr.robinlovelace.net/) Robin Lovelace, Jakub Nowosad, Jannes Muenchow 著
-- [Spatial Microsimulation with R](https://spatial-microsim-book.robinlovelace.net/) Robin Lovelace and Morgane Dumont 著
-- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) Yihui Xie, J. J. Allaire, Garrett Grolemund 著
-- [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/) Yihui Xie 著
-- [blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) Yihui Xie, Amber Thomas, Alison Presmanes Hill 著
 - [R: A Language and Environment for Statistical Computing](https://xiangyun.netlify.com/pdf/refman.pdf) The R Core Team 著
 - [LaTeX2e unofficial reference manual](http://tug.ctan.org/tex-archive/info/latex2e-help-texinfo/latex2e.html) [pdf 版](https://xiangyun.netlify.com/pdf/latex2e.pdf)
-- [Statistical Rethinking](http://xcelab.net/rm/statistical-rethinking/)  Richard McElreath 著
-- [Regression Modeling Strategies](http://biostat.mc.vanderbilt.edu/wiki/Main/RmS) Frank E Harrell Jr 著
-- [Applied Predictive Modeling](http://appliedpredictivemodeling.com/) Max Kuhn and Kjell Johnson 著
-- [Forecasting: Principles and Practice](https://www.otexts.org/fpp2/) Rob J Hyndman and George Athanasopoulos 著
-- [Applied Regression Analysis and Generalized Linear Models](https://socialsciences.mcmaster.ca/jfox/) 及书评 [JASA-review](https://socialsciences.mcmaster.ca/jfox/Books/Applied-Regression-2E/JASA-review.pdf) 附录、样章和书评位于目录 docs/John-Fox
-- [Introduction to Data Science](https://rafalab.github.io/dsbook/) Rafael A. Irizarry 著
-- [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering) Max Kuhn and Kjell Johnson
 
 # 主页 {#homepage}
 
-- [Eugene Joh 的博客](https://incidental-ideas.org/)
-- [Ilya Kashnitsky 的博客](https://ikashnitsky.github.io/)
-- [Max Woolf 的博客](http://minimaxir.com/)
-- [Yan Holtz 的 ggplot2 图库](https://www.r-graph-gallery.com/)
-- [Jianghao Wang (王江浩)](https://jianghao.github.io)
-- [Xinpeng Chen](https://chenxinpeng.github.io/)
+- [Christoph Molnar](https://christophm.github.io/)  https://machine-master.blogspot.ch/
 - [Arthur Charpentier](https://freakonometrics.github.io) 法语 精算 or [Arthur Charpentier](https://freakonometrics.hypotheses.org)
+- [Gaston Sanchez](http://www.gastonsanchez.com/)
 - [François Husson](https://francoishusson.wordpress.com/) 多元统计分析
 - [Jean-Paul Fox](http://www.jean-paulfox.com/) Bayesian response modeling
-- [Julian faraway](https://farawaystatistics.wordpress.com) INLA [When Small Data beats Big Data](http://people.bath.ac.uk/jjf23/papers/smallvbig.pdf)
-- [Shirin Glander](https://shirinsplayground.netlify.com/)
-- [Yihui Xie](https://yihui.name/)
-- [Beilei Bian](http://statsjoke.me)
-- [Miao Yu](https://yufree.cn/)
-- [Ce Gao](http://gaocegege.com/Blog/)
-- [Lchiffon](http://langdawei.com/)
-- [Nan Xiao](https://nanx.me/)
-- [Xuening Zhu](https://xueningzhu.github.io/)
-- [Guangchuang YU](https://guangchuangyu.github.io/)
-- [Qiang Kou](http://qkou.info/)
-- [Yixuan Qiu-cn](https://yixuan.cos.name/cn/) or [Yixuan Qiu-en](https://statr.me/)
-- [Tao Gao](https://joegaotao.github.io/)
-- [Xunmo Yang](https://tcya.xyz/)
-- [Yalei Du](http://yalei.name/)
-- [Junchen Feng](http://www.fengjunchen.com/)
-- [Sizhe Liu](http://www.bjt.name/)
-- [Liyun Chen](http://www.loyhome.com/)
-- [Peng Zhao](http://www.pzhao.org/zh/)
-- [Gaston Sanchez](http://www.gastonsanchez.com/)
-- [Xiao-Li Meng](https://statistics.fas.harvard.edu/people/xiao-li-meng)
-- [Peter J. Diggle](https://www.lancaster.ac.uk/staff/diggle/)
-- [Jianqing Fan-Fudan](http://www.sds.fudan.edu.cn/wp/?p=1695)
-- [Jianqing Fan](https://orfe.princeton.edu/~jqfan/index.html)
-- [T. Tony Cai](http://www-stat.wharton.upenn.edu/~tcai/)
-- [Runze Li's Homepage](http://personal.psu.edu/ril4/)
-- [Jane-Ling's Webpage](http://www.stat.ucdavis.edu/~wang/)
-- [Michael L. Stein](http://www.stat.uchicago.edu/faculty/stein.shtml)
-- [Hang Li - Home](http://hangli-hl.com/index.html)
+- [Jane-Ling](http://www.stat.ucdavis.edu/~wang/)
 - [Xihong Lin | Harvard T.H. Chan School of Public Health](https://www.hsph.harvard.edu/xihong-lin/)
 - [Committee of Presidents of Statistical Societies (COPSS)](http://community.amstat.org/copss/awards/winners)
-- [Charlie Geyer's Personal Home Page](http://users.stat.umn.edu/~geyer/)
-- [John Fox](https://socialsciences.mcmaster.ca/jfox/)
-- [Paul Murrell](https://www.stat.auckland.ac.nz/~paul/)
-- [Brian Ripley](http://www.stats.ox.ac.uk/~ripley/)
 - [Benjamin M. Taylor, PhD](http://www.lancaster.ac.uk/staff/taylorb1/index.html)
-- [Andy South – Researcher and R developer. Norwich, UK.](https://andysouth.github.io/)
-- [Rob J Hyndman](https://robjhyndman.com/)
-- [Julian Faraway](https://farawaystatistics.wordpress.com/)
-- [Andrew Gelman](https://andrewgelman.com/)
-- [Qiwei Yao](http://stats.lse.ac.uk/q.yao/)
-- [ZHU Lixing](http://www.math.hkbu.edu.hk/~lzhu/)
-- [Max Woolf](https://minimaxir.com/)
+- [Andy South](https://andysouth.github.io/) Researcher and R developer. Norwich, UK.
 - [Marc Taylor](https://menugget.blogspot.com/)
 - [Ignacio Sarmiento Barbieri](https://ignaciomsarmiento.github.io/)
 - [Alexey Radul](https://alexey.radul.name/)
@@ -207,9 +133,7 @@ Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
 - [Gianluca Baio](http://www.statistica.it/gianluca/)
 - [Omiros](http://www.econ.upf.edu/~omiros/)
 - [Yoonseo Zoh](https://zohyos7.github.io/)
-- [Norm Matloff](https://matloff.wordpress.com/)
 - [The Coatless Professor](https://thecoatlessprofessor.com/)
-- [Liam Huang](https://liam.page/)
 - [Kevin Ushey](https://kevinushey.github.io/)
 - [Mark Sellors](https://blog.sellorm.com/)
 - [LinOxide](https://linoxide.com/)
@@ -223,94 +147,72 @@ Gaussian processes in TensorFlow <https://github.com/GPflow/GPflow>
 - [Todd W. Schneider](http://toddwschneider.com/)
 - [Bruno Rodrigues](https://www.brodrigues.co/)
 - [Cartesian Faith](https://cartesianfaith.com/)
-- [WenSui Liu](https://statcompute.wordpress.com/about/)
 - [Patrick Burns](https://www.burns-stat.com/)
 - [Python 爬虫工具列表](https://mp.weixin.qq.com/s/X9NPFFTHTk62V21o63ceOA)
 - [Eric Novik](https://www.generable.com/blog/)
 - [Florian Hartig](https://theoreticalecology.wordpress.com/)
 - [Suresh K. Gorakala](https://www.dataperspective.info/)
-- [handong1587's blog - handong1587](https://handong1587.github.io/)
-- [Paul Bürkner](https://paul-buerkner.github.io/)
 - [Peter Ellis](http://freerangestats.info/)
 - [Guy Abel](https://guyabel.com/)
 - [Rasmus Bååth](http://sumsar.net/)
-- [Yuling Yao](https://www.yulingyao.com/)
 - [Doing Bayesian Data Analysis](https://doingbayesiandataanalysis.blogspot.com/)
 - [Dustin Tran](http://dustintran.com/)
-- [John MacFarlane - Home](http://johnmacfarlane.net/)
 
 
 # 博客 {#blogger}
 
-- [Yihui Xie | 谢益辉](https://yihui.name/)
-- [Xiangyun Huang | 黄湘云](https://www.xiangyunhuang.com.cn/)
-- [R 语言学习笔记](https://notesdown.netlify.com/)
-- [统计计算与图形](https://xiangyunhuang.github.io/ISCGwR/)
-- [Simply Statistics](https://simplystatistics.org/)
-- [R packages](http://r-pkgs.had.co.nz/)
-- [Advanced R](https://adv-r.hadley.nz/)
+
 - [A Docker Tutorial for Beginners](https://docker-curriculum.com/)
 - [Advanced Spatial Modeling with Stochastic Partial Differential Equations Using R and INLA](https://becarioprecario.bitbucket.io/spde-gitbook/index.html)
 - [中国人民大学数据挖掘中心](https://rucdmc.github.io/)
-- [空间数据分析与建模](https://bookdown.org/xiangyun/GeoSpatial/)
-- [gen.lib.rus.ec](http://gen.lib.rus.ec/)
-
 - [ProcessOn - 我的文件](https://www.processon.com/diagrams)
-- [Stack Overflow - Where Developers Learn, Share, & Build Careers](https://stackoverflow.com/)
-- [Sci-Hub: removing barriers in the way of science](https://sci-hub.tw/)
 - [The Markov-chain Monte Carlo Interactive Gallery](https://chi-feng.github.io/mcmc-demo/)
 - [Markov Chains: Why Walk When You Can Flow? | Elements of Evolutionary Anthropology](http://elevanth.org/blog/2017/11/28/build-a-better-markov-chain/)
 - [Efficient mode jumping MCMC for Bayesian variable selection in GLMM by aliaksah](https://aliaksah.github.io/EMJMCMC2016/)
-- [Typical Sets and the Curse of Dimensionality](http://mc-stan.org/users/documentation/case-studies/curse-dims.html)
-- [Areal data. Lung cancer risk in Pennsylvania](https://paula-moraga.github.io/tutorial-areal-data/)
-- [Geostatistical data. Malaria in The Gambia](https://paula-moraga.github.io/tutorial-geostatistical-data/)
 - [NIMBLE – An R package for programming with BUGS models and compiling parts of R.](https://r-nimble.org/)
 - [inlabru](https://sites.google.com/inlabru.org/inlabru/home)
-- [Statistical Rethinking Resources](https://rpruim.github.io/Statistical-Rethinking/)
 - [Handbook of mathematical functions](http://people.math.sfu.ca/~cbm/aands/frameindex.htm)
 - [Unicode Chart](https://www.ssec.wisc.edu/~tomw/java/unicode.html)
 - [https://stefvanbuuren.name/fimd/symbol-description.html](https://stefvanbuuren.name/fimd/symbol-description.html)
-- [GeoSpatial Data Visualization in R](https://bhaskarvk.github.io/user2017.geodataviz/)
-- [gallery.htmlwidgets.org](http://gallery.htmlwidgets.org/)
 - [Data Science Lab](https://datascience.jd.com/)
 - [Home - IAMG](https://www.iamg.org/)
-- [Ecological Models and Data in R](http://ms.mcmaster.ca/~bolker/emdbook/)
 - [CSS Layout - The position Property](https://www.w3schools.com/css/css_positioning.asp)
 - [智能金融起锚：文因、数库、通联瞄准的kensho革命](https://awtmt.com/articles/3014055)
 - [文因互联](http://memect.cn/)
 - [北京空气质量指数AQI_PM2.5月统计历史数据_中国空气质量在线监测分析平台历史数据](https://www.aqistudy.cn/historydata/monthdata.php?city=%E5%8C%97%E4%BA%AC)
 - [基于分布式容器和高性能计算的R](https://bwlewis.github.io/r-and-singularity/) R and Singularity
 - [利用 R 和 OpenCPU 搭建高可用的 HTTP 服务](http://www.bjt.name/2017/04/opencpu-application)
-- [Nearest Neighbor Gaussian Processes (NNGP) based models](https://github.com/LuZhangstat/NNGP_STAN) and [Case study: NNGP based models in Stan](http://mc-stan.org/users/documentation/case-studies/nngp.html)
-- [Spatial Models in Stan: Intrinsic Auto-Regressive Models for Areal Data](http://mc-stan.org/users/documentation/case-studies/icar_stan.html) 空间模型之 Stan 实现 [slides](https://github.com/stan-dev/stancon_talks/blob/master/2018/Invited-Talks/Morris.pdf)
-- [Conditional autoregressive models in Stan](https://github.com/mbjoseph/CARstan) [网页版](http://mc-stan.org/users/documentation/case-studies/mbjoseph-CARStan.html)
+
+
 - [Bagging, the perfect solution for model instability](https://insightr.wordpress.com/2017/05/22/bagging-the-perfect-solution-for-model-instability/)
 - [How Random Forests improve simple Regression Trees?](https://insightr.wordpress.com/2017/09/23/how-random-forests-improve-simple-regression-trees/)
 - [Tuning xgboost in R: Part I](https://insightr.wordpress.com/2018/05/17/tuning-xgboost-in-r-part-i/)
 - [Tuning xgboost in R: Part II](https://insightr.wordpress.com/2018/07/28/tuning-xgboost-in-r-part-ii/)
-- [Easily Make Multi-tabbed .xlsx Files with openxlsx](https://trinkerrstuff.wordpress.com/2018/02/14/easily-make-multi-tabbed-xlsx-files-with-openxlsx/) Map 函数
+
+
+
+
+
 - [Deep learning at rstudio::conf 2018](https://rviews.rstudio.com/2018/02/14/deep-learning-rstudio-conf-2018/) 深度学习与R语言,J.J.作为 RStudio 的 CEO 推动 tensorflow 在 R 中的使用，两个幻灯片值得好好看，J.J. 介绍 tensorflow Javier Luraschi介绍tf的部署
+
 - netlify travis-ci blog 搭建 blogdown <https://bookdown.org/yihui/blogdown>
-- [An Introduction to Spatial Econometrics in R](http://www.econ.uiuc.edu/~lab/workshop/Spatial_in_R.html) spatial econometric analysis 空间经济分析 可考虑翻译一下 <https://ignaciomsarmiento.github.io/2017/02/07/An-Introduction-to-Spatial-Econometrics-in-R>
+
+
 - [Data Visualization Shiny Apps](https://ignaciomsarmiento.github.io/software.html) 数据可视化核密度估计 In this app I identify crime hotspots using a bivariate density estimation strategy
+
+
 - [Putting the Macron in Māori: Accented text in R Graphics](https://www.stat.auckland.ac.nz/~paul/Reports/maori/maori.html) Paul Murrell 图形中嵌入重音字符
 - [color in plot](https://www.stat.auckland.ac.nz/~paul/Talks/colour.pdf) Paul Murrell 配色
 - [Using Computer Modern Fonts in R Graphics](https://www.stat.auckland.ac.nz/~paul/R/CM/CMR.html) Paul Murrell 图形中嵌入数学字体
 - [Lattice Graphics](https://www.stat.auckland.ac.nz/~paul/Talks/dsc2001.pdf) Paul Murrell 介绍 Lattice Graphics
+
+
 - [Association of Statisticians of American Religious Bodies (ASARB) viridis USA map](http://www.rpubs.com/cgarey/ProjectOneFinal)
-- [Mapping unemployment data](http://sharpsightlabs.com/blog/map-unemployment-nov-2016/)
-- [when-will-evolution-outperform-local-search](https://blog.evorithmics.org/2016/01/31/when-will-evolution-outperform-local-search/) 进化何时跑赢局部搜索 爱可可爱生活--进化如何跑赢局部搜索
+- [when-will-evolution-outperform-local-search](https://blog.evorithmics.org/2016/01/31/when-will-evolution-outperform-local-search/) 进化何时跑赢局部搜索 爱可可爱生活
 - [Game of Thrones network analysis](https://shirinsplayground.netlify.com/2018/03/got_network/) 权利的游戏 网络
 - [Using Git and GitHub with R, Rstudio, and R Markdown](https://github.com/jennybc/happy-git-with-r)
 - [如何用Markdown写论文](http://blog.sciencenet.cn/blog-377709-1088215.html)
 - [blogdown和Github搭建网站](https://aurora-mareviv.github.io/talesofr/2018/02/r-blogdown-setup-in-github-2/)
-- [The R-INLA project and Bayesian computing with INLA](http://www.r-inla.org/)
-- [Geographic Data Science in Python](https://data.cdrc.ac.uk/dataset/geographic-data-science-in-python)
-- [Spatial](https://data.cdrc.ac.uk/)
-- [r-spatial](https://www.r-spatial.org/)
-- [Fast GeoSpatial Analysis in Python](http://matthewrocklin.com/blog/work/2017/09/21/accelerating-geopandas-1)
-- [Spatial Data in R: New Directions](https://edzer.github.io/UseR2017/) Edzer Pebesma
-- [A gentle INLA tutorial](https://www.precision-analytics.ca/blog-1/inla)
 
 
 > 此节附录最后可以删掉
@@ -350,21 +252,18 @@ python py-chrome-bookmarks-markdown.py bookmarks.md
 - [R-Ladies Global – R-Ladies is a world-wide organization to promote gender diversity in the R community](http://rladies.org/)
 - [Shane Lynn - Data science, analytics, and Startups](https://www.shanelynn.ie/)
 - [Open Source Projects | NumFOCUS](https://www.numfocus.org/open-source-projects/)
-- [DataScience+ An online community for showcasing R & Python tutorials](https://datascienceplus.com/)
 - [Latest Posts – So Simple Theme](https://mmistakes.github.io/so-simple-theme/)
 - [Video Tutorial of PSO implementation in MATLAB](http://yarpiz.com/440/ytea101-particle-swarm-optimization-pso-in-matlab-video-tutorial)
 - [Statistics.com - Course List - Online Courses](http://www.statistics.com/course-catalog/)
 - [me nugget](http://menugget.blogspot.jp/)
-- [Time Series Analysis and Its Applications: With R Examples - tsa4](http://www.stat.pitt.edu/stoffer/tsa4/)
 - [(code实战)机器学习方法和性能比较](http://rpubs.com/m3cinc/Benchmarking_20_Machine_Learning_Models_Accuracy_and_Speed)
 - [ggplot2 – The R graph Gallery](http://www.r-graph-gallery.com/portfolio/ggplot2-package/)
 - [quantumobject/docker-shiny - Docker Hub](https://hub.docker.com/r/quantumobject/docker-shiny/)
 - [ggplot2绘图库](http://www.sthda.com/english/)
 - [Highcharter 商业](http://jkunst.com/highcharter/)
-- [john-coene.com](http://john-coene.com/)
+- [john-coene.com](https://john-coene.com/)
 - [Deep Learning in R – R Blog](http://www.rblog.uni-freiburg.de/2017/02/07/deep-learning-in-r/)
 - [Zelig 统计推断方法合集](https://zeligproject.org/)
-- [Paul Murrell's Home Page](https://www.stat.auckland.ac.nz/~paul/)
 - [Data Science Accelerator for Credit Risk Prediction (Revolutions)](http://blog.revolutionanalytics.com/2017/07/credit-risk-prediction.html)
 - [Credit Card Fraud Detection | Kaggle](https://www.kaggle.com/dalpozz/creditcardfraud)
 
