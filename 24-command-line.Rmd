@@ -24,8 +24,6 @@ sudo aptitude install build-essential # 修复依赖问题
 sudo apt update # 更新资源列表
 sudo apt-get upgrade # 更新软件包
 apt list --upgradable # 列出可升级的包
-sudo apt clean
-sudo apt autoremove
 sudo apt-get autoclean # 删除已卸的软件的备份
 sudo apt-get clean # 删除已装或已卸的软件的备份
 sudo apt-get autoremove --purge * # 推荐卸载软件的方式
@@ -300,12 +298,14 @@ git commit -m "track *.psd files using Git LFS"
 git push origin master
 ```
 
+这玩意迟早需要你购买存储空间，慎用
+
 ### 新建分支 {#checkout-new-branch}
 
 
 ```bash
-git checkout -b stan # 新建 stan 分支
-git branch -v # 查看本地分支 stan 前有个星号标记
+git checkout -b stan     # 新建 stan 分支
+git branch -v            # 查看本地分支 stan 前有个星号标记
 git pull --rebase git@github.com:XiangyunHuang/cosx.org.git master
 # 同步到远程分支 stan
 git push --set-upstream origin stan

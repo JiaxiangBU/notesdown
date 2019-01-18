@@ -59,11 +59,6 @@ yaml::yaml.load("!expr paste('orange')", handlers = list(expr = function(x) eval
 一些 repos 
 
 ```bash
-sudo apt-add-repository -y "deb https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/linux/ubuntu trusty-cran35/"
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-
-sudo add-apt-repository -y ppa:marutter/c2d4u3.5
-sudo add-apt-repository -y "ppa:marutter/rrutter3.5"
 sudo add-apt-repository -y "ppa:opencpu/jq"
 sudo add-apt-repository -y "ppa:ubuntugis/ppa"
 sudo add-apt-repository -y "ppa:kirillshkrogalev/ffmpeg-next"
@@ -73,17 +68,6 @@ sudo apt-add-repository -y "ppa:octave/stable"
 sudo apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
 
 sudo add-apt-repository --remove ppa:ubuntu-toolchain-r/test
-```
-
-## Git
-
-官网安装指导 https://git-scm.com/download/linux 
-
-- Ubuntu 
-
-```bash
-sudo add-apt-repository -y ppa:git-core/ppa
-sudo apt update && sudo apt install git
 ```
 
 ## R 
@@ -273,14 +257,6 @@ tlmgr install ctex fandol
 font_db <- base::system("fc-list :lang=en-us | sort", intern = TRUE)
 font_name <- unique(do.call(rbind,strsplit(font_db,split = ":"))[,2])
 substr(font_name, 2, nchar(font_name))
-```
-
-```{r}
-tinytex::tl_pkgs()
-capabilities()
-extSoftVersion()
-names(pdfFonts())
-rmarkdown::pandoc_version()
 ```
 
 - Windows 下安装
@@ -846,41 +822,4 @@ rocker/geospatial
 ```{r docker-centos, fig.cap="CentOS 上 Docker 安装", echo=FALSE}
 knitr::include_graphics(path = "figures/04f-docker-centos.png")
 ```
-
-### 常用命令 {#common-commands}
-
-- 拉取 docker pull
-- 启动 docker start
-- 运行 docker run
-- 移除 docker rm(i)
-
-1. 移除容器和镜像
-
-查看容器  
-
-```bash
-docker ps -a
-```
-
-删除容器 `docker rm 容器 ID`
-
-```bash
-docker rm 6f932357e6ce
-```
-
-查看镜像 
-
-```bash
-docker images
-```
-
-删除镜像 
-
-`docker rmi 镜像 ID`
-
-```bash
-docker rmi 811281c54b23
-```
-
-
 

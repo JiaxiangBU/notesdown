@@ -21,6 +21,7 @@ Imports:
   cranlogs,
   dichromat,
   echarts4r,
+  extrafont,
   fontcm,
   fortunes,
   ggplot2,
