@@ -43,6 +43,7 @@ Imports:
   rticles,
   showtext,
   svglite,
+  tidyverse,
   tikzDevice,
   yarrr
 Remotes: 
