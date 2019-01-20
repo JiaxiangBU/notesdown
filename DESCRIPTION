@@ -45,6 +45,7 @@ Imports:
   svglite,
   tidyverse,
   tikzDevice,
+  xkcd,
   yarrr
 Remotes: 
   leonawicz/mapmate,

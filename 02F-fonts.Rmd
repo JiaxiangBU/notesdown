@@ -16,19 +16,6 @@ grid.text(
 )
 ```
 
-参考文献 <https://cran.r-project.org/doc/Rnews/Rnews_2006-2.pdf> Non-Standard Fonts in PostScript and PDF Graphics 一节
-
-grDevices 包提供了如下函数，用于 postscript 和 pdf 图形设备，嵌入字体借助了 [Ghostscript](https://www.ghostscript.com/) 其下载地址 <https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs923/gs923w64.exe>
-
-以及 PDF 阅读器 MuPDF <https://www.mupdf.com/>
-
-```r
-postscriptFonts(...)
-pdfFonts(...)
-embedFonts
-```
-
-
 字体设置包括自定义中文字体、英文字体和数学公式。
 
 > 启用showtext 包处理中文，在网页版文档中，png 图片中的字体会变很小
