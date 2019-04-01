@@ -47,11 +47,7 @@ Table: (\#tab:insert-tab) A table caption^[With a footnote]
 
 插入图片也很简单的，如图\@ref(fig:insert-fig)所示
 
-```{asis}
-<div align="center">
 ![插入图^[这里也是脚注哦]](figures/fig11.png){#fig:insert-fig width=45% }
-</div>
-```
 
 图、表的标题很长可以使用文本引用^[<https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#text-references>]的方式实现。
 
