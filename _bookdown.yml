@@ -40,7 +40,16 @@ rmd_files: [
   "23-matplotlib.Rmd",
   "24-command-line.Rmd",
   "25-install-packages.Rmd",
-  
+
+#  - "20-OO.Rmd"
+
+# 附录
+  - "95-r-packages.Rmd"
+  - "96-editor.Rmd"
+  - "97-rstudio.Rmd"  
+  - "98-git-github-gitlab.Rmd"
+  - "99-container.Rmd"
+  - "99-other-tools.Rmd"  
   # 参考文献
   "27-references.Rmd",
 ]

@@ -1,6 +1,6 @@
 # 命令行 {#command-line}
 
-## apt 软件包管理器 {#apt}
+## apt {#apt}
 
 ### 添加和删除 PPA {#ppa}
 
@@ -404,3 +404,54 @@ git pull --rebase git@github.com:yihui/xaringan.git master
 参考 <https://github.com/yihui/xaringan/pull/107>
 
 > I don't recommend you to use your master branch for pull requests, because all commits will be squashed before merging, e.g. c2c2055 Then you will have some trouble with syncing your master branch with the master branch here (your choices are (1) delete your repo and fork again; or (2) force push; either option is not good). For pull requests, I recommend that you always use different branches for different pull requests.
+
+## PUTTY 登陆 openSUSE
+
+
+配置 openSUSE 15 让 PuTTY 通过 SSH 登陆
+
+```bash
+# 查看 ssh 安装情况
+rpm -qa | grep ssh
+# 是否启动 ssh 服务
+sudo service sshd status
+```
+
+```bash
+sudo vi /etc/ssh/sshd_config
+```
+
+将 `#PasswordAuthentication no` 的注释去掉（如果有），并且将no修改为yes      # 允许通过密码认证登录
+将 `#PermitRootLogin yes` 的注释去掉                                     # 允许root用户直接登录
+
+```bash
+sudo service sshd start
+sudo service sshd restart
+sudo service sshd stop
+# 设置开机启动
+sudo systemctl enable ssh
+# 安装防火墙工具
+sudo zypper install firewalld firewall-applet firewall-config
+# 启用防火墙
+sudo systemctl enable firewalld
+sudo systemctl start firewalld
+# 开放端口
+sudo firewall-cmd --zone=public --permanent --add-port 22/tcp  # ssh
+sudo firewall-cmd --zone=public --permanent --add-port 8787/tcp # rstudio
+# 重启防火墙
+sudo firewall-cmd --reload
+```
+
+安装最新的带补丁的 R 版本
+
+```bash
+# 自动检测安装的系统版本
+VERSION=$(grep "^PRETTY_NAME" /etc/os-release | tr " " "_" | sed -e 's/PRETTY_NAME=//' | sed -e 's/"//g')
+# 添加 repo
+sudo zypper addrepo -f http://download.opensuse.org/repositories/devel\:/languages\:/R\:/patched/$VERSION/ R-base
+
+# 删除 repo 
+zypper remoterepo R-base
+# 安装 R-patched
+sudo zypper install R-patched
+```
