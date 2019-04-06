@@ -56,6 +56,11 @@ addons:
       - libproj-dev 	
       - libgeos-dev 	
       - libgdal-dev	
+      # rgl
+      - libcgal-dev 
+      - libglu1-mesa-dev 
+      - libglu1-mesa-dev 
+      - libx11-dev
 
 before_install:
   - mkdir -p ~/.R

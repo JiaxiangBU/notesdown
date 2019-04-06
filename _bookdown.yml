@@ -25,8 +25,6 @@ rmd_files: [
   "02A-plot.Rmd",
   "02B-grid.Rmd",
   "02C-interactions.Rmd",
-
-  "02D-magick.Rmd",
   
   # 中忍
   "02E-colors.Rmd",
@@ -37,13 +35,12 @@ rmd_files: [
   "21-appendix.Rmd",
 
   "22-markdown.Rmd",
-  "23-matplotlib.Rmd",
+
   "24-command-line.Rmd",
   "25-install-packages.Rmd",
 
 #  "20-OO.Rmd"
 
-  "95-r-packages.Rmd",
   "96-editor.Rmd",
   "97-rstudio.Rmd",
   "98-git-github-gitlab.Rmd",
