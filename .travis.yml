@@ -1,8 +1,9 @@
 language: r
 r:
   - release
-dist: trusty
-sudo: true
+  - devel  
+
+dist: xenial
 cache:
   packages: true
   directories:
@@ -15,7 +16,7 @@ branches:
     - stable
 
 latex: false
-pandoc_version: 2.3.1
+pandoc_version: 2.7.1
 
 git:
   depth: 5
@@ -25,40 +26,48 @@ repos:
   CRAN: https://cloud.r-project.org
   RForge: https://r-forge.r-project.org
 
+env:
+  global:
+    - TZ="Asia/Shanghai"
+    - MAKEFLAGS="-j 2"
+    - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - sourceline: ppa:opencpu/jq
+      - sourceline: ppa:opencpu/libgit2
     packages:
+      - libgit2-dev
       - ghostscript
       - imagemagick
       - optipng
-      - graphviz      
-      - gcc-7
-      - g++-7
+      - libnlopt-dev
+      # rstan
+      - g++-8
+      # magick
       - libmagick++-dev      	
-      - libwebp-dev	
-      - libgsl0ldbl	
-      - libpoppler-cpp-dev	
+      # pdftools
+      - libpoppler-cpp-dev
+      # v8
       - libv8-dev	
-      - libprotobuf-dev 	
-      - protobuf-compiler	
-      - libjq-dev	
+      # sf
       - libudunits2-dev	
       - libproj-dev 	
       - libgeos-dev 	
       - libgdal-dev	
 
 before_install:
-  - mkdir ~/.R
-  - cp Makevars ~/.R
-  - nvm install stable
+  - mkdir -p ~/.R
+  - echo "CXXFLAGS += -Wno-ignored-attributes" >> ~/.R/Makevars
+  - echo "CXX14 = g++-8 -fPIC -flto=2" >> ~/.R/Makevars
+  - echo "CXX14FLAGS = -mtune=native -march=native -Wno-unused-variable -Wno-unused-function -Wno-unused-local-typedefs -Wno-ignored-attributes -Wno-deprecated-declarations -Wno-attributes -O3" >> ~/.R/Makevars
+#  - nvm install stable
   - npm install netlify-cli -g
-  - curl -fLo /tmp/tinytex.tar.gz https://travis-bin.yihui.name/tinytex.tar.gz
-  - tar -xzf /tmp/tinytex.tar.gz -C $HOME
-  - export PATH=$HOME/.TinyTeX/bin/x86_64-linux:$PATH
-  - tlmgr install $(cat latex/TeXLive.pkgs | tr '\n' ' ') || true
+#  - curl -fLo /tmp/tinytex.tar.gz https://travis-bin.yihui.name/tinytex.tar.gz
+#  - tar -xzf /tmp/tinytex.tar.gz -C $HOME
+#  - export PATH=$HOME/.TinyTeX/bin/x86_64-linux:$PATH
+#  - tlmgr install $(cat latex/TeXLive.pkgs | tr '\n' ' ') || true
 
 before_script:
   - Rscript -e 'update.packages(lib.loc = .libPaths()[1], ask = FALSE)'
@@ -66,17 +75,13 @@ before_script:
 script:
   - Rscript -e 'bookdown::render_book("index.Rmd")'
 
-#deploy:
-#  - provider: pages
-#    skip_cleanup: true
-#    github_token: $GITHUB_TOKEN
-#    on:
-#      branch: master
-#    local_dir: _book
-#  - provider: script
-#    script: netlify deploy --prod --dir _book
-#    skip_cleanup: true
-
-# deploy 
-after_success:
-  - netlify deploy --prod --dir _book
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    on:
+      branch: master
+    local_dir: _book
+  - provider: script
+    script: netlify deploy --prod --dir _book
+    skip_cleanup: true

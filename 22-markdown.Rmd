@@ -23,6 +23,10 @@ R Markdown 站在巨人的肩膀上，这些巨人有 [Markdown](https://daringf
    - revealjs: R Markdown Format for reveal.js Presentations <https://github.com/rstudio/revealjs>
    - xaringan: Presentation Ninja 幻灯忍者写轮眼 <https://slides.yihui.name/xaringan/>
 
+- RStudio 插件
+   - Simplify Markdown Writing [remedy](https://github.com/ThinkR-open/remedy)
+
+
 ## bookdown
 
 ```{asis}

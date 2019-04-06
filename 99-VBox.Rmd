@@ -1,0 +1,343 @@
+# 虚拟机 {#VBox}
+
+在虚拟机 VBox 里配置 R 语言数据分析和开发环境
+
+## openSUSE 15
+
+配置 openSUSE 15 让 PuTTY 通过 SSH 登陆
+
+```bash
+# 查看 ssh 安装情况
+rpm -qa | grep ssh
+# 是否启动 ssh 服务
+sudo service sshd status
+```
+
+```bash
+sudo vi /etc/ssh/sshd_config
+```
+
+将 `#PasswordAuthentication no` 的注释去掉（如果有），并且将 no 修改为 yes，即允许通过密码认证登录。将 `#PermitRootLogin yes` 的注释去掉，即允许 root 用户直接登录
+
+```bash
+sudo service sshd start
+sudo service sshd restart
+sudo service sshd stop
+# 设置开机启动
+sudo systemctl enable ssh
+# 安装防火墙工具
+sudo zypper install firewalld firewall-applet firewall-config
+# 启用防火墙
+sudo systemctl enable firewalld
+sudo systemctl start firewalld
+# 开放端口
+sudo firewall-cmd --zone=public --permanent --add-port 22/tcp  # ssh
+sudo firewall-cmd --zone=public --permanent --add-port 8787/tcp # rstudio
+# 重启防火墙
+sudo firewall-cmd --reload
+```
+
+安装最新的带补丁的 R 版本
+
+```bash
+# 自动检测安装的系统版本
+VERSION=$(grep "^PRETTY_NAME" /etc/os-release | tr " " "_" | sed -e 's/PRETTY_NAME=//' | sed -e 's/"//g')
+# 添加 repo
+sudo zypper addrepo -f http://download.opensuse.org/repositories/devel\:/languages\:/R\:/patched/$VERSION/ R-base
+
+# 删除 repo 
+zypper remoterepo R-base
+# 安装 R-patched
+sudo zypper install R-patched
+```
+
+## Ubuntu 14.04.5 {#trusty}
+
+```bash
+# 启用网络
+sudo vi /etc/network/interfaces
+# 添加
+auto eth1
+iface eth1 inet dhcp
+```
+
+重启网络
+
+```bash
+# sudo service network-manager restart
+sudo /etc/init.d/networking restart
+```
+
+设置 repos 镜像地址
+
+```bash
+wget https://tuna.moe/oh-my-tuna/oh-my-tuna.py
+sudo python oh-my-tuna.py --global
+```
+
+安装确认 openssh-server 服务
+
+```bash
+sudo apt install openssh-server
+sudo /etc/init.d/ssh start
+ps -aux | grep ssh
+```
+
+## CentOS 7
+
+安装一些依赖
+
+```bash
+sudo yum install -y libcurl-devel openssl-devel libssh2-devel \
+   libgit2-devel libxml2-devel \
+   ImageMagick-c++-devel librsvg2-devel tcl-devel tk-devel \
+   readline-devel v8-314-devel libXmu libXmu-devel \
+   mesa-libGLU mesa-libGLU-devel libicu-devel
+```  
+
+```r
+install.packages(c(
+   'curl', 'openssl', 'git2r', 'xml2', 
+   'devtools', 'ggplot2', 'magick', 'rsvg', 'bookdown'
+))
+```
+
+```bash
+tlmgr install inconsolata ctex l3kernel l3packages \
+   ms zapfding fancyvrb booktabs
+```
+
+安装 texinfo 编译手册
+
+```bash
+wget https://ftp.gnu.org/gnu/texinfo/texinfo-6.5.tar.gz
+tar -xzf texinfo-6.5.tar.gz
+cd texinfo-6.5
+
+./configure
+make 
+sudo make install
+
+cp ~/texinfo-6.5/doc/txi-en.tex ~/R-devel/doc/manual
+
+curl -fLo ~/R-devel/doc/manual/texinfo.tex https://ftp.gnu.org/gnu/texinfo/texinfo.tex
+```
+
+- 安装 sf
+
+```bash
+sudo yum install netcdf-devel hdf5-devel armadillo-devel \
+    freexl-devel unixODBC-devel geos-devel \
+    gdal-devel proj-devel proj-epsg proj-nad \
+    udunits2-devel fftw fftw-devel 
+```
+
+- 配置 rgdal
+
+```bash
+./configure
+make 
+sudo make install
+```
+
+```bash
+sudo yum install perl-Digest-MD5
+```
+
+卸载 texlive
+
+```bash
+sudo yum remove texlive-\*
+```
+
+安装字体
+
+```bash
+sudo yum install levien-inconsolata-fonts texlive-inconsolata texlive-fandol texlive-ctex
+```
+
+```bash
+tlmgr install ctex ms ulem xecjk environ trimspaces \
+  zhnumber fandol xltxtra realscripts
+```
+
+```bash
+## Use tinytex for LaTeX installation
+wget -qO- "https://yihui.name/gh/tinytex/tools/install-unx.sh" | sh -s - --admin --no-path 
+sudo mv ~/.TinyTeX /opt/TinyTeX 
+sudo /opt/TinyTeX/bin/*/tlmgr path add 
+tlmgr install inconsolata tex ae parskip listings 
+sudo /opt/TinyTeX/bin/*/tlmgr path add 
+```
+
+```r
+Rscript -e "tinytex::r_texmf()" 
+```
+
+```bash
+tlmgr install ctex ms ulem xecjk environ trimspaces \
+  zhnumber fandol xltxtra realscripts \
+  times helvetic courier
+```  
+
+## Fedora 27 {#fedora27}
+
+先从 [清华开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/) 下载 Fedora 镜像 `Fedora-Server-netinst-x86_64-27-1.6.iso` 启动 VBox 分配硬件资源后
+
+```{r,fig.cap='安装 Fedora 迷你版',echo=FALSE}
+knitr::include_graphics(path = 'figures/04n-Fedora-Mini.png')
+```
+
+设置 `root` 账户密码，创建新账户 `cloud2016`
+
+```{r,fig.cap='配置账户',echo=FALSE}
+knitr::include_graphics(path = 'figures/04n-Fedora-Install.png')
+```
+
+等待直到内核安装配置完成
+
+```{r,fig.cap='安装完成',echo=FALSE}
+knitr::include_graphics(path = 'figures/04n-Fedora-Kernel.png')
+```
+
+默认在线安装的 Fedora 迷你版， 网络已经配置好， 系统各组件也是最新的， 此时包含的软件列表如下：
+
+```bash
+yum list installed
+```
+
+[迷你 Fedora 默认安装软件列表](https://github.com/XiangyunHuang/ISCGwR/files/2228186/miniFedoraPackagesList.log)
+
+> 安装了最新版 Fedora 后，系统仓库自带的软件都是比较新的版本，可以直接安装
+
+```bash
+sudo yum install openssh-server epel-release
+sudo yum install -y ImageMagick-c++-devel librsvg2-devel \
+ gdal-devel proj-devel proj-epsg proj-nad geos-devel udunits2-devel \
+ glibc-headers libreadline6-devel readline-devel libXt-devel \
+ tcl tcl-devel tclx tk tk-devel mesa-libGLU mesa-libGLU-devel bzip2-devel \ 
+ libcurl-devel openssl-devel libssh2-devel libxml2-devel v8-314-devel \
+ pkg-config wget perl-Digest-MD5 fontconfig  
+```
+
+```bash
+sudo yum install gdal-devel proj-devel \
+  proj-epsg proj-nad geos-devel udunits2-devel
+```
+
+```r
+install.packages("udunits2",configure.args='--with-udunits2-include=/usr/include/udunits2')   
+install.packages("sf") 
+```
+
+使用 Fedora 最新版系统或者 Rocker 提供的 Docker 镜像，不然需要手动编译安装 GEOS^[<http://trac.osgeo.org/geos>] 和 gdal^[<http://trac.osgeo.org/gdal>]，CentOS 自带的包版本太低，不够 **sf** 包使用，这就是新手面临的痛点。CentOS 仓库自带的依赖库版本有点低，需要手动安装高版本，安装 rgdal 包没有问题，而 sf 包目前处于一种活跃开发状态，且是空间数据分析的新标准，使用的都是新版本的依赖库。
+
+
+### 安装 TinyTeX {#fedora-tinytex}
+
+从最初的命令行开始
+
+```bash
+wget -qO- "https://github.com/yihui/tinytex/raw/master/tools/install-unx.sh" | sh
+```
+
+由于 Fedora 27 自带的 texlive 功能比较全，TinyTeX 变成可选项，默认安装目录为 `~/.TinyTeX`
+
+```bash
+yum install perl-Digest-MD5
+```
+
+```r
+devtools::install_github('yihui/tinytex')
+tinytex::install_tinytex(TRUE, repository = 'http://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet')
+# tinytex::install_tinytex(force = TRUE) # 若之前安装过 TinyTeX
+```
+
+修改 .bashrc
+
+```bash
+PATH=/home/cloud2016/.TinyTeX/bin/x86_64-linux:$PATH; export PATH
+MANPATH=/home/cloud2016/.TinyTeX/texmf-dist/doc/man:$MANPATH; export MANPATH
+INFOPATH=/home/cloud2016/.TinyTeX/texmf-dist/doc/man:$INFOPATH; export INFOPATH
+```
+
+使环境变量设置生效
+
+```bash
+source ~/.bashrc
+```
+
+安装常用 tex 包，主要处理中文和代码字体
+
+```bash
+tlmgr install fontspec ctex tex inconsolata \
+      cjk zhnumber fandol xecjk environ ulem trimspaces \
+      sourcesanspro sourcecodepro appendix \
+      zhspacing metalogo realscripts xltxtra \
+      times helvetic courier inconsolata
+```
+
+还需要安装一些 TeX 包，才能编译出中文 PDF 文档
+
+```bash
+tlmgr install ctex ms ulem xecjk environ trimspaces \
+  zhnumber fandol xltxtra realscripts
+```
+
+`.Rprofile` 设置如下
+
+```r
+Sys.setenv(PATH = "/home/cloud2016/.TinyTeX/bin/x86_64-linux:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin" )
+options( bitmapType = 'cairo' )
+```
+
+查看 R 进程信息
+
+```r
+sessionInfo()
+```
+
+```
+R version 3.4.3 (2017-11-30)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Fedora 27 (Twenty Seven)
+
+Matrix products: default
+BLAS: /usr/local/lib64/R/lib/libRblas.so
+LAPACK: /usr/local/lib64/R/lib/libRlapack.so
+
+locale:
+ [1] LC_CTYPE=zh_CN.UTF-8       LC_NUMERIC=C
+ [3] LC_TIME=zh_CN.UTF-8        LC_COLLATE=zh_CN.UTF-8
+ [5] LC_MONETARY=zh_CN.UTF-8    LC_MESSAGES=zh_CN.UTF-8
+ [7] LC_PAPER=zh_CN.UTF-8       LC_NAME=C
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C
+[11] LC_MEASUREMENT=zh_CN.UTF-8 LC_IDENTIFICATION=C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base
+
+loaded via a namespace (and not attached):
+[1] compiler_3.4.3 tools_3.4.3    tinytex_0.2.3
+```
+
+### RStudio Server {#fedora-rstudio}
+
+以管理员账户登录系统，下载安装 RStudio Server 开源版本
+
+```bash
+wget https://download2.rstudio.org/rstudio-server-rhel-1.1.383-x86_64.rpm
+sudo yum install --nogpgcheck rstudio-server-rhel-1.1.383-x86_64.rpm
+```
+
+RStudio Server 不能以 root 账户登录，下面新建账户
+
+```bash
+adduser cloud2016 # 添加用户
+passwd cloud2016  # 用户密码设为 cloud
+whereis sudoers   # 查找文件位置
+chmod -v u+w /etc/sudoers # 给文件 sudoers 添加写权限
+vim /etc/sudoers # 添加 cloud2016 管理员权限
+chmod -v u-w /etc/sudoers # 收回权限
+```

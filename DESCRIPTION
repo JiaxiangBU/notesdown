@@ -1,6 +1,6 @@
 Package: notesdown
 Title: A book of notes
-Version: 0.0.1
+Version: 0.0.9999
 Authors@R: c(
   person("Xiangyun", "Huang", , "xiangyunfaith@outlook.com", c("aut", "cre"))
   )
@@ -24,6 +24,7 @@ Imports:
   extrafont,
   fontcm,
   fortunes,
+  gganimate,
   ggplot2,
   ggrepel,
   ggthemes,
@@ -49,7 +50,6 @@ Imports:
   yarrr
 Remotes: 
   leonawicz/mapmate,
-  dgrtwo/gganimate,
   cosname/recharts
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1.9000
