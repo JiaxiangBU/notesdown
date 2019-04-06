@@ -26,7 +26,7 @@ rmd_files: [
   "02B-grid.Rmd",
   "02C-interactions.Rmd",
 
-  "02D-ImageMagick.Rmd",
+  "02D-magick.Rmd",
   
   # 中忍
   "02E-colors.Rmd",
