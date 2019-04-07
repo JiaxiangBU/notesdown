@@ -2,10 +2,40 @@
 
 目前大部分 R 的包/项目会考虑加入徽章 (badge)，展示一些包/项目的重要标示，如
 
-1. 开发阶段
+1. 开发阶段 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 1. 下载量
-1. 许可证 (lisence)
+1. 许可证 (lisence) [![License: CC BY NC ND 4.0](https://img.shields.io/badge/License-CC%20BY%20NC%20ND%204.0-blue.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/) 
 
 以下做徽章的总结和对应的使用方式。
 
+[ddavison 的 github-badges]: https://github.com/ddavison/github-badges
 
+## github-badges
+
+参考 [ddavison 的 github-badges]，可以使用常用 GitHub 上展示几个徽章。
+
+
+### Stars 数量
+
+以 Xgboost 为例。
+
+```
+[![star this repo](http://githubbadges.com/star.svg?user=dmlc&repo=xgboost)](https://github.com/dmlc/xgboost)
+```
+
+这里可以设计一个简单的函数
+
+```{r}
+get_stars <- function(user = 'dmlc', repo = 'xgboost'){
+  text <- glue::glue("[![star this repo](http://githubbadges.com/star.svg?{user}=dmlc&{repo}=xgboost)](https://github.com/{user}/{repo})")
+  clipr::write_clip(text)
+  cat(text)
+  message("\n\nThe badges is on your clipboard so just paste it where you want.")
+}
+```
+
+```{r}
+get_stars(user = 'dmlc', repo = 'xgboost')
+```
+
+[![star this repo](http://githubbadges.com/star.svg?dmlc=dmlc&xgboost=xgboost)](https://github.com/dmlc/xgboost)
