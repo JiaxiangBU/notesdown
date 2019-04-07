@@ -10,7 +10,7 @@ language:
 
 new_session: yes
 before_chapter_script: ["_common.R"]
-clean: ["packages.bib", "notesdown.rds"]
+clean: ["packages.bib"]
 rmd_files: [
   "index.Rmd",
   "00-authors.Rmd",
